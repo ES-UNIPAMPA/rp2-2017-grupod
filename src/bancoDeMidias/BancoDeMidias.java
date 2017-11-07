@@ -33,9 +33,10 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     @Override
     public boolean cadastrar(Midia midia) {
         for(int i = 0; i< midias.size(); i++){
-            
+            if(midias.get(i) == null){
+                this.midias.add(midia);
+            }
         }
-        this.midias.add(midia);
         return false;
     }
 
