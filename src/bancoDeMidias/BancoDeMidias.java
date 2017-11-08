@@ -22,7 +22,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     public String toString() {
         String dados = null;
         for(int i = 0; i<midias.size() ; i++){
-            dados = midias.get(i).getTitulo() + "\n";
+            dados = dados + "\n "+ midias.get(i).getTitulo() + "\n";
         }
         return "BancoDeMidias{" + "Filmes Cadastrados: " + dados +'}';
     }
@@ -41,9 +41,16 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
 
     @Override
     public boolean cadastrar(Midia midia) {
-            if(this.midias.add(midia)){
-                return true;
-            }          
+            if(this.midias.isEmpty()){
+                if(this.midias.add(midia)){
+                    return true;
+                }
+            }
+            for(int i = 0; i<midias.size(); i++){
+                if(this.midias.add(midia)){
+                    return true;
+                }
+            }
         return false;
     }
 
@@ -69,7 +76,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
 
     @Override
     public List<Midia> exibir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.midias;
     }
  
     

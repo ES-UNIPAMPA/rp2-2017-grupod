@@ -58,7 +58,7 @@ public class PodCast extends Midia implements GerenciadorBancoDeMidias {
     }
 
     @Override
-    public Midia consultar() {
+    public Midia consultar(String titulo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

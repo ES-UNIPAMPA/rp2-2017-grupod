@@ -296,11 +296,11 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         }
     }
 
-    private void adcionarActionPerformed(java.awt.event.ActionEvent evt) {
-        if(atores.getText() != null && atores.getText() != "" && sisFilme.getAtores().add(atores.getText())){
-            atores.setText("");
-        }
-        
+    private void  adcionarActionPerformed(java.awt.event.ActionEvent evt) {//Está substituindo toda a lista a cada execução
+            if(sisFilme.adcionarAtores(atores.getText())){
+                atores.setText("");
+            }
+                  
     }
 
     private void concluirActionPerformed(ActionEvent evt) {//Não está adcionando mais de um filme na lista de colecao, está substituindo a cada inclusão
@@ -310,7 +310,7 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
             Midia midia = new Filme(genero.getText(),idioma.getText(), diretor.getText(), sisFilme.getAtores(), time,sisFilme.getCaminho(), titulo.getText(), descricao.getText(), year, this.id );
             geral.cadastrar(sisFilme.cadastrar(midia));
             id++;
-            JOptionPane.showMessageDialog(null, midia.getTitulo() + "\n Filme Cadastrado!");
+            JOptionPane.showMessageDialog(null,"\n"+ midia.getTitulo() + "\n Filme Cadastrado!");
             setVisible(false);
         }else{
             JOptionPane.showMessageDialog(null, "Você esqueceu de informar algum dado do Filme. \n Por Favor, preencha-o e tente novamente.");

@@ -5,6 +5,7 @@
  */
 package gerenciadores;
 
+import bancoDeMidias.BancoDeMidias;
 import midias.Midia;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface GerenciadorDoSistema {
     public Midia consultar(String titulo);
     public Midia excluir(Midia midia);
     public void editar(Midia midia);
+    @Deprecated
     public Midia exibir(String titulo);
+    public String exibir(BancoDeMidias colecao);
     public void ordenar(List<Midia> midias);
 }

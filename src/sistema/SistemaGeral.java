@@ -24,7 +24,6 @@ public class SistemaGeral implements GerenciadorDoSistema {
     private BancoDeMidias colecaoDeFilmes;
     private BancoDeMidias colecaoDeAudioLivros;
     private BancoDeMidias colecaoDePodcasts;
-    //private SistemaGeral sistemaAtual;
     private BancoDeMidias colecaoDeEbooks;
 
     public SistemaGeral() {
@@ -65,10 +64,10 @@ public class SistemaGeral implements GerenciadorDoSistema {
     }
     @Override
     public Midia cadastrar(Midia midia) {
-        this.colecaoDeFilmes.cadastrar(midia);
+        
         if (midia instanceof Filme) {
 //            this.sistemaAtual = escolherTipoDeMidia(tipo);
-            
+            this.colecaoDeFilmes.cadastrar(midia);
         } else if (midia instanceof PodCast) {
             String tipo = "PodCast";
             System.out.println("Cadastrado!");
@@ -106,27 +105,20 @@ public class SistemaGeral implements GerenciadorDoSistema {
     public Midia exibir(String titulo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    @Override
+    public String exibir(BancoDeMidias colecao){
+        String info = null;
+        for(int i= 0; i<this.colecaoDeFilmes.getMidias().size(); i++){
+            info = info + this.colecaoDeFilmes.getMidias().get(i).getTitulo() + "\n" + this.colecaoDeFilmes.getMidias().get(i).getAno() + "\n" ;
+        }
+        return  info + "\n "+this.colecaoDeFilmes.getMidias().toString() + "\n" ;
+    }
+    
 
     @Override
     public void ordenar(List<Midia> midias) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-//    public SistemaGeral escolherTipoDeMidia(String tipo) {
-//        this.tipo = tipo;
-//        if (tipo.equalsIgnoreCase("Filme")) {
-//            this.sistemaAtual = new SistemaFilme();
-//        } else if (tipo.equalsIgnoreCase("AudioLivro")) {
-//
-//        } else if (tipo.equalsIgnoreCase("Podcast")) {
-//        }
-//        return this.sistemaAtual;
-//    }
-
-
-//    public SistemaGeral getSistemaAtual() {
-//        return this.sistemaAtual;
-//    }
 
     /**
      * @return the colecaoDeEbooks

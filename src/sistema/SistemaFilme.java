@@ -5,6 +5,7 @@
  */
 package sistema;
 
+import bancoDeMidias.BancoDeMidias;
 import midias.Midia;
 import gerenciadores.GerenciadorDoSistema;
 import java.util.ArrayList;
@@ -42,7 +43,21 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
         this.caminho = null;
         this.atores = new ArrayList<String>();
     }
-   
+   public boolean adcionarAtores(String nome){
+       if(this.atores.isEmpty()){
+             if(nome != null && nome != "" && this.atores.add(nome)){
+                //filme.setAtoresPrincipais(atores);
+                return true;
+            }
+        }
+        for(int i = 0; i<this.atores.size(); i++){
+                 if(nome != null && nome != "" && this.atores.add(nome)){
+                    //filme.setAtoresPrincipais(atores);
+                    return true;
+                 }
+        }
+       return false;
+   }
     @Override
     public Midia cadastrar(Midia midia) {
         Filme atual = (Filme) midia;
@@ -69,7 +84,10 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
     public Midia exibir(String titulo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    @Override
+    public String exibir(BancoDeMidias colecao){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     @Override
     public void ordenar(List<Midia> midias) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -5,6 +5,7 @@
  */
 package midias;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class Filme extends Midia{
     private String  diretor;
     private List<String>    atoresPrincipais;
     private int duracao;
-        
+     
     public Filme(String genero, String idioma, String diretor, List<String> atoresPrincipais, int duracao, String caminho, String titulo, String descricao, int ano, int id) {
         super(caminho, titulo, descricao, ano, id);
         this.genero = genero;
@@ -26,6 +27,9 @@ public class Filme extends Midia{
         this.diretor = diretor;
         this.atoresPrincipais = atoresPrincipais;
         this.duracao = duracao;
+    }
+    public void gerarLiistAtores(){
+        this.atoresPrincipais = new ArrayList<String>();
     }
 
     public void setGenero(String genero) {
@@ -70,7 +74,7 @@ public class Filme extends Midia{
     
     @Override
     public String toString() {
-        return "Filme{" + "genero=" + genero + ", idioma=" + idioma + ", diretor=" + diretor + ", atoresPrincipais=" + atoresPrincipais + ", duracao=" + duracao + '}';
+        return " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() +"\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor + "\n Atores Principais:" + atoresPrincipais + "\n Duracao: " + duracao + '\n';
     }
     @Override
     public int hashCode() {

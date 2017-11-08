@@ -4,6 +4,7 @@
  */
 package viewBancoDeMidias;
 
+import javax.swing.JOptionPane;
 import midias.Midia;
 import sistema.SistemaGeral;
 
@@ -141,7 +142,7 @@ public class ViewFilme extends javax.swing.JFrame {
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
        try{ 
            Midia midia = sistema.getColecaoDeFilmes().consultar(nomeFilme.getText());
-           System.out.println(midia.toString());
+           JOptionPane.showMessageDialog(rootPane, midia.toString());
        }catch(NullPointerException e){
            System.out.println(e.getMessage());
        }
@@ -157,7 +158,9 @@ public class ViewFilme extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirActionPerformed
 
     private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
-        // TODO add your handling code here:
+
+        System.out.println("Resultado do método: \n"+ sistema.exibir(sistema.getColecaoDeFilmes()));
+        
     }//GEN-LAST:event_exibirActionPerformed
 
  
