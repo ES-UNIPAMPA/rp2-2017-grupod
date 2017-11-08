@@ -5,10 +5,10 @@
  */
 package sistema;
 
-import midias.Midia;
+import bancoDeMidias.Midia;
 import gerenciadores.GerenciadorDoSistema;
-import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import midias.Filme;
 
 /**
@@ -17,36 +17,25 @@ import midias.Filme;
  */
 //Classe que gerencia os Filmes
 public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
-    private Filme filme;
-    private String caminho;
-    private List<String> atores;
-
-    public void setAtores(List<String> atores) {
-        this.atores = atores;
-    }
-
-    public List<String> getAtores() {
-        return atores;
-    }
-
-    public void setCaminho(String caminho) {
-        this.caminho = caminho;
-    }
-
-    public String getCaminho() {
-        return caminho;
-    }
+    Filme filme;
     public SistemaFilme(){
         super();
-        this.filme = null;
-        this.caminho = null;
-        this.atores = new ArrayList<String>();
     }
-   
+    public static void escolherAcao(String acao){
+        if(acao.equalsIgnoreCase("cadastrar")){
+            String genero = JOptionPane.showInputDialog("Qual o genero do filme?");
+            String diretor = JOptionPane.showInputDialog("Qual o diretor do filme?");
+            String ator = JOptionPane.showInputDialog("Qual o ator Principal do filme?");
+            String duracao = JOptionPane.showInputDialog("Qual o tempo de duracao do filme?");
+            int tempo ;
+           
+            //this.cadastrar();
+        }
+    }
     @Override
     public Midia cadastrar(Midia midia) {
         Filme atual = (Filme) midia;
-        this.filme = new Filme(atual.getGenero(), atual.getIdioma(), atual.getDiretor(),atual.getAtoresPrincipais(), atual.getDuracao(), atual.getCaminho(), atual.getTitulo(), atual.getDescricao(), atual.getAno(), atual.getId());
+        this.filme = new Filme(atual.getGenero(), atual.getIdioma(), atual.getDiretor(),atual.getAtoresPrincipais(), atual.getDuracao(), atual.getCaminho(), atual.getTitulo(), atual.getDescricao(), atual.getAno());
         return this.filme;
     }
 

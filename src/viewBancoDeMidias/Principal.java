@@ -93,7 +93,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFilmeActionPerformed
-        new ViewFilme().setVisible(true);
+         new ViewFilme().setVisible(true);
     }//GEN-LAST:event_botaoFilmeActionPerformed
 
     private void botaoEbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEbookActionPerformed

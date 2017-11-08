@@ -1,21 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Here comes the text of your license
+ * Each line should be prefixed with  * 
  */
 package viewBancoDeMidias;
+
+import midias.Midia;
+import sistema.SistemaGeral;
 
 /**
  *
  * @author SABRINA
  */
 public class ViewFilme extends javax.swing.JFrame {
-
+     private SistemaGeral sistema;
+      TelaCadastroFilme cadastroFilme;
     /**
      * Creates new form ViewFilme
      */
     public ViewFilme() {
         initComponents();
+        this.cadastroFilme = new TelaCadastroFilme();
+        this.sistema = cadastroFilme.getGeral();
     }
 
     /**
@@ -28,20 +33,32 @@ public class ViewFilme extends javax.swing.JFrame {
     private void initComponents() {
 
         cadastrar = new javax.swing.JButton();
-        consultar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        consultar = new javax.swing.JButton();
         editar = new javax.swing.JButton();
         excluir = new javax.swing.JButton();
-        textoPesquisa = new java.awt.TextField();
-        canvas1 = new java.awt.Canvas();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        nomeFilme = new javax.swing.JTextPane();
+        exibir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cadastrar.setText("Cadastrar");
+        cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Sitka Subheading", 0, 18)); // NOI18N
+        jLabel1.setText("Filme");
 
         consultar.setText("Consultar");
-
-        jLabel1.setText("Filmes");
+        consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarActionPerformed(evt);
+            }
+        });
 
         editar.setText("Editar");
         editar.addActionListener(new java.awt.event.ActionListener() {
@@ -51,21 +68,20 @@ public class ViewFilme extends javax.swing.JFrame {
         });
 
         excluir.setText("Excluir");
-
-        textoPesquisa.setText("textField1");
-        textoPesquisa.addActionListener(new java.awt.event.ActionListener() {
+        excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoPesquisaActionPerformed(evt);
-            }
-        });
-        textoPesquisa.addTextListener(new java.awt.event.TextListener() {
-            public void textValueChanged(java.awt.event.TextEvent evt) {
-                textoPesquisaTextValueChanged(evt);
+                excluirActionPerformed(evt);
             }
         });
 
-        canvas1.setBackground(new java.awt.Color(153, 153, 153));
-        canvas1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane1.setViewportView(nomeFilme);
+
+        exibir.setText("Exibir");
+        exibir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exibirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,100 +90,85 @@ public class ViewFilme extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cadastrar)
-                            .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(excluir)
-                            .addComponent(consultar))
-                        .addGap(8, 8, 8)
-                        .addComponent(editar))
+                        .addGap(171, 171, 171)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel1)))
-                .addContainerGap(171, Short.MAX_VALUE))
+                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cadastrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(excluir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(consultar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(exibir)
+                                .addGap(18, 18, 18)
+                                .addComponent(editar)))))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastrar)
+                    .addComponent(excluir))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editar)
+                    .addComponent(exibir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cadastrar)
-                            .addComponent(excluir))
-                        .addGap(29, 29, 29)
-                        .addComponent(textoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(consultar)
-                        .addComponent(editar)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                    .addComponent(consultar)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
+         cadastroFilme.setVisible(true);
+
+    }//GEN-LAST:event_cadastrarActionPerformed
+
+    private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+       try{ 
+           Midia midia = sistema.getColecaoDeFilmes().consultar(nomeFilme.getText());
+           System.out.println(midia.toString());
+       }catch(NullPointerException e){
+           System.out.println(e.getMessage());
+       }
+      
+    }//GEN-LAST:event_consultarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editarActionPerformed
 
-    private void textoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoPesquisaActionPerformed
+    private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textoPesquisaActionPerformed
+    }//GEN-LAST:event_excluirActionPerformed
 
-    private void textoPesquisaTextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_textoPesquisaTextValueChanged
+    private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textoPesquisaTextValueChanged
+    }//GEN-LAST:event_exibirActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewFilme().setVisible(true);
-            }
-        });
-    }
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastrar;
-    private java.awt.Canvas canvas1;
     private javax.swing.JButton consultar;
     private javax.swing.JButton editar;
     private javax.swing.JButton excluir;
+    private javax.swing.JButton exibir;
     private javax.swing.JLabel jLabel1;
-    private java.awt.TextField textoPesquisa;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane nomeFilme;
     // End of variables declaration//GEN-END:variables
 }
