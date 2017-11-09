@@ -27,6 +27,7 @@ public class ViewPodcast extends javax.swing.JFrame {
     /**
      * Creates new form cadastrarPodCast
      */
+    // Receber podcast em vez de sistemaGeral (preciso trabalhar só com podcast, sem ter opção de outras coleções.
     public ViewPodcast(SistemaGeral sistemaGeral) {
         this.sistemaGeral = sistemaGeral;
         initComponents();

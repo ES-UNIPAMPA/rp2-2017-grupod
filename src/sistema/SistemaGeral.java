@@ -79,7 +79,7 @@ public class SistemaGeral implements GerenciadorDoSistema {
             String tipo = "PodCast";
             System.out.println("Cadastrado!");
 //            this.sistemaAtual = escolherTipoDeMidia(tipo);
-            this.colecaoDePodcasts.getMidias().add(midia);
+            this.colecaoDePodcasts.cadastrar(midia);
         } else if (midia instanceof Ebook) {
             String tipo = "Ebook";
 //            this.sistemaAtual = escolherTipoDeMidia(tipo);
