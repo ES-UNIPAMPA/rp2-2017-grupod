@@ -167,6 +167,11 @@ public class ViewPodcast extends javax.swing.JFrame {
         });
 
         botaoSalvarAlteracoes.setText("Salvar Alterações");
+        botaoSalvarAlteracoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalvarAlteracoesActionPerformed(evt);
+            }
+        });
 
         botaoExcluir.setText("Excluir");
         botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -334,6 +339,19 @@ public class ViewPodcast extends javax.swing.JFrame {
     private void campoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoBuscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoBuscaActionPerformed
+
+    private void botaoSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarAlteracoesActionPerformed
+        Podcast podcast = null;
+        
+        campoId.setText(String.valueOf(podcast.getId()));
+        campoTitulo.setText(podcast.getTitulo());
+        campoDescricao.setText(podcast.getDescricao());
+        campoIdioma.setText(podcast.getIdioma());
+        campoAutor.setText(podcast.getAutores());
+        campoAno.setText(String.valueOf(podcast.getAno()));
+        campoCaminho.setText(podcast.getCaminho());
+        sistemaGeral.getColecaoDePodcasts().editar(WIDTH, podcast);
+    }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
 
     /**
      * @param args the command line arguments

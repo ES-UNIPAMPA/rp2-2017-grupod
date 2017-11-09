@@ -67,8 +67,14 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     }
 
     @Override
-    public boolean editar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean editar(int id, Midia novo) {
+        for (int i = 0; i < getMidias().size(); i++) {
+            if (getMidias().get(i).getId() == id) {
+                getMidias().set(i, novo);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
