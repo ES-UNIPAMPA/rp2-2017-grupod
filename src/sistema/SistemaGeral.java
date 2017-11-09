@@ -12,7 +12,7 @@ import java.util.List;
 import midias.AudioLivro;
 import midias.Ebook;
 import midias.Filme;
-import midias.PodCast;
+import midias.Podcast;
 
 /**
  *
@@ -75,7 +75,7 @@ public class SistemaGeral implements GerenciadorDoSistema {
             String tipo = "Filme";
 //            this.sistemaAtual = escolherTipoDeMidia(tipo);
             this.colecaoDeFilmes.getMidias().add(midia);
-        } else if (midia instanceof PodCast) {
+        } else if (midia instanceof Podcast) {
             String tipo = "PodCast";
             System.out.println("Cadastrado!");
 //            this.sistemaAtual = escolherTipoDeMidia(tipo);

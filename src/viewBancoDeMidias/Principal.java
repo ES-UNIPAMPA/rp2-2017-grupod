@@ -5,6 +5,8 @@
  */
 package viewBancoDeMidias;
 
+import sistema.SistemaGeral;
+
 /**
  *
  * @author vagne
@@ -14,7 +16,10 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    private SistemaGeral sistemaGeral;
+
     public Principal() {
+        this.sistemaGeral = new SistemaGeral();
         initComponents();
     }
 
@@ -101,7 +106,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEbookActionPerformed
 
     private void botaoPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPodCastActionPerformed
-        new ViewPodcast().setVisible(true);
+        new ViewPodcast(getSistemaGeral()).setVisible(true);
     }//GEN-LAST:event_botaoPodCastActionPerformed
 
     private void botaoAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAudioLivroActionPerformed
@@ -143,6 +148,16 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
+    public SistemaGeral getSistemaGeral() {
+        return sistemaGeral;
+    }
+
+    /**
+     * @param s the s to set
+     */
+    public void setS(SistemaGeral sistemaGeral) {
+        this.sistemaGeral = sistemaGeral;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAudioLivro;
     private javax.swing.JButton botaoEbook;

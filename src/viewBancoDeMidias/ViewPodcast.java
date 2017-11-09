@@ -5,9 +5,15 @@
  */
 package viewBancoDeMidias;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
-import midias.PodCast;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import midias.Midia;
+import midias.Podcast;
 import sistema.SistemaGeral;
 
 /**
@@ -16,13 +22,58 @@ import sistema.SistemaGeral;
  */
 public class ViewPodcast extends javax.swing.JFrame {
 
-    private ArrayList<PodCast> podCasts;
+    private SistemaGeral sistemaGeral;
 
     /**
      * Creates new form cadastrarPodCast
      */
-    public ViewPodcast() {
+    public ViewPodcast(SistemaGeral sistemaGeral) {
+        this.sistemaGeral = sistemaGeral;
         initComponents();
+
+        tabelaPodCast.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JTable target = (JTable) e.getSource();
+                int row = target.getSelectedRow();
+
+                String id = String.valueOf(target.getValueAt(row, 0));
+                String titulo = String.valueOf(target.getValueAt(row, 1));
+                String descricao = String.valueOf(target.getValueAt(row, 2));
+                String idioma = String.valueOf(target.getValueAt(row, 3));
+                String autor = String.valueOf(target.getValueAt(row, 4));
+                String ano = String.valueOf(target.getValueAt(row, 5));
+                String caminho = String.valueOf(target.getValueAt(row, 6));
+
+                campoId.setText(id);
+                campoTitulo.setText(titulo);
+                campoDescricao.setText(descricao);
+                campoIdioma.setText(idioma);
+                campoAutor.setText(autor);
+                campoAno.setText(ano);
+                campoCaminho.setText(caminho);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                //      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 
     /**
@@ -53,11 +104,11 @@ public class ViewPodcast extends javax.swing.JFrame {
         campoCaminho = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         botaoBuscar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        campoBusca = new javax.swing.JTextField();
         botaoSalvarAlteracoes = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaPodCast = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,6 +154,17 @@ public class ViewPodcast extends javax.swing.JFrame {
         jLabel7.setText("Caminho:");
 
         botaoBuscar.setText("Buscar");
+        botaoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoBuscarActionPerformed(evt);
+            }
+        });
+
+        campoBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoBuscaActionPerformed(evt);
+            }
+        });
 
         botaoSalvarAlteracoes.setText("Salvar Alterações");
 
@@ -113,7 +175,7 @@ public class ViewPodcast extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaPodCast.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -124,7 +186,7 @@ public class ViewPodcast extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaPodCast);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,7 +222,7 @@ public class ViewPodcast extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(40, 40, 40)
-                                        .addComponent(jTextField1))
+                                        .addComponent(campoBusca))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +241,7 @@ public class ViewPodcast extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,8 +290,8 @@ public class ViewPodcast extends javax.swing.JFrame {
 
     private void botaoCadastrarPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarPodCastActionPerformed
 
-        PodCast p;
-        p = new PodCast(campoCaminho.getText(),
+        Podcast p;
+        p = new Podcast(campoCaminho.getText(),
                 campoTitulo.getText(),
                 campoDescricao.getText(),
                 Integer.valueOf(campoAno.getText()),
@@ -237,8 +299,8 @@ public class ViewPodcast extends javax.swing.JFrame {
                 Integer.valueOf(campoId.getText()),
                 campoAutor.getText()
         );
-        SistemaGeral s = new SistemaGeral();
-        s.cadastrar(p);
+        getSistemaGeral().cadastrar(p);
+        atualizaTabela(getSistemaGeral().getColecaoDePodcasts().getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoCadastrarPodCastActionPerformed
 
     private void botaoSairPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairPodCastActionPerformed
@@ -252,6 +314,26 @@ public class ViewPodcast extends javax.swing.JFrame {
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoExcluirActionPerformed
+
+    private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
+        Podcast podcast;
+        try {
+            podcast = (Podcast) sistemaGeral.getColecaoDePodcasts().consultar(Integer.valueOf(campoBusca.getText()));
+            exibir(podcast);
+        } catch (Exception ex) {
+            podcast = (Podcast) sistemaGeral.getColecaoDePodcasts().consultar(campoBusca.getText());
+            try {
+                exibir(podcast);
+            } catch (NullPointerException e) {
+                limpar();
+                JOptionPane.showMessageDialog(null, "Não foi possível localizar o item. Tente novamente. ", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_botaoBuscarActionPerformed
+
+    private void campoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoBuscaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,15 +394,28 @@ public class ViewPodcast extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewPodcast().setVisible(true);
-            }
-        });
     }
 
-    public ArrayList<PodCast> getPodCasts() {
-        return podCasts;
+    public JTable atualizaTabela(List<Midia> midiaPodcast, JTable tabela) {
+
+        String matriz[][] = new String[midiaPodcast.size()][7];
+        for (int i = 0; i < midiaPodcast.size(); i++) {
+            Podcast podcast = (Podcast) midiaPodcast.get(i);
+            matriz[i][0] = String.valueOf(podcast.getId());
+            matriz[i][1] = String.valueOf(podcast.getTitulo());
+            matriz[i][2] = String.valueOf(podcast.getDescricao());
+            matriz[i][3] = String.valueOf(podcast.getIdioma());
+            matriz[i][4] = String.valueOf(podcast.getAutores());
+            matriz[i][5] = String.valueOf(podcast.getAno());
+            matriz[i][6] = String.valueOf(podcast.getCaminho());
+        }
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "ID", "Título", "Descrição", "Idioma", "Autores", "Ano", "Caminho"
+                }
+        ));
+        return tabela;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -331,6 +426,7 @@ public class ViewPodcast extends javax.swing.JFrame {
     private javax.swing.JButton botaoSalvarAlteracoes;
     private javax.swing.JTextField campoAno;
     private javax.swing.JTextField campoAutor;
+    private javax.swing.JTextField campoBusca;
     private javax.swing.JTextField campoCaminho;
     private javax.swing.JTextField campoDescricao;
     private javax.swing.JTextField campoId;
@@ -346,7 +442,37 @@ public class ViewPodcast extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tabelaPodCast;
     // End of variables declaration//GEN-END:variables
+
+    public SistemaGeral getSistemaGeral() {
+        return sistemaGeral;
+    }
+
+    /**
+     * @param sistemaGeral the sistemaGeral to set
+     */
+    public void setSistemaGeral(SistemaGeral sistemaGeral) {
+        this.sistemaGeral = sistemaGeral;
+    }
+
+    private void exibir(Podcast podcast) {
+        campoId.setText(String.valueOf(podcast.getId()));
+        campoTitulo.setText(podcast.getTitulo());
+        campoDescricao.setText(podcast.getDescricao());
+        campoIdioma.setText(podcast.getIdioma());
+        campoAutor.setText(podcast.getAutores());
+        campoAno.setText(String.valueOf(podcast.getAno()));
+        campoCaminho.setText(podcast.getCaminho());
+    }
+
+    private void limpar() {
+        campoId.setText("");
+        campoTitulo.setText("");
+        campoDescricao.setText("");
+        campoIdioma.setText("");
+        campoAutor.setText("");
+        campoAno.setText("");
+        campoCaminho.setText("");
+    }
 }

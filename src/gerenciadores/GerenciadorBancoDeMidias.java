@@ -15,7 +15,14 @@ import java.util.List;
 //Interface para conjuntos de mídias
 public interface GerenciadorBancoDeMidias {
     public boolean cadastrar(Midia midia);
-    public Midia consultar();
+    public Midia consultar(String titulo);
+
+    /**
+     *
+     * @param id
+     * @return Midia
+     */
+    public Midia consultar(int id);
     public boolean excluir();
     public boolean editar();
     public List<Midia> exibir();

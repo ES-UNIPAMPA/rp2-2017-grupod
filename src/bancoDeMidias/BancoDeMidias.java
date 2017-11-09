@@ -16,7 +16,8 @@ import java.util.List;
  */
 //Classe que Gerencia as Listas Individualmente
 public class BancoDeMidias implements GerenciadorBancoDeMidias {
-    private List<Midia> midias; 
+
+    private List<Midia> midias;
 
     public BancoDeMidias() {
         this.midias = new ArrayList<Midia>();
@@ -32,8 +33,8 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
 
     @Override
     public boolean cadastrar(Midia midia) {
-        for(int i = 0; i< midias.size(); i++){
-            if(midias.get(i) == null){
+        for (int i = 0; i < midias.size(); i++) {
+            if (midias.get(i) == null) {
                 this.midias.add(midia);
             }
         }
@@ -41,8 +42,23 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     }
 
     @Override
-    public Midia consultar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Midia consultar(String titulo) {
+        for (int i = 0; i < getMidias().size(); i++) {
+            if (getMidias().get(i).getTitulo().equals(titulo)) {
+                return getMidias().get(i);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Midia consultar(int id) {
+        for (int i = 0; i < getMidias().size(); i++) {
+            if (getMidias().get(i).getId() == id) {
+                return getMidias().get(i);
+            }
+        }
+        return null;
     }
 
     @Override
@@ -59,6 +75,5 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     public List<Midia> exibir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
- 
-    
+
 }
