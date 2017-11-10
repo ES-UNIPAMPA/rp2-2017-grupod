@@ -23,7 +23,7 @@ public interface GerenciadorBancoDeMidias {
      * @return Midia
      */
     public Midia consultar(int id);
-    public boolean excluir();
+    public boolean excluir(int id);
     public boolean editar(int id, Midia novo);
     public List<Midia> exibir();
 }

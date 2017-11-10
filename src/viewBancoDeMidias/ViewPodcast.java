@@ -27,7 +27,8 @@ public class ViewPodcast extends javax.swing.JFrame {
     /**
      * Creates new form cadastrarPodCast
      */
-    // Receber podcast em vez de sistemaGeral (preciso trabalhar só com podcast, sem ter opção de outras coleções.
+    // precisa ter uma classe pra cada um, depois uma com cada lista, depois uma que junta tudo +- isso
+    // Receber podcast em vez de sistemaGeral (preciso trabalhar só com podcast, sem ter opção de outras coleções
     public ViewPodcast(SistemaGeral sistemaGeral) {
         this.sistemaGeral = sistemaGeral;
         initComponents();
@@ -318,7 +319,8 @@ public class ViewPodcast extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoSairPodCastActionPerformed
 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
-        // TODO add your handling code here:
+        getSistemaGeral().getColecaoDePodcasts().excluir(Integer.valueOf(campoId.getText()));
+        atualizaTabela(getSistemaGeral().getColecaoDePodcasts().getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
@@ -342,16 +344,17 @@ public class ViewPodcast extends javax.swing.JFrame {
     }//GEN-LAST:event_campoBuscaActionPerformed
 
     private void botaoSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarAlteracoesActionPerformed
-        Podcast podcast = null;
-        
-        campoId.setText(String.valueOf(podcast.getId()));
-        campoTitulo.setText(podcast.getTitulo());
-        campoDescricao.setText(podcast.getDescricao());
-        campoIdioma.setText(podcast.getIdioma());
-        campoAutor.setText(podcast.getAutores());
-        campoAno.setText(String.valueOf(podcast.getAno()));
-        campoCaminho.setText(podcast.getCaminho());
-        sistemaGeral.getColecaoDePodcasts().editar(WIDTH, podcast);
+        Podcast s;
+        s = new Podcast(campoCaminho.getText(),
+                campoTitulo.getText(),
+                campoDescricao.getText(),
+                Integer.valueOf(campoAno.getText()),
+                campoIdioma.getText(),
+                Integer.valueOf(campoId.getText()),
+                campoAutor.getText()
+        );
+        getSistemaGeral().getColecaoDePodcasts().editar(Integer.valueOf(campoId.getText()), s);
+        atualizaTabela(getSistemaGeral().getColecaoDePodcasts().getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
 
     /**

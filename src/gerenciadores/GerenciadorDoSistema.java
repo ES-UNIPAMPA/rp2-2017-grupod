@@ -16,7 +16,7 @@ import java.util.List;
 public interface GerenciadorDoSistema {
     public Midia cadastrar(Midia midia);
     public Midia consultar(String titulo);
-    public Midia excluir(Midia midia);
+    public Midia excluir(int id);
     public void editar(Midia midia);
     public Midia exibir(String titulo);
     public void ordenar(List<Midia> midias);

@@ -14,7 +14,7 @@ import midias.Ebook;
 import midias.Filme;
 import midias.Podcast;
 
-/**
+/*
  *
  * @author SABRINA
  */
@@ -73,20 +73,15 @@ public class SistemaGeral implements GerenciadorDoSistema {
     public Midia cadastrar(Midia midia) {
         if (midia instanceof Filme) {
             String tipo = "Filme";
-//            this.sistemaAtual = escolherTipoDeMidia(tipo);
             this.colecaoDeFilmes.getMidias().add(midia);
         } else if (midia instanceof Podcast) {
             String tipo = "PodCast";
-            System.out.println("Cadastrado!");
-//            this.sistemaAtual = escolherTipoDeMidia(tipo);
             this.colecaoDePodcasts.cadastrar(midia);
         } else if (midia instanceof Ebook) {
             String tipo = "Ebook";
-//            this.sistemaAtual = escolherTipoDeMidia(tipo);
             this.colecaoDeEbooks.getMidias().add(midia);
         } else if (midia instanceof AudioLivro) {
             String tipo = "AudioLivro";
-//            this.sistemaAtual = escolherTipoDeMidia(tipo);
             this.colecaoDeAudioLivros.getMidias().add(midia);
         } else {
             System.out.println("Tipo desconhecido.");}
@@ -99,7 +94,7 @@ public class SistemaGeral implements GerenciadorDoSistema {
     }
 
     @Override
-    public Midia excluir(Midia midia) {
+    public Midia excluir(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

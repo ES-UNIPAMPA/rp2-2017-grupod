@@ -45,7 +45,7 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
     }
 
     @Override
-    public Midia excluir(Midia midia) {
+    public Midia excluir(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

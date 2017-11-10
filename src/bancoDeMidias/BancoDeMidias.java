@@ -34,7 +34,6 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     @Override
     public boolean cadastrar(Midia midia) {
         return this.midias.add(midia);
-
     }
 
     @Override
@@ -58,8 +57,14 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     }
 
     @Override
-    public boolean excluir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean excluir(int id) {
+        for (int i = 0; i < getMidias().size(); i++) {
+            if (getMidias().get(i).getId() == id) {
+                getMidias().remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
