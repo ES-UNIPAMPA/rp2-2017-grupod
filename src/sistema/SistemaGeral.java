@@ -73,16 +73,16 @@ public class SistemaGeral implements GerenciadorDoSistema {
     public Midia cadastrar(Midia midia) {
         if (midia instanceof Filme) {
             String tipo = "Filme";
-            this.colecaoDeFilmes.getMidias().add(midia);
+            this.colecaoDeFilmes.cadastrar(midia);
         } else if (midia instanceof Podcast) {
             String tipo = "PodCast";
             this.colecaoDePodcasts.cadastrar(midia);
         } else if (midia instanceof Ebook) {
             String tipo = "Ebook";
-            this.colecaoDeEbooks.getMidias().add(midia);
+            this.colecaoDeEbooks.cadastrar(midia);
         } else if (midia instanceof AudioLivro) {
             String tipo = "AudioLivro";
-            this.colecaoDeAudioLivros.getMidias().add(midia);
+            this.colecaoDeAudioLivros.cadastrar(midia);
         } else {
             System.out.println("Tipo desconhecido.");}
         return midia;

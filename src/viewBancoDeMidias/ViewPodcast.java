@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import midias.Midia;
 import midias.Podcast;
-import sistema.SistemaGeral;
+import bancoDeMidias.BancoDeMidias;
 
 /**
  *
@@ -22,15 +22,15 @@ import sistema.SistemaGeral;
  */
 public class ViewPodcast extends javax.swing.JFrame {
 
-    private SistemaGeral sistemaGeral;
+    private BancoDeMidias bancoPodcast;
 
     /**
      * Creates new form cadastrarPodCast
      */
     // precisa ter uma classe pra cada um, depois uma com cada lista, depois uma que junta tudo +- isso
-    // Receber podcast em vez de sistemaGeral (preciso trabalhar só com podcast, sem ter opção de outras coleções
-    public ViewPodcast(SistemaGeral sistemaGeral) {
-        this.sistemaGeral = sistemaGeral;
+    // Receber podcast em vez de bancoPodcast (preciso trabalhar só com podcast, sem ter opção de outras coleções
+    public ViewPodcast() {
+        this.bancoPodcast = new BancoDeMidias();
         initComponents();
 
         tabelaPodCast.addMouseListener(new MouseListener() {
@@ -306,8 +306,8 @@ public class ViewPodcast extends javax.swing.JFrame {
                 Integer.valueOf(campoId.getText()),
                 campoAutor.getText()
         );
-        getSistemaGeral().cadastrar(p);
-        atualizaTabela(getSistemaGeral().getColecaoDePodcasts().getMidias(), tabelaPodCast);
+        getBancoDeMidias().cadastrar(p);
+        atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoCadastrarPodCastActionPerformed
 
     private void botaoSairPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairPodCastActionPerformed
@@ -319,17 +319,17 @@ public class ViewPodcast extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoSairPodCastActionPerformed
 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
-        getSistemaGeral().getColecaoDePodcasts().excluir(Integer.valueOf(campoId.getText()));
-        atualizaTabela(getSistemaGeral().getColecaoDePodcasts().getMidias(), tabelaPodCast);
+        bancoPodcast.excluir(Integer.valueOf(campoId.getText()));
+        atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
         Podcast podcast;
         try {
-            podcast = (Podcast) sistemaGeral.getColecaoDePodcasts().consultar(Integer.valueOf(campoBusca.getText()));
+            podcast = (Podcast) bancoPodcast.consultar(Integer.valueOf(campoBusca.getText()));
             exibir(podcast);
         } catch (Exception ex) {
-            podcast = (Podcast) sistemaGeral.getColecaoDePodcasts().consultar(campoBusca.getText());
+            podcast = (Podcast) bancoPodcast.consultar(campoBusca.getText());
             try {
                 exibir(podcast);
             } catch (NullPointerException e) {
@@ -353,8 +353,8 @@ public class ViewPodcast extends javax.swing.JFrame {
                 Integer.valueOf(campoId.getText()),
                 campoAutor.getText()
         );
-        getSistemaGeral().getColecaoDePodcasts().editar(Integer.valueOf(campoId.getText()), s);
-        atualizaTabela(getSistemaGeral().getColecaoDePodcasts().getMidias(), tabelaPodCast);
+        bancoPodcast.editar(Integer.valueOf(campoId.getText()), s);
+        atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
 
     /**
@@ -467,15 +467,15 @@ public class ViewPodcast extends javax.swing.JFrame {
     private javax.swing.JTable tabelaPodCast;
     // End of variables declaration//GEN-END:variables
 
-    public SistemaGeral getSistemaGeral() {
-        return sistemaGeral;
+    public BancoDeMidias getBancoDeMidias() {
+        return bancoPodcast;
     }
 
     /**
-     * @param sistemaGeral the sistemaGeral to set
+     * @param bancoPodcast the bancoPodcast to set
      */
-    public void setSistemaGeral(SistemaGeral sistemaGeral) {
-        this.sistemaGeral = sistemaGeral;
+    public void setBancoDeMidias(BancoDeMidias bancoPodcast) {
+        this.bancoPodcast = bancoPodcast;
     }
 
     private void exibir(Podcast podcast) {
