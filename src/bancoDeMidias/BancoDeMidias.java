@@ -20,7 +20,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     private List<Midia> midias;
 
     public BancoDeMidias() {
-        this.midias = new ArrayList<Midia>();
+        this.midias = new ArrayList<>();
     }
 
     public void setMidias(List<Midia> midias) {

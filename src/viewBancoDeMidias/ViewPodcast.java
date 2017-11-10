@@ -31,8 +31,12 @@ public class ViewPodcast extends javax.swing.JFrame {
     // Receber podcast em vez de bancoPodcast (preciso trabalhar só com podcast, sem ter opção de outras coleções
     public ViewPodcast() {
         this.bancoPodcast = new BancoDeMidias();
-        initComponents();
 
+        /**
+         * LER DO ARQUIVO
+         */
+        initComponents();
+        campoId.setText(String.valueOf(bancoPodcast.getMidias().size() + 1));
         tabelaPodCast.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -138,6 +142,8 @@ public class ViewPodcast extends javax.swing.JFrame {
         jLabel5.setText("Descrição:");
 
         jLabel6.setText("Ano:");
+
+        campoId.setEditable(false);
 
         botaoCadastrarPodCast.setText("Cadastrar");
         botaoCadastrarPodCast.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +302,7 @@ public class ViewPodcast extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarPodCastActionPerformed
+        campoId.setText(String.valueOf(bancoPodcast.getMidias().size() + 1));
 
         Podcast p;
         p = new Podcast(campoCaminho.getText(),
@@ -307,6 +314,7 @@ public class ViewPodcast extends javax.swing.JFrame {
                 campoAutor.getText()
         );
         getBancoDeMidias().cadastrar(p);
+
         atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoCadastrarPodCastActionPerformed
 

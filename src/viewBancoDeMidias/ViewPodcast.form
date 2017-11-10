@@ -207,6 +207,9 @@
     <Component class="javax.swing.JTextField" name="campoIdioma">
     </Component>
     <Component class="javax.swing.JTextField" name="campoId">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoAno">
     </Component>
