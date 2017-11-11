@@ -17,6 +17,6 @@ public interface GerenciadorBancoDeMidias {
     public boolean cadastrar(Midia midia);
     public Midia consultar(String titulo);
     public Midia excluir(String titulo);
-    public boolean editar(int indice, int ano, String titulo, String descricao, String caminho);
+    public Midia editar(int indice, int ano, String titulo, String descricao, String caminho);
     public List<Midia> exibir();
 }

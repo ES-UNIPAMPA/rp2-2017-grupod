@@ -17,7 +17,8 @@ import midias.Filme;
  * @author SABRINA
  */
 //Classe que gerencia os Filmes
-public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
+public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema {
+
     private Filme filme;
     private String caminho;
     private List<String> atores;
@@ -43,30 +44,33 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
     public String getCaminho() {
         return caminho;
     }
-    public SistemaFilme(){
+
+    public SistemaFilme() {
         super();
         this.filme = null;
         this.caminho = null;
         this.atores = new ArrayList<String>();
     }
-   public boolean adcionarAtores(String nome){//Arrumar este método depois
-       if(this.atores.isEmpty()){
-             if(nome != null && nome != "" && this.atores.add(nome)){
-                
+
+    public boolean adcionarAtores(String nome) {//Arrumar este método depois
+        if (this.atores.isEmpty()) {
+            if (nome != null && nome != "" && this.atores.add(nome)) {
+
                 return true;
             }
         }
-        for(int i = 0; i<this.atores.size(); i++){
-                 if(nome != null && nome != "" && this.atores.add(nome)){
-                   
-                    return true;
-                 }
+        for (int i = 0; i < this.atores.size(); i++) {
+            if (nome != null && nome != "" && this.atores.add(nome)) {
+
+                return true;
+            }
         }
-       return false;
-   }
+        return false;
+    }
+
     @Override
     public Midia cadastrar(Midia midia) {
-        this.filme = (Filme)midia;
+        this.filme = (Filme) midia;
         filmes.cadastrar(filme);
         return this.filme;
     }
@@ -83,26 +87,42 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
         return excluida;
     }
 
-    
     @Override
-    public void editar(Midia midia) {
-        for(int i = 0; i<filmes.getMidias().size(); i++){
-            filmes.editar(i, i, caminho, caminho, caminho);
+    public Midia editar(Midia midia) {
+        for (int i = 0; i < filmes.getMidias().size(); i++) {
+            if (filmes.getMidias().get(i).equals(midia)) {
+                filmes.getMidias().set(i, this.filme);
+                return filmes.getMidias().get(i);
+            }
         }
+        return null;
     }
+
+    public Midia substituir(int index, String genero, String idioma, String diretor, List<String> atoresPrincipais, int duracao, String caminho, String titulo, String descricao, int ano) {
+        this.filme = (Filme)filmes.getMidias().get(index);
+        filme.setDiretor(diretor);
+        filme.setIdioma(idioma);
+        filme.setAtoresPrincipais(atoresPrincipais);//Fazer um método para isto
+        filme.setGenero(genero);
+        filme.setDuracao(duracao);
+        filmes.editar(index, ano, titulo, descricao, caminho);
+        return filme;
+    }
+
     @Override
-    public String exibir(BancoDeMidias colecao){
-        
-        String info = this.filmes.getMidias().get(0).getTitulo()+ "\n" + this.filmes.getMidias().get(0).getAno() + "\n";
-       
-        for(int i= 1; i<this.filmes.getMidias().size(); i++){
-            info = info + this.filmes.getMidias().get(i).getTitulo() + "\n" + this.filmes.getMidias().get(i).getAno() + "\n" ;
+    public String exibir(BancoDeMidias colecao) {
+
+        String info = this.filmes.getMidias().get(0).getTitulo() + "\n" + this.filmes.getMidias().get(0).getAno() + "\n";
+
+        for (int i = 1; i < this.filmes.getMidias().size(); i++) {
+            info = info + this.filmes.getMidias().get(i).getTitulo() + "\n" + this.filmes.getMidias().get(i).getAno() + "\n";
         }
-        return   this.filmes.getMidias().size() + "\n "+this.filmes.getMidias().toString() + "\n" ;
+        return this.filmes.getMidias().size() + "\n " + this.filmes.getMidias().toString() + "\n";
     }
+
     @Override
     public void ordenar(List<Midia> midias) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

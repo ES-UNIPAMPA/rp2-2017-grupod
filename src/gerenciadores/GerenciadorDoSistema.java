@@ -18,7 +18,7 @@ public interface GerenciadorDoSistema {
     public Midia cadastrar(Midia midia);
     public Midia consultar(String titulo);
     public Midia excluir(String titulo);
-    public void editar(Midia midia);
+    public Midia editar(Midia midia);
     public String exibir(BancoDeMidias colecao);
     public void ordenar(List<Midia> midias);
 }

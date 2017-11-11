@@ -172,11 +172,12 @@ public class ViewFilme extends javax.swing.JFrame {
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         String filmeEdit = JOptionPane.showInputDialog(rootPane, "Qual filme Você deseja Editar?");
-        Midia midia = sistemaFilme.consultar(filmeEdit);
-        cadastroFilme.setarCampos(sistemaFilme.getColecaoDeFilmes().consultarIndice(filmeEdit));
+         cadastroFilme.setarCampos(sistemaFilme.getColecaoDeFilmes().consultarIndice(filmeEdit, sistemaFilme.getColecaoDeFilmes().getMidias()));
+        //Midia midia = sistemaFilme.consultar(filmeEdit);
         cadastroFilme.setVisible(true);
-        sistemaFilme.editar(midia);
-        JOptionPane.showMessageDialog(rootPane,"Mídia Editada: \n \n" + midia.toString());
+        
+        
+        //JOptionPane.showMessageDialog(rootPane,"Mídia Editada: \n \n" + midia.toString());
     }//GEN-LAST:event_editarActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
