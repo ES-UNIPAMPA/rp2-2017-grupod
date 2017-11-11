@@ -5,6 +5,8 @@
  */
 package viewBancoDeMidias;
 
+import sistema.SistemaEbook;
+
 /**
  *
  * @author vagne
@@ -97,7 +99,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoFilmeActionPerformed
 
     private void botaoEbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEbookActionPerformed
-        // new Opcoes().setVisible(true);
+        new ViewEbook(new SistemaEbook()).setVisible(true);
     }//GEN-LAST:event_botaoEbookActionPerformed
 
     private void botaoPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPodCastActionPerformed

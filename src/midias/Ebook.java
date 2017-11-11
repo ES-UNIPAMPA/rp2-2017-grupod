@@ -12,15 +12,15 @@ package midias;
  */
 public class Ebook extends Midia {
     private String  genero;
-    private String autores;
+    private String autor;
     private String local;
     private String editora;
     private int numeropaginas;
 
-    public Ebook(String genero, String autores, String local, String editora, int numeropaginas, String caminho, String titulo, String descricao, int ano, int id) {
+    public Ebook(String genero, String autor, String local, String editora, int numeropaginas, String caminho, String titulo, String descricao, int ano, int id) {
         super(caminho, titulo, descricao, ano, id);
         this.genero = genero;
-        this.autores = autores;
+        this.autor = autor;
         this.local = local;
         this.editora = editora;
         this.numeropaginas = numeropaginas;
@@ -30,12 +30,12 @@ public class Ebook extends Midia {
         this.genero = genero;
     }
 
-    public String getAutores() {
-        return autores;
+    public String getAutor() {
+        return autor;
     }
 
-    public void setAutores(String autores) {
-        this.autores = autores;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public void setLocal(String local) {
