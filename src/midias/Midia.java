@@ -16,14 +16,14 @@ public abstract class  Midia {
     private String titulo;
     private String descricao;
     private int ano;
-    private int id;
+    private static int id;
 
     public Midia(String caminho, String titulo, String descricao, int ano, int id) {
         this.caminho = caminho;
         this.titulo = titulo;
         this.descricao = descricao;
         this.ano = ano;
-        this.id = id;
+        Midia.id = id;
     }
 
     public void setCaminho(String caminho) {

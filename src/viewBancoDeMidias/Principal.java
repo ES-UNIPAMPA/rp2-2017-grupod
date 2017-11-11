@@ -5,7 +5,7 @@
  */
 package viewBancoDeMidias;
 
-import bancoDeMidias.BancoDeMidias;
+import bancoDeMidias.BancoPodcast;
 import sistema.SistemaEbook;
 
 /**
@@ -14,12 +14,12 @@ import sistema.SistemaEbook;
  */
 public class Principal extends javax.swing.JFrame {
 
-    private BancoDeMidias bancoPodcast;
+    private BancoPodcast bancoPodcast;
     private ViewPodcast telaDePodcast;
     
     public Principal() {
         initComponents();
-        this.bancoPodcast = new BancoDeMidias();
+        this.bancoPodcast = new BancoPodcast();
         this.telaDePodcast = new ViewPodcast(bancoPodcast);
     }
 

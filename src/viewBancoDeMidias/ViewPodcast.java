@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import midias.Midia;
 import midias.Podcast;
 import bancoDeMidias.BancoDeMidias;
+import bancoDeMidias.BancoPodcast;
 
 /**
  *
@@ -21,7 +22,7 @@ import bancoDeMidias.BancoDeMidias;
  */
 public class ViewPodcast extends javax.swing.JFrame {
 
-    private BancoDeMidias bancoPodcast;
+    private BancoPodcast bancoPodcast;
 
     /**
      * Creates new form cadastrarPodCast
@@ -30,7 +31,7 @@ public class ViewPodcast extends javax.swing.JFrame {
      */
     // precisa ter uma classe pra cada um, depois uma com cada lista, depois uma que junta tudo +- isso
     // Receber podcast em vez de bancoPodcast (preciso trabalhar só com podcast, sem ter opção de outras coleções
-    public ViewPodcast(BancoDeMidias bancoPodcast) {
+    public ViewPodcast(BancoPodcast bancoPodcast) {
         this.bancoPodcast = bancoPodcast;
         /**
          * LER DO ARQUIVO
@@ -315,7 +316,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         );
         getBancoDeMidias().cadastrar(p);
 
-        atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
+        bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoCadastrarPodCastActionPerformed
 
     private void botaoSairPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairPodCastActionPerformed
@@ -328,7 +329,7 @@ public class ViewPodcast extends javax.swing.JFrame {
 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
         bancoPodcast.excluir(Integer.valueOf(campoId.getText()));
-        atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
+        bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
@@ -362,30 +363,9 @@ public class ViewPodcast extends javax.swing.JFrame {
                 campoAutor.getText()
         );
         bancoPodcast.editar(Integer.valueOf(campoId.getText()), s);
-        atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
+        bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
 
-    public JTable atualizaTabela(List<Midia> midiaPodcast, JTable tabela) {
-
-        String matriz[][] = new String[midiaPodcast.size()][7];
-        for (int i = 0; i < midiaPodcast.size(); i++) {
-            Podcast podcast = (Podcast) midiaPodcast.get(i);
-            matriz[i][0] = String.valueOf(podcast.getId());
-            matriz[i][1] = String.valueOf(podcast.getTitulo());
-            matriz[i][2] = String.valueOf(podcast.getDescricao());
-            matriz[i][3] = String.valueOf(podcast.getIdioma());
-            matriz[i][4] = String.valueOf(podcast.getAutores());
-            matriz[i][5] = String.valueOf(podcast.getAno());
-            matriz[i][6] = String.valueOf(podcast.getCaminho());
-        }
-        tabela.setModel(new javax.swing.table.DefaultTableModel(
-                matriz,
-                new String[]{
-                    "ID", "Título", "Descrição", "Idioma", "Autores", "Ano", "Caminho"
-                }
-        ));
-        return tabela;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoBuscar;
@@ -421,7 +401,7 @@ public class ViewPodcast extends javax.swing.JFrame {
     /**
      * @param bancoPodcast the bancoPodcast to set
      */
-    public void setBancoDeMidias(BancoDeMidias bancoPodcast) {
+    public void setBancoDeMidias(BancoPodcast bancoPodcast) {
         this.bancoPodcast = bancoPodcast;
     }
 
@@ -434,7 +414,6 @@ public class ViewPodcast extends javax.swing.JFrame {
         campoAno.setText(String.valueOf(podcast.getAno()));
         campoCaminho.setText(podcast.getCaminho());
     }
-
     private void limpar() {
         campoId.setText("");
         campoTitulo.setText("");
