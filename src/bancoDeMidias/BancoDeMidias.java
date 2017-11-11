@@ -16,15 +16,16 @@ import java.util.List;
  */
 //Classe que Gerencia as Listas Individualmente
 public class BancoDeMidias implements GerenciadorBancoDeMidias {
-    private List<Midia> midias; 
+
+    private List<Midia> midias;
 
     @Override
     public String toString() {
         String dados = null;
-        for(int i = 0; i<midias.size() ; i++){
-            dados = dados + "\n "+ midias.get(i).getTitulo() + "\n";
+        for (int i = 0; i < midias.size(); i++) {
+            dados = dados + "\n " + midias.get(i).getTitulo() + "\n";
         }
-        return "BancoDeMidias{" + "Filmes Cadastrados: " + dados +'}';
+        return "BancoDeMidias{" + "Filmes Cadastrados: " + dados + '}';
     }
 
     public BancoDeMidias() {
@@ -41,43 +42,65 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
 
     @Override
     public boolean cadastrar(Midia midia) {
-            if(this.midias.isEmpty()){
-                if(this.midias.add(midia)){
-                    return true;
-                }
+        if (this.midias.isEmpty()) {
+            if (this.midias.add(midia)) {
+                return true;
             }
-            for(int i = 0; i<midias.size(); i++){
-                if(this.midias.add(midia)){
-                    return true;
-                }
+        }
+        for (int i = 0; i < midias.size(); i++) {
+            if (this.midias.add(midia)) {
+                return true;
             }
+        }
         return false;
     }
 
     @Override
     public Midia consultar(String titulo) {
-        for(int i = 0; i< midias.size(); i++){
-            if(midias.get(i).getTitulo().equalsIgnoreCase(titulo)){
+        for (int i = 0; i < midias.size(); i++) {
+            if (midias.get(i).getTitulo().equalsIgnoreCase(titulo)) {
                 return midias.get(i);
             }
         }
         return null;
     }
-
-    @Override
-    public boolean excluir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     public int consultarIndice(String titulo) {
+        for (int i = 0; i < midias.size(); i++) {
+            if (midias.get(i).getTitulo().equalsIgnoreCase(titulo)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
-    public boolean editar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Midia excluir(String titulo) {
+        Midia removida = null;
+        for (int i = 0; i < midias.size(); i++) {
+            if (midias.get(i).getTitulo().equalsIgnoreCase(titulo)) {
+                removida = midias.get(i);
+                midias.remove(i);
+                return removida;
+            }
+        }
+        return removida;
+    }
+
+    @Override
+    public boolean editar(int indice, int ano, String titulo, String descricao, String caminho) {
+        if (midias.get(indice) != null) {
+            midias.get(indice).setAno(ano);
+            midias.get(indice).setTitulo(titulo);
+            midias.get(indice).setDescricao(descricao);
+            midias.get(indice).setCaminho(caminho);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public List<Midia> exibir() {
         return this.midias;
     }
- 
-    
+
 }

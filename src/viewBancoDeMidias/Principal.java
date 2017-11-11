@@ -5,17 +5,22 @@
  */
 package viewBancoDeMidias;
 
+import sistema.SistemaGeral;
+
 /**
  *
  * @author vagne
  */
 public class Principal extends javax.swing.JFrame {
-
+    SistemaGeral midias;
+    ViewFilme menuFilme;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        midias = new SistemaGeral();
+        menuFilme = new ViewFilme(midias);
     }
 
     /**
@@ -104,7 +109,8 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFilmeActionPerformed
-         new ViewFilme().setVisible(true);
+         this.menuFilme.setVisible(true);
+         setVisible(false);
     }//GEN-LAST:event_botaoFilmeActionPerformed
 
     private void botaoEbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEbookActionPerformed

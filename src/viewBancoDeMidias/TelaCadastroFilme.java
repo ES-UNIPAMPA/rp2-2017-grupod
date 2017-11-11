@@ -30,29 +30,21 @@ import sistema.SistemaGeral;
 public class TelaCadastroFilme extends javax.swing.JFrame {
 
     private SistemaFilme sisFilme;
-    private SistemaGeral geral;
-    private static int id;
     private JButton cancelar;
+    private JButton remover;
+    ViewFilme view;
 
     public SistemaFilme getSisFilme() {
         return sisFilme;
     }
-
-    public SistemaGeral getGeral() {
-        return geral;
-    }
-
-    public static int getId() {
-        return id;
-    }
     /**
      * Creates new form TelaCadastroFilme
      */
-    public TelaCadastroFilme() {
+    public TelaCadastroFilme(SistemaFilme filmes, ViewFilme view) {
         initComponents();
-        this.sisFilme = new SistemaFilme();
-        this.geral = new SistemaGeral();
-        this.id = 0;
+        this.sisFilme = filmes;
+        this.view = view;
+
     }
 
     /**
@@ -93,6 +85,7 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         adcionar = new javax.swing.JButton();
         concluir = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        remover = new javax.swing.JButton();
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,6 +144,13 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adcionarActionPerformed(evt);
             }
+        });
+        remover.setText("Remover");
+        remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerActionPerformed(evt);
+            }
+
         });
 
         concluir.setText("Concluir");
@@ -217,7 +217,8 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(adcionar)))
+                                                                .addComponent(adcionar)
+                                                        .addComponent(remover)))
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap()
@@ -272,7 +273,8 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(jLabel9)
                                                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(adcionar))
+                                                        .addComponent(adcionar)
+                                                .addComponent(remover))
                                                 .addGap(21, 21, 21)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel8)
@@ -302,16 +304,20 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
             }
                   
     }
+    private void removerActionPerformed(ActionEvent evt) {//Fazer método 
+                JOptionPane.showMessageDialog(null,"Ator Removido!");
+    }
 
-    private void concluirActionPerformed(ActionEvent evt) {//Não está adcionando mais de um filme na lista de colecao, está substituindo a cada inclusão
+    private void concluirActionPerformed(ActionEvent evt) {//Try cat para IndexOutOfBounds
         if(titulo.getText() != null && ano.getText()!= null && this.caminho != null && diretor.getText() != null && descricao.getText() != null && duracao.getText() != null && idioma.getText() != null && genero.getText() != null && sisFilme.getAtores().get(0) != null){ 
             int time = Integer.parseInt(duracao.getText());
             int year = Integer.parseInt(ano.getText());
-            Midia midia = new Filme(genero.getText(),idioma.getText(), diretor.getText(), sisFilme.getAtores(), time,sisFilme.getCaminho(), titulo.getText(), descricao.getText(), year, this.id );
-            geral.cadastrar(sisFilme.cadastrar(midia));
-            id++;
+            Midia midia = new Filme(genero.getText(),idioma.getText(), diretor.getText(), sisFilme.getAtores(), time,sisFilme.getCaminho(), titulo.getText(), descricao.getText(), year, 0 );
+            sisFilme.cadastrar(midia);
             JOptionPane.showMessageDialog(null,"\n"+ midia.getTitulo() + "\n Filme Cadastrado!");
             setVisible(false);
+            esvaziarCampos();
+            view.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Você esqueceu de informar algum dado do Filme. \n Por Favor, preencha-o e tente novamente.");
         }
@@ -319,8 +325,32 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
     }
     private void cancelarActionPerformed(ActionEvent evt) {
             setVisible(false);
+            view.setVisible(true);
     }
+    public void setarCampos(int indice){
+        Filme filme = (Filme)sisFilme.getColecaoDeFilmes().getMidias().get(indice);
+        titulo.setText(filme.getTitulo());
+        //String year = sisFilme.getColecaoDeFilmes().getMidias().get(indice).getAno();// Perguntar como fazer parse para string
+        descricao.setText(filme.getDescricao());
+        idioma.setText(filme.getIdioma());
+        genero.setText(filme.getGenero());
+        caminho.setText(filme.getCaminho());
+        //duracao.setText(filme.getDuracao());
+        diretor.setText(filme.getDiretor());
 
+    }
+    public void esvaziarCampos(){
+        titulo.setText("");
+        ano.setText("");
+        descricao.setText("");
+        idioma.setText("");
+        genero.setText("");
+        sisFilme.setCaminho("");
+        atores.removeAll();//sisFilme.getAtores(); esvaziar lista
+        duracao.setText("");
+        diretor.setText("");
+
+    }
     // Variables declaration - do not modify                     
     private javax.swing.JTextPane ano;
     private javax.swing.JTextPane atores;

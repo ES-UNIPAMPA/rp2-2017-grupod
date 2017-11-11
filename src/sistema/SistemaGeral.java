@@ -19,7 +19,7 @@ import midias.PodCast;
  * @author SABRINA
  */
 //Classe que gerencia o conjunto de Listas
-public class SistemaGeral implements GerenciadorDoSistema {
+public class SistemaGeral {
 
     private BancoDeMidias colecaoDeFilmes;
     private BancoDeMidias colecaoDeAudioLivros;
@@ -57,69 +57,7 @@ public class SistemaGeral implements GerenciadorDoSistema {
     public BancoDeMidias getColecaoDePodcasts() {
         return colecaoDePodcasts;
     }
-
-    @Override
-    public String toString() {
-        return "SistemaGeral{" + "colecaoDeFilmes=" + colecaoDeFilmes + ", colecaoDeAudioLivros=" + colecaoDeAudioLivros + ", colecaoDePodcasts=" + colecaoDePodcasts + '}';
-    }
-    @Override
-    public Midia cadastrar(Midia midia) {
-        
-        if (midia instanceof Filme) {
-//            this.sistemaAtual = escolherTipoDeMidia(tipo);
-            this.colecaoDeFilmes.cadastrar(midia);
-        } else if (midia instanceof PodCast) {
-            String tipo = "PodCast";
-            System.out.println("Cadastrado!");
-//            this.sistemaAtual = escolherTipoDeMidia(tipo);
-            this.colecaoDePodcasts.getMidias().add(midia);
-        } else if (midia instanceof Ebook) {
-            String tipo = "Ebook";
-//            this.sistemaAtual = escolherTipoDeMidia(tipo);
-            this.colecaoDeEbooks.getMidias().add(midia);
-        } else if (midia instanceof AudioLivro) {
-            String tipo = "AudioLivro";
-//            this.sistemaAtual = escolherTipoDeMidia(tipo);
-            this.colecaoDeAudioLivros.getMidias().add(midia);
-        } else {
-            System.out.println("Tipo desconhecido.");}
-        return midia;
-    }
-
-    @Override
-    public Midia consultar(String titulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Midia excluir(Midia midia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void editar(Midia midia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Midia exibir(String titulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    @Override
-    public String exibir(BancoDeMidias colecao){
-        String info = null;
-        for(int i= 0; i<this.colecaoDeFilmes.getMidias().size(); i++){
-            info = info + this.colecaoDeFilmes.getMidias().get(i).getTitulo() + "\n" + this.colecaoDeFilmes.getMidias().get(i).getAno() + "\n" ;
-        }
-        return  info + "\n "+this.colecaoDeFilmes.getMidias().toString() + "\n" ;
-    }
     
-
-    @Override
-    public void ordenar(List<Midia> midias) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * @return the colecaoDeEbooks
      */
@@ -133,4 +71,9 @@ public class SistemaGeral implements GerenciadorDoSistema {
     public void setColecaoDeEbooks(BancoDeMidias colecaoDeEbooks) {
         this.colecaoDeEbooks = colecaoDeEbooks;
     }
+    @Override
+    public String toString() {
+        return "SistemaGeral{" + "colecaoDeFilmes=" + colecaoDeFilmes + ", colecaoDeAudioLivros=" + colecaoDeAudioLivros + ", colecaoDePodcasts=" + colecaoDePodcasts + '}';
+    }
+
 }

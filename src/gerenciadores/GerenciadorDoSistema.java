@@ -17,10 +17,8 @@ import java.util.List;
 public interface GerenciadorDoSistema {
     public Midia cadastrar(Midia midia);
     public Midia consultar(String titulo);
-    public Midia excluir(Midia midia);
+    public Midia excluir(String titulo);
     public void editar(Midia midia);
-    @Deprecated
-    public Midia exibir(String titulo);
     public String exibir(BancoDeMidias colecao);
     public void ordenar(List<Midia> midias);
 }

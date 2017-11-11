@@ -238,7 +238,7 @@ public class ViewPodcast extends javax.swing.JFrame {
                 campoAutor.getText()
         );
         SistemaGeral s = new SistemaGeral();
-        s.cadastrar(p);
+        //s.cadastrar(p);
     }//GEN-LAST:event_botaoCadastrarPodCastActionPerformed
 
     private void botaoSairPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairPodCastActionPerformed

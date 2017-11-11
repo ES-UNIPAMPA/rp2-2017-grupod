@@ -16,7 +16,7 @@ import java.util.List;
 public interface GerenciadorBancoDeMidias {
     public boolean cadastrar(Midia midia);
     public Midia consultar(String titulo);
-    public boolean excluir();
-    public boolean editar();
+    public Midia excluir(String titulo);
+    public boolean editar(int indice, int ano, String titulo, String descricao, String caminho);
     public List<Midia> exibir();
 }

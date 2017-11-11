@@ -6,6 +6,7 @@ package viewBancoDeMidias;
 
 import javax.swing.JOptionPane;
 import midias.Midia;
+import sistema.SistemaFilme;
 import sistema.SistemaGeral;
 
 /**
@@ -13,15 +14,20 @@ import sistema.SistemaGeral;
  * @author SABRINA
  */
 public class ViewFilme extends javax.swing.JFrame {
-     private SistemaGeral sistema;
-      TelaCadastroFilme cadastroFilme;
+     TelaCadastroFilme cadastroFilme;
+     SistemaFilme sistemaFilme;
     /**
      * Creates new form ViewFilme
      */
-    public ViewFilme() {
+    public ViewFilme(SistemaGeral sistema) {
+
         initComponents();
-        this.cadastroFilme = new TelaCadastroFilme();
-        this.sistema = cadastroFilme.getGeral();
+        this.sistemaFilme = new SistemaFilme(sistema.getColecaoDeFilmes());
+        this.cadastroFilme = new TelaCadastroFilme(sistemaFilme, this);
+    }
+
+    ViewFilme() {
+        initComponents();
     }
 
     /**
@@ -41,6 +47,7 @@ public class ViewFilme extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         nomeFilme = new javax.swing.JTextPane();
         exibir = new javax.swing.JButton();
+        sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,50 +91,63 @@ public class ViewFilme extends javax.swing.JFrame {
             }
         });
 
+        sair.setText("Sair");
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(sair)
+                .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(171, 171, 171)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(117, 117, 117)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cadastrar)
+                                .addComponent(consultar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(excluir))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(consultar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(exibir)
-                                .addGap(18, 18, 18)
-                                .addComponent(editar)))))
-                .addContainerGap(136, Short.MAX_VALUE))
+                                .addComponent(excluir))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editar)
+                            .addComponent(exibir)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(cadastrar)))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cadastrar)
-                    .addComponent(excluir))
+                .addGap(18, 18, 18)
+                .addComponent(cadastrar)
+                .addGap(18, 18, 18)
+                .addComponent(exibir)
+                .addGap(18, 18, 18)
+                .addComponent(editar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editar)
-                    .addComponent(exibir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(consultar)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52))
+                    .addComponent(excluir))
+                .addComponent(sair)
+                .addContainerGap())
         );
 
         pack();
@@ -136,33 +156,45 @@ public class ViewFilme extends javax.swing.JFrame {
 
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
          cadastroFilme.setVisible(true);
+         setVisible(false);
 
     }//GEN-LAST:event_cadastrarActionPerformed
 
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
        try{ 
-           Midia midia = sistema.getColecaoDeFilmes().consultar(nomeFilme.getText());
+           Midia midia = sistemaFilme.consultar(nomeFilme.getText());
            JOptionPane.showMessageDialog(rootPane, midia.toString());
        }catch(NullPointerException e){
-           System.out.println(e.getMessage());
+           JOptionPane.showMessageDialog(rootPane, "Este filme não Existe!");
        }
       
     }//GEN-LAST:event_consultarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        // TODO add your handling code here:
+        String filmeEdit = JOptionPane.showInputDialog(rootPane, "Qual filme Você deseja Editar?");
+        Midia midia = sistemaFilme.consultar(filmeEdit);
+        cadastroFilme.setarCampos(sistemaFilme.getColecaoDeFilmes().consultarIndice(filmeEdit));
+        cadastroFilme.setVisible(true);
+        sistemaFilme.editar(midia);
+        JOptionPane.showMessageDialog(rootPane,"Mídia Editada: \n \n" + midia.toString());
     }//GEN-LAST:event_editarActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
-        // TODO add your handling code here:
+        Midia excluida = sistemaFilme.excluir(nomeFilme.getText());
+        JOptionPane.showMessageDialog(rootPane, "O Filme excluido foi: \n \n"+ excluida.toString());
     }//GEN-LAST:event_excluirActionPerformed
 
     private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
 
-        System.out.println("Resultado do método: \n"+ sistema.exibir(sistema.getColecaoDeFilmes()));
+        JOptionPane.showMessageDialog(rootPane, "Filmes: \n"+ sistemaFilme.exibir(sistemaFilme.getColecaoDeFilmes()));
         
     }//GEN-LAST:event_exibirActionPerformed
 
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        setVisible(false);
+        new Principal().setVisible(true);//Arrumar isto
+    }//GEN-LAST:event_sairActionPerformed
+    
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastrar;
@@ -173,5 +205,6 @@ public class ViewFilme extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane nomeFilme;
+    private javax.swing.JButton sair;
     // End of variables declaration//GEN-END:variables
 }

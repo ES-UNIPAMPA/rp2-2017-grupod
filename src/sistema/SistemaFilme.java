@@ -21,6 +21,12 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
     private Filme filme;
     private String caminho;
     private List<String> atores;
+    private BancoDeMidias filmes;
+
+    public SistemaFilme(BancoDeMidias filmes) {
+        this.filmes = filmes;
+        this.atores = new ArrayList<String>();
+    }
 
     public void setAtores(List<String> atores) {
         this.atores = atores;
@@ -43,16 +49,16 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
         this.caminho = null;
         this.atores = new ArrayList<String>();
     }
-   public boolean adcionarAtores(String nome){
+   public boolean adcionarAtores(String nome){//Arrumar este método depois
        if(this.atores.isEmpty()){
              if(nome != null && nome != "" && this.atores.add(nome)){
-                //filme.setAtoresPrincipais(atores);
+                
                 return true;
             }
         }
         for(int i = 0; i<this.atores.size(); i++){
                  if(nome != null && nome != "" && this.atores.add(nome)){
-                    //filme.setAtoresPrincipais(atores);
+                   
                     return true;
                  }
         }
@@ -60,33 +66,39 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema{
    }
     @Override
     public Midia cadastrar(Midia midia) {
-        Filme atual = (Filme) midia;
-        this.filme = new Filme(atual.getGenero(), atual.getIdioma(), atual.getDiretor(),atual.getAtoresPrincipais(), atual.getDuracao(), atual.getCaminho(), atual.getTitulo(), atual.getDescricao(), atual.getAno(), atual.getId());
+        this.filme = (Filme)midia;
+        filmes.cadastrar(filme);
         return this.filme;
     }
 
     @Override
     public Midia consultar(String titulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Midia midia = filmes.consultar(titulo);
+        return midia;
     }
 
     @Override
-    public Midia excluir(Midia midia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Midia excluir(String titulo) {
+        Midia excluida = this.filmes.excluir(titulo);
+        return excluida;
     }
 
+    
     @Override
     public void editar(Midia midia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Midia exibir(String titulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(int i = 0; i<filmes.getMidias().size(); i++){
+            filmes.editar(i, i, caminho, caminho, caminho);
+        }
     }
     @Override
     public String exibir(BancoDeMidias colecao){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String info = this.filmes.getMidias().get(0).getTitulo()+ "\n" + this.filmes.getMidias().get(0).getAno() + "\n";
+       
+        for(int i= 1; i<this.filmes.getMidias().size(); i++){
+            info = info + this.filmes.getMidias().get(i).getTitulo() + "\n" + this.filmes.getMidias().get(i).getAno() + "\n" ;
+        }
+        return   this.filmes.getMidias().size() + "\n "+this.filmes.getMidias().toString() + "\n" ;
     }
     @Override
     public void ordenar(List<Midia> midias) {
