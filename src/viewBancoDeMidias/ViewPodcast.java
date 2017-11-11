@@ -7,7 +7,6 @@ package viewBancoDeMidias;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,12 +25,13 @@ public class ViewPodcast extends javax.swing.JFrame {
 
     /**
      * Creates new form cadastrarPodCast
+     *
+     * @param bancoPodcast
      */
     // precisa ter uma classe pra cada um, depois uma com cada lista, depois uma que junta tudo +- isso
     // Receber podcast em vez de bancoPodcast (preciso trabalhar só com podcast, sem ter opção de outras coleções
-    public ViewPodcast() {
-        this.bancoPodcast = new BancoDeMidias();
-
+    public ViewPodcast(BancoDeMidias bancoPodcast) {
+        this.bancoPodcast = bancoPodcast;
         /**
          * LER DO ARQUIVO
          */
@@ -303,7 +303,7 @@ public class ViewPodcast extends javax.swing.JFrame {
 
     private void botaoCadastrarPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarPodCastActionPerformed
         campoId.setText(String.valueOf(bancoPodcast.getMidias().size() + 1));
-
+// dentro da midia ter um geral estático
         Podcast p;
         p = new Podcast(campoCaminho.getText(),
                 campoTitulo.getText(),
@@ -364,67 +364,6 @@ public class ViewPodcast extends javax.swing.JFrame {
         bancoPodcast.editar(Integer.valueOf(campoId.getText()), s);
         atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewPodcast.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewPodcast.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewPodcast.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewPodcast.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-    }
 
     public JTable atualizaTabela(List<Midia> midiaPodcast, JTable tabela) {
 

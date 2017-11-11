@@ -5,10 +5,6 @@
  */
 package midias;
 
-import gerenciadores.GerenciadorBancoDeMidias;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author vagne
@@ -51,4 +47,6 @@ public class Podcast extends Midia {
     public void setAutores(String autores) {
         this.autores = autores;
     }
+    //fazer TO STRING
+    
 }

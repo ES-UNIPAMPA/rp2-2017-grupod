@@ -5,6 +5,7 @@
  */
 package viewBancoDeMidias;
 
+import bancoDeMidias.BancoDeMidias;
 import sistema.SistemaEbook;
 
 /**
@@ -13,11 +14,13 @@ import sistema.SistemaEbook;
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
+    private BancoDeMidias bancoPodcast;
+    private ViewPodcast telaDePodcast;
+    
     public Principal() {
         initComponents();
+        this.bancoPodcast = new BancoDeMidias();
+        this.telaDePodcast = new ViewPodcast(bancoPodcast);
     }
 
     /**
@@ -103,7 +106,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEbookActionPerformed
 
     private void botaoPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPodCastActionPerformed
-        new ViewPodcast().setVisible(true);
+        telaDePodcast.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_botaoPodCastActionPerformed
 
     private void botaoAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAudioLivroActionPerformed
