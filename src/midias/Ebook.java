@@ -6,20 +6,18 @@
 
 package midias;
 
-import java.util.List;
-
 /**
  *
  * @author Jarom Sambrana
  */
 public class Ebook extends Midia {
     private String  genero;
-    private List<String> autores;
+    private String autores;
     private String local;
     private String editora;
     private int numeropaginas;
 
-    public Ebook(String genero, List<String> autores, String local, String editora, int numeropaginas, String caminho, String titulo, String descricao, int ano, int id) {
+    public Ebook(String genero, String autores, String local, String editora, int numeropaginas, String caminho, String titulo, String descricao, int ano, int id) {
         super(caminho, titulo, descricao, ano, id);
         this.genero = genero;
         this.autores = autores;
@@ -32,7 +30,11 @@ public class Ebook extends Midia {
         this.genero = genero;
     }
 
-    public void setAutores(List<String> autores) {
+    public String getAutores() {
+        return autores;
+    }
+
+    public void setAutores(String autores) {
         this.autores = autores;
     }
 
@@ -50,10 +52,6 @@ public class Ebook extends Midia {
 
     public String getGenero() {
         return genero;
-    }
-
-    public List<String> getAutores() {
-        return autores;
     }
 
     public String getLocal() {
