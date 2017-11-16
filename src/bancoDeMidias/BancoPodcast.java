@@ -5,17 +5,25 @@
  */
 package bancoDeMidias;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.List;
 import javax.swing.JTable;
 import midias.Midia;
 import midias.Podcast;
+import viewBancoDeMidias.ViewPodcast;
 
 /**
  *
  * @author vagne
  */
 public class BancoPodcast extends BancoDeMidias {
-
+    
     public BancoPodcast() {
     }
 
@@ -23,6 +31,41 @@ public class BancoPodcast extends BancoDeMidias {
         return false;
     }
 
+    public void gravar (String podcast) throws Exception {
+        /** Abre o arquivo para escrita */
+        FileOutputStream outFile = new FileOutputStream(new File(podcast));
+        BufferedWriter buff = new BufferedWriter(new OutputStreamWriter(outFile, "UTF-8"));
+        
+        // buff.write();  
+        
+        /** Deixa uma linha em branca */
+        buff.write("\n");
+        /** Fecha o arquivo */
+        buff.close(); outFile.close();
+
+    }
+    
+    public void ler (String podcast) throws Exception {
+        FileInputStream inFile;
+        BufferedReader buff;
+        Podcast podcastArquivo;
+        String linha, caminho, titulo, descricao, idioma, autores;
+        int ano, id;
+        
+        /** Abre o arquivo para leitura */
+        inFile = new FileInputStream(new File(podcast));
+        buff = new BufferedReader(new InputStreamReader(inFile, "UTF-8"));
+        
+        // for(int i=0; i < bancoPodcast; i++){ }
+   
+        /* Lê o ID */
+        linha = buff.readLine();
+        id = Integer.parseInt(linha);
+        
+        /* Lê o título */
+        titulo = buff.readLine();  
+    }
+    
     public JTable atualizaTabela(List<Midia> midiaPodcast, JTable tabela) {
 
         String matriz[][] = new String[midiaPodcast.size()][7];

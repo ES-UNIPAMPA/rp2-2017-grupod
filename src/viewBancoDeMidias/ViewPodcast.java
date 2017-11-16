@@ -7,11 +7,9 @@ package viewBancoDeMidias;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import midias.Midia;
 import midias.Podcast;
 import bancoDeMidias.BancoDeMidias;
 import bancoDeMidias.BancoPodcast;
@@ -21,6 +19,7 @@ import bancoDeMidias.BancoPodcast;
  * @author vagne
  */
 public class ViewPodcast extends javax.swing.JFrame {
+
 
     private BancoPodcast bancoPodcast;
 
@@ -58,7 +57,7 @@ public class ViewPodcast extends javax.swing.JFrame {
                 campoIdioma.setText(idioma);
                 campoAutor.setText(autor);
                 campoAno.setText(ano);
-                campoCaminho.setText(caminho);
+                getCampoCaminho().setText(caminho);
             }
 
             @Override
@@ -116,6 +115,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         botaoExcluir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaPodCast = new javax.swing.JTable();
+        botaoCaminho = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,6 +202,13 @@ public class ViewPodcast extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tabelaPodCast);
 
+        botaoCaminho.setText("Escolher");
+        botaoCaminho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCaminhoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,6 +230,8 @@ public class ViewPodcast extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoCaminho)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +281,12 @@ public class ViewPodcast extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoSairPodCast))
+                        .addComponent(botaoSairPodCast)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoCaminho)
+                            .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -289,12 +303,8 @@ public class ViewPodcast extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                            .addComponent(jLabel6))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -306,7 +316,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         campoId.setText(String.valueOf(bancoPodcast.getMidias().size() + 1));
 // dentro da midia ter um geral estático
         Podcast p;
-        p = new Podcast(campoCaminho.getText(),
+        p = new Podcast(getCampoCaminho().getText(),
                 campoTitulo.getText(),
                 campoDescricao.getText(),
                 Integer.valueOf(campoAno.getText()),
@@ -354,7 +364,7 @@ public class ViewPodcast extends javax.swing.JFrame {
 
     private void botaoSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarAlteracoesActionPerformed
         Podcast s;
-        s = new Podcast(campoCaminho.getText(),
+        s = new Podcast(getCampoCaminho().getText(),
                 campoTitulo.getText(),
                 campoDescricao.getText(),
                 Integer.valueOf(campoAno.getText()),
@@ -366,10 +376,14 @@ public class ViewPodcast extends javax.swing.JFrame {
         bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
 
+    private void botaoCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCaminhoActionPerformed
+    }//GEN-LAST:event_botaoCaminhoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoBuscar;
     private javax.swing.JButton botaoCadastrarPodCast;
+    private javax.swing.JButton botaoCaminho;
     private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoSairPodCast;
     private javax.swing.JButton botaoSalvarAlteracoes;
@@ -404,6 +418,20 @@ public class ViewPodcast extends javax.swing.JFrame {
     public void setBancoDeMidias(BancoPodcast bancoPodcast) {
         this.bancoPodcast = bancoPodcast;
     }
+    
+        /**
+     * @return the campoCaminho
+     */
+    public javax.swing.JTextField getCampoCaminho() {
+        return campoCaminho;
+    }
+
+    /**
+     * @param campoCaminho the campoCaminho to set
+     */
+    public void setCampoCaminho(javax.swing.JTextField campoCaminho) {
+        this.campoCaminho = campoCaminho;
+    }
 
     private void exibir(Podcast podcast) {
         campoId.setText(String.valueOf(podcast.getId()));
@@ -412,7 +440,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         campoIdioma.setText(podcast.getIdioma());
         campoAutor.setText(podcast.getAutores());
         campoAno.setText(String.valueOf(podcast.getAno()));
-        campoCaminho.setText(podcast.getCaminho());
+        getCampoCaminho().setText(podcast.getCaminho());
     }
     private void limpar() {
         campoId.setText("");
@@ -421,6 +449,6 @@ public class ViewPodcast extends javax.swing.JFrame {
         campoIdioma.setText("");
         campoAutor.setText("");
         campoAno.setText("");
-        campoCaminho.setText("");
+        getCampoCaminho().setText("");
     }
 }

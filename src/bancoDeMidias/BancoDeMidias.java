@@ -7,8 +7,10 @@ package bancoDeMidias;
 
 import midias.Midia;
 import gerenciadores.GerenciadorBancoDeMidias;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFileChooser;
 
 /**
  *
