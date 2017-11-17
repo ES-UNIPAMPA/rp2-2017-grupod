@@ -6,8 +6,8 @@
 package sistema;
 
 import bancoDeMidias.BancoDeMidias;
+import gerenciadores.GerenciadorBancoDeMidias;
 import midias.Midia;
-import gerenciadores.GerenciadorDoSistema;
 import java.util.ArrayList;
 import java.util.List;
 import midias.Filme;
@@ -17,7 +17,7 @@ import midias.Filme;
  * @author SABRINA
  */
 //Classe que gerencia os Filmes
-public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema {
+public class SistemaFilme extends SistemaGeral implements GerenciadorBancoDeMidias {
 
     private Filme filme;
     private String caminho;
@@ -53,18 +53,13 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema {
     }
 
     public boolean adcionarAtores(String nome) {//Arrumar este método depois
-        if (this.atores.isEmpty()) {
+
+
             if (nome != null && nome != "" && this.atores.add(nome)) {
 
                 return true;
             }
-        }
-        for (int i = 0; i < this.atores.size(); i++) {
-            if (nome != null && nome != "" && this.atores.add(nome)) {
-
-                return true;
-            }
-        }
+        
         return false;
     }
 
@@ -88,7 +83,8 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema {
     }
 
     @Override
-    public Midia editar(Midia midia) {
+    public Midia editar(int id,Midia midia) {
+
         for (int i = 0; i < filmes.getMidias().size(); i++) {
             if (filmes.getMidias().get(i).equals(midia)) {
                 filmes.getMidias().set(i, this.filme);
@@ -105,7 +101,7 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema {
         filme.setAtoresPrincipais(atoresPrincipais);//Fazer um método para isto
         filme.setGenero(genero);
         filme.setDuracao(duracao);
-        filmes.editar(index, ano, titulo, descricao, caminho);
+        filmes.editar(index, filme);
         return filme;
     }
 
@@ -119,10 +115,16 @@ public class SistemaFilme extends SistemaGeral implements GerenciadorDoSistema {
         }
         return this.filmes.getMidias().size() + "\n " + this.filmes.getMidias().toString() + "\n";
     }
-
+ 
     @Override
-    public void ordenar(List<Midia> midias) {
+    public Midia consultar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public int getTamanhoLista(){
+        return filmes.getMidias().size();
+    }
+
+   
 
 }

@@ -5,6 +5,7 @@
 package viewBancoDeMidias;
 
 import javax.swing.JOptionPane;
+import midias.Filme;
 import midias.Midia;
 import sistema.SistemaFilme;
 import sistema.SistemaGeral;
@@ -13,7 +14,7 @@ import sistema.SistemaGeral;
  *
  * @author SABRINA
  */
-public class ViewFilme extends javax.swing.JFrame {
+public class ViewFilme extends Principal {
      TelaCadastroFilme cadastroFilme;
      SistemaFilme sistemaFilme;
     /**
@@ -171,13 +172,12 @@ public class ViewFilme extends javax.swing.JFrame {
     }//GEN-LAST:event_consultarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        String filmeEdit = JOptionPane.showInputDialog(rootPane, "Qual filme Você deseja Editar?");
-         cadastroFilme.setarCampos(sistemaFilme.getColecaoDeFilmes().consultarIndice(filmeEdit, sistemaFilme.getColecaoDeFilmes().getMidias()));
-        //Midia midia = sistemaFilme.consultar(filmeEdit);
+        String filmeEdit = JOptionPane.showInputDialog(rootPane, "Qual filme você deseja Editar?");
+        Filme midia = (Filme)sistemaFilme.consultar(filmeEdit);
+        System.out.println(midia.toString());
+        cadastroFilme.setarCampos(midia);
         cadastroFilme.setVisible(true);
         
-        
-        //JOptionPane.showMessageDialog(rootPane,"Mídia Editada: \n \n" + midia.toString());
     }//GEN-LAST:event_editarActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed

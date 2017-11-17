@@ -28,7 +28,7 @@ public class Filme extends Midia{
         this.atoresPrincipais = atoresPrincipais;
         this.duracao = duracao;
     }
-    public void gerarLiistAtores(){
+    public void ininicializarLiistAtores(){
         this.atoresPrincipais = new ArrayList<String>();
     }
 
@@ -73,7 +73,7 @@ public class Filme extends Midia{
     }
     
     @Override
-    public String toString() {
+    public String toString() {//usar toString de midia
         return " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() +"\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor + "\n Atores Principais:" + atoresPrincipais + "\n Duracao: " + duracao + '\n';
     }
     @Override

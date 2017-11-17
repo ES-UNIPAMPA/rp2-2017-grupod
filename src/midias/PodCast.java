@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author vagne
  */
-public class PodCast extends Midia implements GerenciadorBancoDeMidias {
+public class PodCast extends Midia  {
 
     private String idioma;
     private String autores;
@@ -52,29 +52,6 @@ public class PodCast extends Midia implements GerenciadorBancoDeMidias {
         this.autores = autores;
     }
 
-    @Override
-    public boolean cadastrar(Midia midia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Midia consultar(String titulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean excluir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean editar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Midia> exibir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
 }

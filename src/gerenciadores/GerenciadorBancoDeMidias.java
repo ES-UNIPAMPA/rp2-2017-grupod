@@ -5,6 +5,7 @@
  */
 package gerenciadores;
 
+import bancoDeMidias.BancoDeMidias;
 import midias.Midia;
 import java.util.List;
 
@@ -14,9 +15,11 @@ import java.util.List;
  */
 //Interface para conjuntos de mídias
 public interface GerenciadorBancoDeMidias {
-    public boolean cadastrar(Midia midia);
+    public Midia cadastrar(Midia midia);
     public Midia consultar(String titulo);
+    public Midia consultar(int id);
     public Midia excluir(String titulo);
-    public Midia editar(int indice, int ano, String titulo, String descricao, String caminho);
-    public List<Midia> exibir();
+    public Midia editar(int id, Midia midia);
+    public String exibir(BancoDeMidias colecao);
+
 }

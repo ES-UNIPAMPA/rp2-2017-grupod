@@ -13,14 +13,20 @@ import sistema.SistemaGeral;
  */
 public class Principal extends javax.swing.JFrame {
     SistemaGeral midias;
-    ViewFilme menuFilme;
+    ViewGeral menuFilme;
+    ViewGeral menuPodcast;
+    ViewGeral menuEbook;
+    ViewGeral menuAudioLivro;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
         midias = new SistemaGeral();
-        menuFilme = new ViewFilme(midias);
+        menuFilme = new ViewGeral(midias.getColecaoDeFilmes());
+        menuPodcast = new ViewGeral(midias.getColecaoDePodcasts());
+        menuEbook = new ViewGeral(midias.getColecaoDeEbooks());
+        menuAudioLivro = new ViewGeral(midias.getColecaoDeAudioLivros());
     }
 
     /**

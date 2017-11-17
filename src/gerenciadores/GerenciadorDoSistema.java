@@ -14,6 +14,7 @@ import java.util.List;
  * @author SABRINA
  */
 //Interface para cada Mídia
+@Deprecated
 public interface GerenciadorDoSistema {
     public Midia cadastrar(Midia midia);
     public Midia consultar(String titulo);

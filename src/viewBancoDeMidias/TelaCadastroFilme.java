@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import midias.Filme;
 import midias.Midia;
@@ -35,6 +36,16 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
     ViewFilme view;
     private JButton exibirAtores;
     private JButton salvar;
+    private JLabel id;
+    private int indiceId;
+
+    public int getIndiceId() {
+        return indiceId;
+    }
+
+    public void setIndiceId(int indiceId) {
+        this.indiceId = indiceId;
+    }
 
     public SistemaFilme getSisFilme() {
         return sisFilme;
@@ -47,6 +58,8 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         initComponents();
         this.sisFilme = filmes;
         this.view = view;
+        this.indiceId = 0;
+        
 
     }
 
@@ -91,7 +104,7 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         remover = new javax.swing.JButton();
         exibirAtores = new javax.swing.JButton();
         salvar = new javax.swing.JButton();
-
+        id = new javax.swing.JLabel();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setViewportView(titulo);
@@ -124,16 +137,19 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         jLabel7.setText("Duração");
-
+        
         jScrollPane6.setViewportView(duracao);
+        
+        id.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
 
+        
         caminho.setText("Selecionar Pasta");
         caminho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 caminhoActionPerformed(evt);
             }
         });
-
+        
         jScrollPane7.setViewportView(descricao);
 
         jLabel8.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
@@ -336,9 +352,10 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         if (titulo.getText() != null && ano.getText() != null && this.caminho != null && diretor.getText() != null && descricao.getText() != null && duracao.getText() != null && idioma.getText() != null && genero.getText() != null && sisFilme.getAtores().get(0) != null) {
             int time = Integer.parseInt(duracao.getText());
             int year = Integer.parseInt(ano.getText());
-            Midia midia = new Filme(genero.getText(), idioma.getText(), diretor.getText(), sisFilme.getAtores(), time, sisFilme.getCaminho(), titulo.getText(), descricao.getText(), year, 0);
+            Midia midia = new Filme(genero.getText(), idioma.getText(), diretor.getText(), sisFilme.getAtores(), time, sisFilme.getCaminho(), titulo.getText(), descricao.getText(), year, sisFilme.getTamanhoLista());
             sisFilme.cadastrar(midia);
             JOptionPane.showMessageDialog(null, "\n" + midia.getTitulo() + "\n Filme Cadastrado!");
+            indiceId = midia.getId();
             setVisible(false);
             esvaziarCampos();
             view.setVisible(true);
@@ -358,28 +375,28 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
     }
 
     private void salvarActionPerformed(ActionEvent evt) {
-        
+    
+          
         if (titulo.getText() != null && ano.getText() != null && this.caminho != null && diretor.getText() != null && descricao.getText() != null && duracao.getText() != null && idioma.getText() != null && genero.getText() != null && sisFilme.getAtores().get(0) != null) {
             int time = Integer.parseInt(duracao.getText());
             int year = Integer.parseInt(ano.getText());
-            int indice = sisFilme.getColecaoDeFilmes().consultarIndice(titulo.getText(), sisFilme.getColecaoDeFilmes().getMidias());
-            Midia midiaEditar = sisFilme.substituir(indice,genero.getText(), idioma.getText(), diretor.getText(), sisFilme.getAtores(), time, sisFilme.getCaminho(), titulo.getText(), descricao.getText(), year);
-            Midia midiaEditada = sisFilme.editar(sisFilme.getColecaoDeFilmes().getMidias().get(indice));
+            
+            Midia midiaEditar = sisFilme.substituir(indiceId,genero.getText(), idioma.getText(), diretor.getText(), sisFilme.getAtores(), time, sisFilme.getCaminho(), titulo.getText(), descricao.getText(), year);
+            Midia midiaEditada = sisFilme.editar(indiceId, midiaEditar);
             JOptionPane.showMessageDialog(rootPane, "Filme editado com sucesso! \n " + midiaEditada.toString());
             setVisible(false);
             view.setVisible(true);
         }
     }
 
-    public void setarCampos(int indice) {
-        Filme filme = (Filme) sisFilme.getColecaoDeFilmes().getMidias().get(indice);
+    public void setarCampos(Filme filme) {
         titulo.setText(filme.getTitulo());
-        //String year = sisFilme.getColecaoDeFilmes().getMidias().get(indice).getAno();// Perguntar como fazer parse para string
+        ano.setText(String.valueOf(filme.getAno()));
         descricao.setText(filme.getDescricao());
         idioma.setText(filme.getIdioma());
         genero.setText(filme.getGenero());
         caminho.setText(filme.getCaminho());
-        //duracao.setText(filme.getDuracao());
+        duracao.setText(String.valueOf(filme.getDuracao()));
         diretor.setText(filme.getDiretor());
 
     }
@@ -395,6 +412,12 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         duracao.setText("");
         diretor.setText("");
 
+    }
+     private String verifircarId(int i) {
+        if(sisFilme.getColecaoDeFilmes().getMidias().get(i) != null){
+            return String.valueOf(sisFilme.getColecaoDeFilmes().getMidias().get(i).getId());
+        }
+        return "O Id será definido pelo Sistema.";
     }
     // Variables declaration - do not modify                     
     private javax.swing.JTextPane ano;
@@ -426,4 +449,6 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTextPane titulo;
     // End of variables declaration                   
+
+   
 }

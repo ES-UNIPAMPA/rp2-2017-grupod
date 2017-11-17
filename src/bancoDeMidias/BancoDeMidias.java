@@ -41,18 +41,13 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     }
 
     @Override
-    public boolean cadastrar(Midia midia) {
-        if (this.midias.isEmpty()) {
+    public Midia cadastrar(Midia midia) {
+       
             if (this.midias.add(midia)) {
-                return true;
+                return midia;
             }
-        }
-        for (int i = 0; i < midias.size(); i++) {
-            if (this.midias.add(midia)) {
-                return true;
-            }
-        }
-        return false;
+
+        return null;
     }
 
     @Override
@@ -65,9 +60,6 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
         return null;
     }
      public int consultarIndice(String titulo, List<Midia> midias) {
-        if(midias.isEmpty()){
-            return 0;
-        }
         for (int i = 0; i < midias.size(); i++) {
             if (midias.get(i).getTitulo().equalsIgnoreCase(titulo)) {
                 return i;
@@ -90,20 +82,27 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     }
 
     @Override
-    public Midia editar(int indice, int ano, String titulo, String descricao, String caminho) {
-        if (midias.get(indice) != null) {
-            midias.get(indice).setAno(ano);
-            midias.get(indice).setTitulo(titulo);
-            midias.get(indice).setDescricao(descricao);
-            midias.get(indice).setCaminho(caminho);
-            return midias.get(indice);
+    public Midia editar(int indice, Midia midia) {
+         for (int i = 0; i < midias.size(); i++) {
+            if (midias.get(indice).getId() == indice) {
+                midias.set(indice, midia);
+                return midias.get(indice);
+            }
+            
         }
         return null;
     }
 
     @Override
-    public List<Midia> exibir() {
-        return this.midias;
+    public Midia consultar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String exibir(BancoDeMidias colecao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 
 }
