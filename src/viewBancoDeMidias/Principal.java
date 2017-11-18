@@ -6,6 +6,7 @@
 package viewBancoDeMidias;
 
 import bancoDeMidias.BancoPodcast;
+import bancoDeMidias.BancoDeFilmes;
 import sistema.SistemaEbook;
 
 /**
@@ -15,12 +16,16 @@ import sistema.SistemaEbook;
 public class Principal extends javax.swing.JFrame {
 
     private BancoPodcast bancoPodcast;
+    private BancoDeFilmes bancoFilme;
     private ViewPodcast telaDePodcast;
+    private ViewFilme telaDeFilme;
     
     public Principal() {
         initComponents();
         this.bancoPodcast = new BancoPodcast();
+        this.bancoFilme = new BancoDeFilmes();
         this.telaDePodcast = new ViewPodcast(bancoPodcast);
+        this.telaDeFilme = new ViewFilme(bancoFilme, this);
     }
 
     /**
@@ -95,10 +100,12 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFilmeActionPerformed
-        new ViewFilme().setVisible(true);
+        telaDeFilme.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_botaoFilmeActionPerformed
 
     private void botaoEbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEbookActionPerformed

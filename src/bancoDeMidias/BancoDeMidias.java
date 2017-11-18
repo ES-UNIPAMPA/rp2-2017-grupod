@@ -68,7 +68,17 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
         }
         return false;
     }
-
+    public Midia excluir(String titulo) {
+        Midia removida = null;
+        for (int i = 0; i < midias.size(); i++) {
+            if (midias.get(i).getTitulo().equalsIgnoreCase(titulo)) {
+                removida = midias.get(i);
+                midias.remove(i);
+                return removida;
+            }
+        }
+        return removida;
+    }
     @Override
     public boolean editar(int id, Midia novo) {
         for (int i = 0; i < getMidias().size(); i++) {

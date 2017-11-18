@@ -70,7 +70,8 @@ public class Filme extends Midia{
     
     @Override
     public String toString() {
-        return "Filme{" + "genero=" + genero + ", idioma=" + idioma + ", diretor=" + diretor + ", atoresPrincipais=" + atoresPrincipais + ", duracao=" + duracao + '}';
+                return " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() +"\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor + "\n Atores Principais:" + atoresPrincipais + "\n Duracao: " + duracao + '\n';
+
     }
     @Override
     public int hashCode() {

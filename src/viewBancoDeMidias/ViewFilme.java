@@ -5,17 +5,32 @@
  */
 package viewBancoDeMidias;
 
+import bancoDeMidias.BancoDeMidias;
+import midias.Ebook;
+import midias.Midia;
+import java.io.File;
+import javax.swing.JFileChooser;
+import bancoDeMidias.BancoDeFilmes;
+import java.io.FileNotFoundException;
+import javax.swing.JOptionPane;
+import midias.Filme;
+
 /**
  *
- * @author SABRINA
+ * @author jaromsambrana
  */
 public class ViewFilme extends javax.swing.JFrame {
 
+    BancoDeFilmes bancoFilmes;
+    Principal viewInicial;
+
     /**
-     * Creates new form ViewFilme
+     * Creates new form ViewCadastroFilme
      */
-    public ViewFilme() {
+    public ViewFilme(BancoDeFilmes filmes, Principal view) {
         initComponents();
+        this.bancoFilmes = filmes;
+        this.viewInicial = view;
     }
 
     /**
@@ -27,21 +42,143 @@ public class ViewFilme extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cadastrar = new javax.swing.JButton();
-        consultar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        campoId = new javax.swing.JTextField();
+        campoTitulo = new javax.swing.JTextField();
+        campoDescricao = new javax.swing.JTextField();
+        campoDiretor = new javax.swing.JTextField();
+        campoCaminho = new javax.swing.JTextField();
+        campoGenero = new javax.swing.JTextField();
+        campoAno = new javax.swing.JTextField();
+        campoIdioma = new javax.swing.JTextField();
+        campoBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
+        btnSalvarAlteracoes = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        sair = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        campoAtores = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        campoDuracao = new javax.swing.JTextField();
+        btnEscolherCaminho = new javax.swing.JButton();
+        adicionar = new javax.swing.JButton();
+        remover = new javax.swing.JButton();
+        exibir = new javax.swing.JButton();
         editar = new javax.swing.JButton();
-        excluir = new javax.swing.JButton();
-        textoPesquisa = new java.awt.TextField();
-        canvas1 = new java.awt.Canvas();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cadastrar.setText("Cadastrar");
+        jLabel3.setText("ID:");
 
-        consultar.setText("Consultar");
+        jLabel4.setText("Título:");
 
-        jLabel1.setText("Filmes");
+        jLabel2.setText("Diretor:");
+
+        jLabel6.setText("Gênero:");
+
+        jLabel7.setText("Idioma:");
+
+        jLabel8.setText("Ano:");
+
+        jLabel9.setText("Caminho:");
+
+        jLabel5.setText("Descrição:");
+
+        campoCaminho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCaminhoActionPerformed(evt);
+            }
+        });
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+
+        btnSalvarAlteracoes.setText("Salvar Alterações");
+        btnSalvarAlteracoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarAlteracoesActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        sair.setText("Sair");
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
+
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabela);
+
+        jLabel10.setText("Atores:");
+
+        jLabel1.setText("Duração:");
+
+        btnEscolherCaminho.setText("Escolher");
+        btnEscolherCaminho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscolherCaminhoActionPerformed(evt);
+            }
+        });
+
+        adicionar.setText("Adicionar");
+        adicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarActionPerformed(evt);
+            }
+        });
+
+        remover.setText("Remover");
+        remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerActionPerformed(evt);
+            }
+        });
+
+        exibir.setText("Exibir");
+        exibir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exibirActionPerformed(evt);
+            }
+        });
 
         editar.setText("Editar");
         editar.addActionListener(new java.awt.event.ActionListener() {
@@ -50,124 +187,346 @@ public class ViewFilme extends javax.swing.JFrame {
             }
         });
 
-        excluir.setText("Excluir");
-
-        textoPesquisa.setText("textField1");
-        textoPesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoPesquisaActionPerformed(evt);
-            }
-        });
-        textoPesquisa.addTextListener(new java.awt.event.TextListener() {
-            public void textValueChanged(java.awt.event.TextEvent evt) {
-                textoPesquisaTextValueChanged(evt);
-            }
-        });
-
-        canvas1.setBackground(new java.awt.Color(153, 153, 153));
-        canvas1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cadastrar)
-                            .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(excluir)
-                            .addComponent(consultar))
-                        .addGap(8, 8, 8)
-                        .addComponent(editar))
+                        .addComponent(jScrollPane1)
+                        .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel1)))
-                .addContainerGap(171, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(campoDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(campoDiretor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(campoGenero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(campoIdioma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(campoAno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(campoCaminho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoAtores)
+                                    .addComponent(campoDuracao))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(campoBuscar)
+                                    .addComponent(btnSalvarAlteracoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                                    .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(20, 20, 20))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBuscar)
+                                .addGap(91, 91, 91))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(adicionar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(remover)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(exibir))
+                                    .addComponent(btnEscolherCaminho))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
+                        .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cadastrar)
-                            .addComponent(excluir))
-                        .addGap(29, 29, 29)
-                        .addComponent(textoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(consultar)
-                        .addComponent(editar)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                            .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(campoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel8)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEscolherCaminho)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(editar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSalvarAlteracoes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sair)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(campoAtores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(adicionar)
+                    .addComponent(remover)
+                    .addComponent(exibir))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(campoDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void campoCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCaminhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCaminhoActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+
+        try {
+            if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && bancoFilmes.getAtores().get(0) != null) {
+                int time = Integer.parseInt(campoDuracao.getText());
+                int year = Integer.parseInt(campoAno.getText());
+                Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), bancoFilmes.getAtores(), time, bancoFilmes.getCaminho(), campoTitulo.getText(), campoDescricao.getText(), year, 0);//id não deve ser passado pelo construtor
+                bancoFilmes.cadastrar(midia);
+                JOptionPane.showMessageDialog(null, "\n" + midia.getTitulo() + "\n Filme Cadastrado!");
+                esvaziarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Você esqueceu de informar algum dado do Filme. \n Por Favor, preencha-o e tente novamente.");
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
+        }
+        bancoFilmes.atualizaTabela(bancoFilmes.getMidias(), tabela);
+        try {
+            bancoFilmes.gravar("BancoFilmes.txt");
+        } catch (FileNotFoundException exc) {
+            System.out.println("Erro: Banco.txt não encontrado");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnEscolherCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscolherCaminhoActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            bancoFilmes.setCaminho(selectedFile.getAbsolutePath());
+            campoCaminho.setText(selectedFile.getAbsolutePath());
+        }
+    }//GEN-LAST:event_btnEscolherCaminhoActionPerformed
+
+    private void adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarActionPerformed
+        if (bancoFilmes.adcionarAtores(campoAtores.getText())) {
+            campoAtores.setText("");
+        }
+    }//GEN-LAST:event_adicionarActionPerformed
+
+    private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
+        try {
+            if (bancoFilmes.removerAtores(campoAtores.getText())) {
+                JOptionPane.showMessageDialog(null, "Ator " + campoAtores.getText() + " Removido!");
+                campoAtores.setText("");
+
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Este ator não foi adicionado!");
+        }
+
+    }//GEN-LAST:event_removerActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            Midia midia = bancoFilmes.consultar(campoBuscar.getText());
+            JOptionPane.showMessageDialog(rootPane, midia.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(rootPane, "Este filme não Existe!");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        setVisible(false);
+        viewInicial.setVisible(true);
+    }//GEN-LAST:event_sairActionPerformed
+
+    private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Atores Principais: \n" + bancoFilmes.getAtores().toString());
+    }//GEN-LAST:event_exibirActionPerformed
+
+    private void btnSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlteracoesActionPerformed
+        try {
+            if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && bancoFilmes.getAtores().get(0) != null) {
+                int time = Integer.parseInt(campoDuracao.getText());
+                int year = Integer.parseInt(campoAno.getText());
+                Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), bancoFilmes.getAtores(), time, bancoFilmes.getCaminho(), campoTitulo.getText(), campoDescricao.getText(), year, 0);//id não deve ser passado pelo construtor
+                bancoFilmes.editar(0, midiaEditada);
+                JOptionPane.showMessageDialog(null, "\n" + midiaEditada.getTitulo() + "\n Filme Editado!");
+                setVisible(false);
+                viewInicial.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Você esqueceu de informar algum dado do Filme. \n Por Favor, preencha-o e tente novamente.");
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
+        } catch (NumberFormatException e) {
+
+        }
+        bancoFilmes.atualizaTabela(bancoFilmes.getMidias(), tabela);
+        try {
+            bancoFilmes.gravar("BancoFilmes.txt");
+        } catch (FileNotFoundException exc) {
+            System.out.println("Erro: Banco.txt não encontrado");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+        esvaziarCampos();
+
+    }//GEN-LAST:event_btnSalvarAlteracoesActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        Midia excluida = bancoFilmes.excluir(campoBuscar.getText());
+        JOptionPane.showMessageDialog(rootPane, "O Filme excluido foi: \n \n" + excluida.toString());
+        bancoFilmes.atualizaTabela(bancoFilmes.getMidias(), tabela);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        // TODO add your handling code here:
+        String filmeEdit = JOptionPane.showInputDialog(rootPane, "Qual filme você deseja Editar?");
+        Filme midia = (Filme) bancoFilmes.consultar(filmeEdit);
+        setarCampos(midia);
+
     }//GEN-LAST:event_editarActionPerformed
+    public void esvaziarCampos() {
+        campoTitulo.setText("");
+        campoAno.setText("");
+        campoDescricao.setText("");
+        campoIdioma.setText("");
+        campoGenero.setText("");
+        bancoFilmes.setCaminho("");
+        bancoFilmes.getAtores().clear();//sisFilme.getAtores(); esvaziar lista
+        campoDuracao.setText("");
+        campoDiretor.setText("");
 
-    private void textoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoPesquisaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textoPesquisaActionPerformed
+    }
 
-    private void textoPesquisaTextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_textoPesquisaTextValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textoPesquisaTextValueChanged
+    public void setarCampos(Filme filme) {
+        campoTitulo.setText(filme.getTitulo());
+        campoAno.setText(String.valueOf(filme.getAno()));
+        campoDescricao.setText(filme.getDescricao());
+        campoIdioma.setText(filme.getIdioma());
+        campoGenero.setText(filme.getGenero());
+        campoCaminho.setText(filme.getCaminho());
+        campoDuracao.setText(String.valueOf(filme.getDuracao()));
+        campoDiretor.setText(filme.getDiretor());
 
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewFilme().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cadastrar;
-    private java.awt.Canvas canvas1;
-    private javax.swing.JButton consultar;
+    private javax.swing.JButton adicionar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEscolherCaminho;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnSalvarAlteracoes;
+    private javax.swing.JTextField campoAno;
+    private javax.swing.JTextField campoAtores;
+    private javax.swing.JTextField campoBuscar;
+    private javax.swing.JTextField campoCaminho;
+    private javax.swing.JTextField campoDescricao;
+    private javax.swing.JTextField campoDiretor;
+    private javax.swing.JTextField campoDuracao;
+    private javax.swing.JTextField campoGenero;
+    private javax.swing.JTextField campoId;
+    private javax.swing.JTextField campoIdioma;
+    private javax.swing.JTextField campoTitulo;
     private javax.swing.JButton editar;
-    private javax.swing.JButton excluir;
+    private javax.swing.JButton exibir;
     private javax.swing.JLabel jLabel1;
-    private java.awt.TextField textoPesquisa;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton remover;
+    private javax.swing.JButton sair;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }
