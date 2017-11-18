@@ -37,7 +37,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     public boolean cadastrar(Midia midia) {
         return this.midias.add(midia);
     }
-
+    
     @Override
     public Midia consultar(String titulo) {
         for (int i = 0; i < getMidias().size(); i++) {
@@ -94,5 +94,6 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     public List<Midia> exibir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+ 
 
 }

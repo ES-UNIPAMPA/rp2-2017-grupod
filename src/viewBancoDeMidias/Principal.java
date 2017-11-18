@@ -19,7 +19,7 @@ public class Principal extends javax.swing.JFrame {
     private BancoDeFilmes bancoFilme;
     private ViewPodcast telaDePodcast;
     private ViewFilme telaDeFilme;
-    
+
     public Principal() {
         initComponents();
         this.bancoPodcast = new BancoPodcast();
@@ -104,6 +104,12 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFilmeActionPerformed
+        try {
+            bancoFilme.ler("BancoFilmes.txt");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
         telaDeFilme.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_botaoFilmeActionPerformed

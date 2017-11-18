@@ -70,6 +70,9 @@ public abstract class  Midia {
     public String toString() {
         return "Midia{" + "caminho=" + caminho + ", titulo=" + titulo + ", descricao=" + descricao + ", ano=" + ano + ", id=" + getId() + '}';
     }
+     public String toFile(){
+        return id + "\r\n"+caminho + "\r\n" + titulo + "\r\n" +  ano + "\r\n" +descricao+ "\r\n" ;
+    }
      public boolean compareTo(Object obj){
         Midia midia = (Midia) obj;
         if(this.ano >= midia.getAno()){

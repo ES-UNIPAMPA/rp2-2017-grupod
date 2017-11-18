@@ -5,14 +5,15 @@
  */
 package viewBancoDeMidias;
 
-import bancoDeMidias.BancoDeMidias;
-import midias.Ebook;
 import midias.Midia;
 import java.io.File;
 import javax.swing.JFileChooser;
 import bancoDeMidias.BancoDeFilmes;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import midias.Filme;
 
 /**
@@ -21,8 +22,11 @@ import midias.Filme;
  */
 public class ViewFilme extends javax.swing.JFrame {
 
-    BancoDeFilmes bancoFilmes;
-    Principal viewInicial;
+    private BancoDeFilmes bancoFilmes;
+    private Principal viewInicial;
+    
+    private String caminho;
+    private List<String> atores;
 
     /**
      * Creates new form ViewCadastroFilme
@@ -31,6 +35,8 @@ public class ViewFilme extends javax.swing.JFrame {
         initComponents();
         this.bancoFilmes = filmes;
         this.viewInicial = view;
+        this.atores = new ArrayList<String>();
+        this.caminho = null;
     }
 
     /**
@@ -291,23 +297,7 @@ public class ViewFilme extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(campoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel8)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEscolherCaminho)))
+                            .addComponent(jLabel6)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(editar)
@@ -316,9 +306,25 @@ public class ViewFilme extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalvarAlteracoes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sair)))
+                        .addComponent(btnExcluir)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sair)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(campoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel8)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEscolherCaminho))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -330,7 +336,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(campoDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -346,10 +352,10 @@ public class ViewFilme extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
         try {
-            if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && bancoFilmes.getAtores().get(0) != null) {
+            if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && getAtores().get(0) != null) {
                 int time = Integer.parseInt(campoDuracao.getText());
                 int year = Integer.parseInt(campoAno.getText());
-                Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), bancoFilmes.getAtores(), time, bancoFilmes.getCaminho(), campoTitulo.getText(), campoDescricao.getText(), year, 0);//id não deve ser passado pelo construtor
+                Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), getAtores(), time, getCaminho(), campoTitulo.getText(), campoDescricao.getText(), year, 0);//id não deve ser passado pelo construtor
                 bancoFilmes.cadastrar(midia);
                 JOptionPane.showMessageDialog(null, "\n" + midia.getTitulo() + "\n Filme Cadastrado!");
                 esvaziarCampos();
@@ -361,15 +367,8 @@ public class ViewFilme extends javax.swing.JFrame {
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
         }
-        bancoFilmes.atualizaTabela(bancoFilmes.getMidias(), tabela);
-        try {
-            bancoFilmes.gravar("BancoFilmes.txt");
-        } catch (FileNotFoundException exc) {
-            System.out.println("Erro: Banco.txt não encontrado");
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
-
+        atualizaTabela(bancoFilmes.getMidias(), tabela);
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnEscolherCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscolherCaminhoActionPerformed
@@ -380,20 +379,20 @@ public class ViewFilme extends javax.swing.JFrame {
         int result = fileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            bancoFilmes.setCaminho(selectedFile.getAbsolutePath());
+            setCaminho(selectedFile.getAbsolutePath());
             campoCaminho.setText(selectedFile.getAbsolutePath());
         }
     }//GEN-LAST:event_btnEscolherCaminhoActionPerformed
 
     private void adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarActionPerformed
-        if (bancoFilmes.adcionarAtores(campoAtores.getText())) {
+        if (adcionarAtores(campoAtores.getText())) {
             campoAtores.setText("");
         }
     }//GEN-LAST:event_adicionarActionPerformed
 
     private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
         try {
-            if (bancoFilmes.removerAtores(campoAtores.getText())) {
+            if (removerAtores(campoAtores.getText())) {
                 JOptionPane.showMessageDialog(null, "Ator " + campoAtores.getText() + " Removido!");
                 campoAtores.setText("");
 
@@ -414,24 +413,30 @@ public class ViewFilme extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        try {
+            bancoFilmes.gravar("BancoFilmes.txt");
+        } catch (FileNotFoundException exc) {
+            System.out.println("Erro: Banco.txt não encontrado");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
         setVisible(false);
         viewInicial.setVisible(true);
     }//GEN-LAST:event_sairActionPerformed
 
     private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Atores Principais: \n" + bancoFilmes.getAtores().toString());
+        JOptionPane.showMessageDialog(rootPane, "Atores Principais: \n" + getAtores().toString());
     }//GEN-LAST:event_exibirActionPerformed
 
     private void btnSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlteracoesActionPerformed
         try {
-            if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && bancoFilmes.getAtores().get(0) != null) {
+            if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && getAtores().get(0) != null) {
                 int time = Integer.parseInt(campoDuracao.getText());
                 int year = Integer.parseInt(campoAno.getText());
-                Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), bancoFilmes.getAtores(), time, bancoFilmes.getCaminho(), campoTitulo.getText(), campoDescricao.getText(), year, 0);//id não deve ser passado pelo construtor
+                Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), getAtores(), time, getCaminho(), campoTitulo.getText(), campoDescricao.getText(), year, 0);//id não deve ser passado pelo construtor
                 bancoFilmes.editar(0, midiaEditada);
                 JOptionPane.showMessageDialog(null, "\n" + midiaEditada.getTitulo() + "\n Filme Editado!");
-                setVisible(false);
-                viewInicial.setVisible(true);
+                esvaziarCampos();
             } else {
                 JOptionPane.showMessageDialog(null, "Você esqueceu de informar algum dado do Filme. \n Por Favor, preencha-o e tente novamente.");
             }
@@ -442,22 +447,15 @@ public class ViewFilme extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
 
         }
-        bancoFilmes.atualizaTabela(bancoFilmes.getMidias(), tabela);
-        try {
-            bancoFilmes.gravar("BancoFilmes.txt");
-        } catch (FileNotFoundException exc) {
-            System.out.println("Erro: Banco.txt não encontrado");
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
-        esvaziarCampos();
+        atualizaTabela(bancoFilmes.getMidias(), tabela);
+
 
     }//GEN-LAST:event_btnSalvarAlteracoesActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Midia excluida = bancoFilmes.excluir(campoBuscar.getText());
         JOptionPane.showMessageDialog(rootPane, "O Filme excluido foi: \n \n" + excluida.toString());
-        bancoFilmes.atualizaTabela(bancoFilmes.getMidias(), tabela);        // TODO add your handling code here:
+        atualizaTabela(bancoFilmes.getMidias(), tabela);        // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
@@ -472,8 +470,9 @@ public class ViewFilme extends javax.swing.JFrame {
         campoDescricao.setText("");
         campoIdioma.setText("");
         campoGenero.setText("");
-        bancoFilmes.setCaminho("");
-        bancoFilmes.getAtores().clear();//sisFilme.getAtores(); esvaziar lista
+        campoCaminho.setText("");
+        setCaminho("");
+        getAtores().clear();//sisFilme.getAtores(); esvaziar lista
         campoDuracao.setText("");
         campoDiretor.setText("");
 
@@ -490,6 +489,62 @@ public class ViewFilme extends javax.swing.JFrame {
         campoDiretor.setText(filme.getDiretor());
 
     }
+    public JTable atualizaTabela(List<Midia> bancoFilme, JTable tabela) {
+
+        String matriz[][] = new String[bancoFilme.size()][10];
+        for (int i = 0; i < bancoFilme.size(); i++) {
+            Filme filme = (Filme) bancoFilme.get(i);
+            matriz[i][0] = String.valueOf(filme.getId());
+            matriz[i][1] = String.valueOf(filme.getTitulo());
+            matriz[i][2] = String.valueOf(filme.getDescricao());
+            matriz[i][3] = String.valueOf(filme.getIdioma());
+            matriz[i][4] = String.valueOf(filme.getGenero());
+            matriz[i][5] = String.valueOf(filme.getAno());
+            matriz[i][6] = String.valueOf(filme.getCaminho());
+            matriz[i][7] = String.valueOf(filme.getDiretor());
+            matriz[i][8] = String.valueOf(filme.getDuracao());
+            matriz[i][9] = String.valueOf(filme.getAtoresPrincipais());
+        }
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "ID", "Título", "Descrição", "Idioma", "Gênero", "Ano", "Caminho", "Diretor", "Duração", "Atores Principais"
+                }
+        ));
+        return tabela;
+    }
+        public void setAtores(List<String> atores) {
+        this.atores = atores;
+    }
+
+    public List<String> getAtores() {
+        return atores;
+    }
+
+    public void setCaminho(String caminho) {
+        this.caminho = caminho;
+    }
+
+    public String getCaminho() {
+        return caminho;
+    }
+
+    public boolean removerAtores(String nome) {
+        if (this.atores.remove(nome)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean adcionarAtores(String nome) {//Arrumar este método depois
+
+        if (nome != null && nome != "" && this.atores.add(nome)) {
+
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * @param args the command line arguments
      */

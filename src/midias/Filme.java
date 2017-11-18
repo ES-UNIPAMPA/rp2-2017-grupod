@@ -12,13 +12,14 @@ import java.util.Objects;
  *
  * @author SABRINA
  */
-public class Filme extends Midia{
-    private String  genero;
-    private String  idioma;
-    private String  diretor;
-    private List<String>    atoresPrincipais;
+public class Filme extends Midia {
+
+    private String genero;
+    private String idioma;
+    private String diretor;
+    private List<String> atoresPrincipais;
     private int duracao;
-        
+
     public Filme(String genero, String idioma, String diretor, List<String> atoresPrincipais, int duracao, String caminho, String titulo, String descricao, int ano, int id) {
         super(caminho, titulo, descricao, ano, id);
         this.genero = genero;
@@ -67,12 +68,27 @@ public class Filme extends Midia{
     public int getDuracao() {
         return duracao;
     }
-    
+
     @Override
     public String toString() {
-                return " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() +"\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor + "\n Atores Principais:" + atoresPrincipais + "\n Duracao: " + duracao + '\n';
+        String dados = " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() + "\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor + "\n Atores Principais:";
+         for (int i = 0; i < atoresPrincipais.size(); i++) {
+            dados += atoresPrincipais.get(i) + "\r\n";
+        }
+        dados+= "Duracao: " + duracao + '\n';
+        return dados;
 
     }
+
+    public String toFile() {
+        String dados = super.toFile() + genero + "\r\n" + idioma + "\r\n" + diretor + "\r\n" + atoresPrincipais.size() + "\r\n";
+        for (int i = 0; i < atoresPrincipais.size(); i++) {
+            dados += atoresPrincipais.get(i) + "\r\n";
+        }
+        dados += duracao + "\r\n";
+        return dados;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -96,15 +112,16 @@ public class Filme extends Midia{
             return false;
         }
         final Filme other = (Filme) obj;
-        if (this.duracao == other.duracao &&(other.genero == null ||other.genero.equals(this.genero))&&(other.idioma == null||other.idioma.equals(this.idioma))&&(other.diretor == null || other.diretor.equals(this.diretor))&&(other.atoresPrincipais == null||other.atoresPrincipais.equals(this.atoresPrincipais))) {
+        if (this.duracao == other.duracao && (other.genero == null || other.genero.equals(this.genero)) && (other.idioma == null || other.idioma.equals(this.idioma)) && (other.diretor == null || other.diretor.equals(this.diretor)) && (other.atoresPrincipais == null || other.atoresPrincipais.equals(this.atoresPrincipais))) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public boolean compareTo(Object obj){
+
+    public boolean compareTo(Object obj) {
         Filme filme = (Filme) obj;
-        if(this.duracao >= filme.getDuracao()){
+        if (this.duracao >= filme.getDuracao()) {
             return true;
         }
         return false;
