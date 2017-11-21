@@ -83,10 +83,10 @@ public class BancoPodcast extends BancoDeMidias {
 
             autor = buff.readLine();
 
+            buff.readLine();
+            
             podcastArquivo = new Podcast(caminho, titulo, descricao, ano, idioma, id, autor);
             this.cadastrar(podcastArquivo);
-
-            buff.readLine();
         }
         /**
          * Fecha o arquivo para leitura
@@ -104,7 +104,7 @@ public class BancoPodcast extends BancoDeMidias {
             matriz[i][1] = String.valueOf(podcast.getTitulo());
             matriz[i][2] = String.valueOf(podcast.getDescricao());
             matriz[i][3] = String.valueOf(podcast.getIdioma());
-            matriz[i][4] = String.valueOf(podcast.getAutores());
+            matriz[i][4] = String.valueOf(podcast.getAutor());
             matriz[i][5] = String.valueOf(podcast.getAno());
             matriz[i][6] = String.valueOf(podcast.getCaminho());
         }

@@ -360,7 +360,7 @@ public class ViewPodcast extends javax.swing.JFrame {
             podcast = (Podcast) bancoPodcast.consultar(campoBusca.getText());
             try {
                 exibir(podcast);
-            } catch (NullPointerException e) {
+            } catch (Exception e) {
                 limpar();
                 JOptionPane.showMessageDialog(null, "Não foi possível localizar o item. Tente novamente. ", "Erro", JOptionPane.ERROR_MESSAGE);
             }
@@ -470,7 +470,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         campoTitulo.setText(podcast.getTitulo());
         campoDescricao.setText(podcast.getDescricao());
         campoIdioma.setText(podcast.getIdioma());
-        campoAutor.setText(podcast.getAutores());
+        campoAutor.setText(podcast.getAutor());
         campoAno.setText(String.valueOf(podcast.getAno()));
         getCampoCaminho().setText(podcast.getCaminho());
     }

@@ -12,12 +12,12 @@ package midias;
 public class Podcast extends Midia {
 
     private String idioma;
-    private String autores;
+    private String autor;
 
-    public Podcast(String caminho, String titulo, String descricao, int ano, String idioma, int id, String autores) {
+    public Podcast(String caminho, String titulo, String descricao, int ano, String idioma, int id, String autor) {
         super(caminho, titulo, descricao, ano, id);
         this.idioma = idioma;
-        this.autores = autores;
+        this.autor = autor;
     }
 
     /**
@@ -35,22 +35,28 @@ public class Podcast extends Midia {
     }
 
     /**
-     * @return the autores
+     * @return the autor
      */
-    public String getAutores() {
-        return autores;
+    public String getAutor() {
+        return autor;
     }
 
     /**
-     * @param autores the autores to set
+     * @param autor the autor to set
      */
-    public void setAutores(String autores) {
-        this.autores = autores;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     @Override
     public String toString() {
-        String dados = " ID: " + super.getId() + "\n" + " Título: " + super.getTitulo() + "\n Descrição: " + super.getDescricao() + "\n Idioma: " + idioma + "\n Autor: " + autores + "\n Ano: " + super.getAno();
+        String dados = " ID: " + super.getId() + "\n" + " Título: " + super.getTitulo() + "\n Descrição: " + super.getDescricao() + "\n Idioma: " + idioma + "\n Autor: " + autor + "\n Ano: " + super.getAno();
+        return dados;
+    }
+
+    @Override
+    public String toFile() {
+        String dados = super.toFile() + idioma +  "\r\n" + autor +  "\r\n";
         return dados;
     }
 
