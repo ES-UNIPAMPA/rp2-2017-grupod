@@ -119,6 +119,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEbookActionPerformed
 
     private void botaoPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPodCastActionPerformed
+        try {
+            bancoPodcast.ler("BancoPodcasts.txt");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
         telaDePodcast.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_botaoPodCastActionPerformed

@@ -115,4 +115,5 @@ public class BancoPodcast extends BancoDeMidias {
     public int getTamanhoLista() {
         return this.getMidias().size();
     }
+
 }
