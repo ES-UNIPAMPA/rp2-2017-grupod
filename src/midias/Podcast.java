@@ -47,6 +47,11 @@ public class Podcast extends Midia {
     public void setAutores(String autores) {
         this.autores = autores;
     }
-    //fazer TO STRING
-    
+
+    @Override
+    public String toString() {
+        String dados = " ID: " + super.getId() + "\n" + " Título: " + super.getTitulo() + "\n Descrição: " + super.getDescricao() + "\n Idioma: " + idioma + "\n Autor: " + autores + "\n Ano: " + super.getAno();
+        return dados;
+    }
+
 }

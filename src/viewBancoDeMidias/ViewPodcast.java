@@ -13,6 +13,8 @@ import javax.swing.JTable;
 import midias.Podcast;
 import bancoDeMidias.BancoDeMidias;
 import bancoDeMidias.BancoPodcast;
+import java.io.File;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -20,16 +22,14 @@ import bancoDeMidias.BancoPodcast;
  */
 public class ViewPodcast extends javax.swing.JFrame {
 
-
     private BancoPodcast bancoPodcast;
+    private String caminho;
 
     /**
      * Creates new form cadastrarPodCast
      *
      * @param bancoPodcast
      */
-    // precisa ter uma classe pra cada um, depois uma com cada lista, depois uma que junta tudo +- isso
-    // Receber podcast em vez de bancoPodcast (preciso trabalhar só com podcast, sem ter opção de outras coleções
     public ViewPodcast(BancoPodcast bancoPodcast) {
         this.bancoPodcast = bancoPodcast;
         /**
@@ -377,6 +377,16 @@ public class ViewPodcast extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
 
     private void botaoCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCaminhoActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            setCaminho(selectedFile.getAbsolutePath());
+            campoCaminho.setText(selectedFile.getAbsolutePath());
+        }
     }//GEN-LAST:event_botaoCaminhoActionPerformed
 
 
@@ -425,6 +435,18 @@ public class ViewPodcast extends javax.swing.JFrame {
     public javax.swing.JTextField getCampoCaminho() {
         return campoCaminho;
     }
+    
+      public String getCaminho() {
+        return caminho;
+    }
+
+    /**
+     * @param caminho the caminho to set
+     */
+    public void setCaminho(String caminho) {
+        this.caminho = caminho;
+    }
+
 
     /**
      * @param campoCaminho the campoCaminho to set
