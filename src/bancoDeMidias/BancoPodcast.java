@@ -41,13 +41,12 @@ public class BancoPodcast extends BancoDeMidias {
         buff.write(getTamanhoLista() + "\r\n");
         for (Midia midia : super.getMidias()) {
             buff.write(midia.toFile() + "\r\n");
-
-            /**
-             * Fecha o arquivo
-             */
-            buff.close();
-            outFile.close();
         }
+        /**
+         * Fecha o arquivo
+         */
+        buff.close();
+        outFile.close();
     }
 
     public void ler(String podcast) throws Exception {
@@ -70,24 +69,30 @@ public class BancoPodcast extends BancoDeMidias {
 
             linha = buff.readLine();
             id = Integer.parseInt(linha);
-            titulo = buff.readLine();
-            descricao = buff.readLine();
-            idioma = buff.readLine();
-            autor = buff.readLine();
-            ano = Integer.parseInt(linha);
+
             caminho = buff.readLine();
+
+            titulo = buff.readLine();
+
+            linha = buff.readLine();
+            ano = Integer.parseInt(linha);
+
+            descricao = buff.readLine();
+
+            idioma = buff.readLine();
+
+            autor = buff.readLine();
 
             podcastArquivo = new Podcast(caminho, titulo, descricao, ano, idioma, id, autor);
             this.cadastrar(podcastArquivo);
 
             buff.readLine();
-
-            /**
-             * Fecha o arquivo para leitura
-             */
-            buff.close();
-            inFile.close();
         }
+        /**
+         * Fecha o arquivo para leitura
+         */
+        buff.close();
+        inFile.close();
     }
 
     public JTable atualizaTabela(List<Midia> midiaPodcast, JTable tabela) {

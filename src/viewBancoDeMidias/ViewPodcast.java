@@ -14,6 +14,8 @@ import midias.Podcast;
 import bancoDeMidias.BancoDeMidias;
 import bancoDeMidias.BancoPodcast;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -32,6 +34,7 @@ public class ViewPodcast extends javax.swing.JFrame {
      */
     public ViewPodcast(BancoPodcast bancoPodcast) {
         this.bancoPodcast = bancoPodcast;
+        this.caminho = null;
         /**
          * LER DO ARQUIVO
          */
@@ -313,24 +316,30 @@ public class ViewPodcast extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarPodCastActionPerformed
-        campoId.setText(String.valueOf(bancoPodcast.getMidias().size() + 1));
-// dentro da midia ter um geral estático
-        Podcast p;
-        p = new Podcast(getCampoCaminho().getText(),
-                campoTitulo.getText(),
-                campoDescricao.getText(),
-                Integer.valueOf(campoAno.getText()),
-                campoIdioma.getText(),
-                Integer.valueOf(campoId.getText()),
-                campoAutor.getText()
-        );
-        getBancoDeMidias().cadastrar(p);
 
+        if (campoCaminho.getText() != null && campoTitulo.getText() != null && campoDescricao.getText() != null && this.campoAno != null && campoIdioma.getText() != null && campoAutor.getText() != null) {
+            Podcast p;
+            p = new Podcast(getCaminho(),
+                    campoTitulo.getText(),
+                    campoDescricao.getText(),
+                    Integer.valueOf(campoAno.getText()),
+                    campoIdioma.getText(),
+                    Integer.valueOf(campoId.getText()),
+                    campoAutor.getText()
+            );
+            getBancoDeMidias().cadastrar(p);
+        } else {
+            JOptionPane.showMessageDialog(null, "Você não preencheu todos os campos de texto. \n Tente novamente preenchendo todos os campos!");
+        }
+        try {
+            bancoPodcast.gravar("BancoPodcasts.txt");
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+        }
         bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoCadastrarPodCastActionPerformed
 
     private void botaoSairPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairPodCastActionPerformed
-
         JFrame frame = new JFrame();
         frame.setVisible(true);
         dispose();
@@ -363,16 +372,18 @@ public class ViewPodcast extends javax.swing.JFrame {
     }//GEN-LAST:event_campoBuscaActionPerformed
 
     private void botaoSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarAlteracoesActionPerformed
-        Podcast s;
-        s = new Podcast(getCampoCaminho().getText(),
-                campoTitulo.getText(),
-                campoDescricao.getText(),
-                Integer.valueOf(campoAno.getText()),
-                campoIdioma.getText(),
-                Integer.valueOf(campoId.getText()),
-                campoAutor.getText()
-        );
-        bancoPodcast.editar(Integer.valueOf(campoId.getText()), s);
+        if (campoCaminho.getText() != null && campoTitulo.getText() != null && campoDescricao.getText() != null && this.campoAno != null && campoIdioma.getText() != null && campoAutor.getText() != null) {
+            Podcast s;
+            s = new Podcast(getCaminho(),
+                    campoTitulo.getText(),
+                    campoDescricao.getText(),
+                    Integer.valueOf(campoAno.getText()),
+                    campoIdioma.getText(),
+                    Integer.valueOf(campoId.getText()),
+                    campoAutor.getText()
+            );
+            bancoPodcast.editar(Integer.valueOf(campoId.getText()), s);
+        }
         bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
 
@@ -428,15 +439,15 @@ public class ViewPodcast extends javax.swing.JFrame {
     public void setBancoDeMidias(BancoPodcast bancoPodcast) {
         this.bancoPodcast = bancoPodcast;
     }
-    
-        /**
+
+    /**
      * @return the campoCaminho
      */
     public javax.swing.JTextField getCampoCaminho() {
         return campoCaminho;
     }
-    
-      public String getCaminho() {
+
+    public String getCaminho() {
         return caminho;
     }
 
@@ -446,7 +457,6 @@ public class ViewPodcast extends javax.swing.JFrame {
     public void setCaminho(String caminho) {
         this.caminho = caminho;
     }
-
 
     /**
      * @param campoCaminho the campoCaminho to set
@@ -464,6 +474,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         campoAno.setText(String.valueOf(podcast.getAno()));
         getCampoCaminho().setText(podcast.getCaminho());
     }
+
     private void limpar() {
         campoId.setText("");
         campoTitulo.setText("");

@@ -123,6 +123,7 @@ public class Principal extends javax.swing.JFrame {
             bancoPodcast.ler("BancoPodcasts.txt");
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
         }
         telaDePodcast.setVisible(true);
         setVisible(false);

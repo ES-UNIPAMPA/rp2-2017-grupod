@@ -1,7 +1,13 @@
-1
-1
-c
-a
 2
-b
+1
+C:\Users\vagne\.oracle_jre_usage
+teste
+22
+teste
+
+1
+C:\Users\vagne\.oracle_jre_usage
+testee
+223
+eteste
 
