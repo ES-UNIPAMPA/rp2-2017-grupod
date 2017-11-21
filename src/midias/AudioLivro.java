@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
-66666666666 */
 package midias;
 
 import midias.Midia;
@@ -79,10 +74,17 @@ public class AudioLivro extends Midia {
         this.duracao = duracao;
     }
     
+    
     public String toString(){
         return "AudioLivro{" + "genero=" +genero +", idioma=" +idioma +", autores=" +autores +", local=" +local +", editora=" +editora +", duracao=" +duracao;
                 }
     
+    
+    @Override
+    public String toFile() {
+        String dados = super.toFile() + genero +  "\r\n" + idioma +  "\r\n" + autores +  "\r\n" + local +  "\r\n" + editora +  "\r\n" + duracao +  "\r\n";
+        return dados;
+    }
     }
 
  

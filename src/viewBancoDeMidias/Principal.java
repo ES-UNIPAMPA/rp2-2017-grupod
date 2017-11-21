@@ -5,6 +5,7 @@
  */
 package viewBancoDeMidias;
 
+import bancoDeMidias.BancoAudioLivro;
 import bancoDeMidias.BancoPodcast;
 import bancoDeMidias.BancoFilmes;
 
@@ -19,6 +20,8 @@ public class Principal extends javax.swing.JFrame {
     private BancoFilmes bancoFilme;
     private ViewPodcast telaDePodcast;
     private ViewFilme telaDeFilme;
+    private ViewAudioLivro telaAudioLivro;
+    private BancoAudioLivro bancoAudioLivro;
 
     public Principal() {
         initComponents();
@@ -26,6 +29,8 @@ public class Principal extends javax.swing.JFrame {
         this.bancoFilme = new BancoFilmes();
         this.telaDePodcast = new ViewPodcast(bancoPodcast);
         this.telaDeFilme = new ViewFilme(bancoFilme, this);
+        this.bancoAudioLivro = new BancoAudioLivro();
+        this.telaAudioLivro = new ViewAudioLivro(bancoAudioLivro);
     }
 
     /**
@@ -115,7 +120,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoPodCastActionPerformed
 
     private void botaoAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAudioLivroActionPerformed
-        // new Opcoes().setVisible(true);
+          try {
+            bancoAudioLivro.ler("BancoAudioLivro.txt");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
+        telaAudioLivro.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_botaoAudioLivroActionPerformed
 
     /**

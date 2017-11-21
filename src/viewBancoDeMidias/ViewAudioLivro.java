@@ -4,35 +4,44 @@
  * and open the template in the editor.
  */
 package viewBancoDeMidias;
-import bancoDeMidias.BancoDeMidias;
+import bancoDeMidias.BancoAudioLivro;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import midias.AudioLivro;
 import midias.Midia;
-import midias.Podcast;
 
 /**
  *
  * @author Rafae
  */
 public class ViewAudioLivro extends javax.swing.JFrame {
-  
-    private BancoDeMidias listaDeAudioLivros;
-    
+    private BancoAudioLivro bancoAudioLivro;
+    private String caminho;
+
+    public String getCaminho() {
+        return caminho;
+    }
+
+    public void setCaminho(String caminho) {
+        this.caminho = caminho;
+    }
 
     /**
      * Creates new form ViewAudioLivro
+     * 
+     * @param bancoAudioLivro
      */
-    public ViewAudioLivro() {
+    public ViewAudioLivro(BancoAudioLivro bancoAudioLivro) {
         initComponents();
-
-        this.listaDeAudioLivros = new BancoDeMidias();
+        this.bancoAudioLivro = bancoAudioLivro;
         tabelaA.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -67,22 +76,22 @@ public class ViewAudioLivro extends javax.swing.JFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         
       });
@@ -123,8 +132,8 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         campoLocal = new javax.swing.JTextField();
         campoDuracao = new javax.swing.JTextField();
         campoCaminho = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        campoPesquisa = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
         btnCadastrarAudioLivro = new javax.swing.JButton();
         btnEditarAudioLivro = new javax.swing.JButton();
         btnExcluirAudioLivro = new javax.swing.JButton();
@@ -182,17 +191,16 @@ public class ViewAudioLivro extends javax.swing.JFrame {
             }
         });
 
-        jTextField12.setText("Busque o AudioLivro Desejado");
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+        campoPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
+                campoPesquisaActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPesquisarActionPerformed(evt);
             }
         });
 
@@ -303,12 +311,12 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnPesquisar)
                         .addGap(237, 237, 237))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(btnExcluirAudioLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,12 +340,12 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(campoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnPesquisar))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -395,9 +403,9 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+    private void campoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
+    }//GEN-LAST:event_campoPesquisaActionPerformed
 
     private void campoLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoLocalActionPerformed
         // TODO add your handling code here:
@@ -407,23 +415,38 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoIDActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+            AudioLivro audioLivro;
+        try {
+            audioLivro = (AudioLivro) bancoAudioLivro.consultar(Integer.valueOf(campoPesquisa.getText()));
+            exibirAudioLivro(audioLivro);
+        } catch (Exception ex) {
+            audioLivro = (AudioLivro) bancoAudioLivro.consultar(campoPesquisa.getText());
+            try {
+                exibirAudioLivro(audioLivro);
+            } catch (NullPointerException e) {
+                limparCampos();
+                JOptionPane.showMessageDialog(null, "Não foi possível localizar o item. Tente novamente. ", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnCadastrarAudioLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarAudioLivroMouseClicked
           // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrarAudioLivroMouseClicked
 
     private void btnVoltarAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarAudioLivroActionPerformed
-        // TODO add your handling code here:
+        JFrame frame = new JFrame();
+        frame.setVisible(true);
+        dispose();
+        new Principal().setVisible(true);
     }//GEN-LAST:event_btnVoltarAudioLivroActionPerformed
 
     private void btnCadastrarAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarAudioLivroActionPerformed
       
-       AudioLivro al;
+       AudioLivro audioLivroNovo;
        
-       al = new AudioLivro(campoCaminho.getText(),
+       audioLivroNovo = new AudioLivro(campoCaminho.getText(),
                campoTitulo.getText(), 
                campoDescricao.getText(),
                Integer.parseInt(campoAno.getText()),
@@ -436,11 +459,14 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                Integer.parseInt(campoDuracao.getText())
        );
        
-   
+       bancoAudioLivro.cadastrar(audioLivroNovo);
        
-       atualizaTabelaA(listaDeAudioLivros.getMidias(), tabelaA);
-       LimparCampos();
-       
+       try {
+            bancoAudioLivro.gravar("BancoAudioLivro.txt");
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
        
     }//GEN-LAST:event_btnCadastrarAudioLivroActionPerformed
 
@@ -451,24 +477,76 @@ public class ViewAudioLivro extends javax.swing.JFrame {
       int result = fileChooser.showOpenDialog(this);
       if (result == JFileChooser.APPROVE_OPTION){
        File selectedFile = fileChooser.getSelectedFile();   
-      
+       setCaminho(selectedFile.getAbsolutePath());
        campoCaminho.setText(selectedFile.getAbsolutePath());
       }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnExcluirAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirAudioLivroActionPerformed
-        // TODO add your handling code here:
+         bancoAudioLivro.excluir(Integer.valueOf(campoID.getText()));
+         atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
     }//GEN-LAST:event_btnExcluirAudioLivroActionPerformed
 
     private void btnEditarAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAudioLivroActionPerformed
-        // TODO add your handling code here:
+        AudioLivro audioLivroEditado;
+       
+       audioLivroEditado = new AudioLivro(campoCaminho.getText(),
+               campoTitulo.getText(), 
+               campoDescricao.getText(),
+               Integer.parseInt(campoAno.getText()),
+               Integer.parseInt(campoID.getText()),
+               campoGenero.getText(),
+               campoIdioma.getText(),
+               campoAutores.getText(),
+               campoLocal.getText(),
+               campoEditora.getText(),
+               Integer.parseInt(campoDuracao.getText())
+       );
+       
+       bancoAudioLivro.editar(Integer.valueOf(campoID.getText()),audioLivroEditado);
+       atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
     }//GEN-LAST:event_btnEditarAudioLivroActionPerformed
 
     
-    
-     public JTable atualizaTabelaA(List<Midia> midiaAudioLivro, JTable tabela) {
+       public BancoAudioLivro getBancoAudioLivro() {
+        return bancoAudioLivro;
+    }
 
-        String matriz[][] = new String[midiaAudioLivro.size()][10];
+    public void setBancoAudioLivro(BancoAudioLivro bancoAudioLivro) {
+        this.bancoAudioLivro = bancoAudioLivro;
+    }
+    
+    private void exibirAudioLivro(AudioLivro audioLivro) {
+        campoCaminho.setText(audioLivro.getCaminho());
+        campoTitulo.setText(audioLivro.getTitulo());
+        campoDescricao.setText(audioLivro.getDescricao());
+        campoAno.setText(String.valueOf(audioLivro.getAno()));
+        campoID.setText(String.valueOf(audioLivro.getId()));
+        campoGenero.setText(audioLivro.getGenero());
+        campoIdioma.setText(audioLivro.getIdioma());
+        campoAutores.setText(audioLivro.getAutores());
+        campoLocal.setText(audioLivro.getLocal());
+        campoEditora.setText(audioLivro.getEditora());
+        campoDuracao.setText(String.valueOf(audioLivro.getDuracao()));
+    }
+     
+    public void limparCampos(){
+        campoCaminho.setText("");
+        campoTitulo.setText("");
+        campoDescricao.setText("");
+        campoAno.setText("");
+        campoID.setText("");
+        campoGenero.setText("");
+        campoIdioma.setText("");
+        campoAutores.setText("");
+        campoLocal.setText("");
+        campoEditora.setText("");
+        campoDuracao.setText("");
+    };
+    
+    public JTable atualizaTabelaA(List<Midia> midiaAudioLivro, JTable tabela) {
+
+        String matriz[][] = new String[midiaAudioLivro.size()][11];
         for (int i = 0; i < midiaAudioLivro.size(); i++) {
             AudioLivro al = (AudioLivro) midiaAudioLivro.get(i);
             matriz[i][0] = String.valueOf(al.getId());
@@ -491,49 +569,14 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         ));
         return tabela;
     }
-    
-    
-   /* public void addLinha(){
-        DefaultTableModel model = (DefaultTableModel) tabelaA.getModel();
-        ArrayList<AudioLivro> list = new ArrayList<>();
-        Object rowData[] = new Object[11];
-        for(int i = 0; i < list.size(); i++)
-        {
-            rowData[0] = list.get(i).getId();
-            rowData[1] = list.get(i).getTitulo();
-            rowData[2] = list.get(i).getDescricao();
-            rowData[3] = list.get(i).getAno();
-            rowData[4] = list.get(i).getGenero();
-            rowData[5] = list.get(i).getAutores();
-            rowData[6] = list.get(i).getEditora();
-            rowData[7] = list.get(i).getIdioma();
-            rowData[8] = list.get(i).getLocal();
-            rowData[9] = list.get(i).getDuracao();
-            rowData[10] = list.get(i).getCaminho();
-            model.addRow(rowData);
-        }
-               
-        
-    }*/ 
-    public void LimparCampos(){
-        campoCaminho.setText("");
-        campoTitulo.setText("");
-        campoDescricao.setText("");
-        campoAno.setText("");
-        campoID.setText("");
-        campoGenero.setText("");
-        campoIdioma.setText("");
-        campoAutores.setText("");
-        campoLocal.setText("");
-        campoEditora.setText("");
-        campoDuracao.setText("");
-    };
+ 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarAudioLivro;
     private javax.swing.JButton btnEditarAudioLivro;
     private javax.swing.JButton btnExcluirAudioLivro;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVoltarAudioLivro;
     private javax.swing.JTextField campoAno;
     private javax.swing.JTextField campoAutores;
@@ -545,8 +588,8 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     private javax.swing.JTextField campoID;
     private javax.swing.JTextField campoIdioma;
     private javax.swing.JTextField campoLocal;
+    private javax.swing.JTextField campoPesquisa;
     private javax.swing.JTextField campoTitulo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -562,7 +605,6 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTable tabelaA;
     // End of variables declaration//GEN-END:variables
 }
