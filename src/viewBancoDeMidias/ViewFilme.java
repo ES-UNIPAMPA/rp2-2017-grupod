@@ -8,7 +8,7 @@ package viewBancoDeMidias;
 import midias.Midia;
 import java.io.File;
 import javax.swing.JFileChooser;
-import bancoDeMidias.BancoDeFilmes;
+import bancoDeMidias.BancoFilmes;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import midias.Filme;
  */
 public class ViewFilme extends javax.swing.JFrame {
 
-    private BancoDeFilmes bancoFilmes;
+    private BancoFilmes bancoFilmes;
     private Principal viewInicial;
     
     private String caminho;
@@ -31,12 +31,13 @@ public class ViewFilme extends javax.swing.JFrame {
     /**
      * Creates new form ViewCadastroFilme
      */
-    public ViewFilme(BancoDeFilmes filmes, Principal view) {
+    public ViewFilme(BancoFilmes filmes, Principal view) {
         initComponents();
         this.bancoFilmes = filmes;
         this.viewInicial = view;
         this.atores = new ArrayList<String>();
         this.caminho = null;
+        
     }
 
     /**
@@ -355,7 +356,7 @@ public class ViewFilme extends javax.swing.JFrame {
             if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && getAtores().get(0) != null) {
                 int time = Integer.parseInt(campoDuracao.getText());
                 int year = Integer.parseInt(campoAno.getText());
-                Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), getAtores(), time, getCaminho(), campoTitulo.getText(), campoDescricao.getText(), year, 0);//id não deve ser passado pelo construtor
+                Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores, time, campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year);//id não deve ser passado pelo construtor
                 bancoFilmes.cadastrar(midia);
                 JOptionPane.showMessageDialog(null, "\n" + midia.getTitulo() + "\n Filme Cadastrado!");
                 esvaziarCampos();
@@ -366,6 +367,13 @@ public class ViewFilme extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
+        }
+        try {
+            bancoFilmes.gravar("BancoFilmes.txt");
+        } catch (FileNotFoundException exc) {
+            System.out.println("Erro: Banco.txt não encontrado");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
         }
         atualizaTabela(bancoFilmes.getMidias(), tabela);
         
@@ -399,6 +407,8 @@ public class ViewFilme extends javax.swing.JFrame {
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Este ator não foi adicionado!");
+        } catch (IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "Nenhum ator foi adicionado!");
         }
 
     }//GEN-LAST:event_removerActionPerformed
@@ -433,7 +443,7 @@ public class ViewFilme extends javax.swing.JFrame {
             if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && getAtores().get(0) != null) {
                 int time = Integer.parseInt(campoDuracao.getText());
                 int year = Integer.parseInt(campoAno.getText());
-                Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), getAtores(), time, getCaminho(), campoTitulo.getText(), campoDescricao.getText(), year, 0);//id não deve ser passado pelo construtor
+                Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores, time, campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year);//id não deve ser passado pelo construtor
                 bancoFilmes.editar(0, midiaEditada);
                 JOptionPane.showMessageDialog(null, "\n" + midiaEditada.getTitulo() + "\n Filme Editado!");
                 esvaziarCampos();
@@ -447,6 +457,13 @@ public class ViewFilme extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
 
         }
+        try {
+            bancoFilmes.gravar("BancoFilmes.txt");
+        } catch (FileNotFoundException exc) {
+            System.out.println("Erro: Banco.txt não encontrado");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
         atualizaTabela(bancoFilmes.getMidias(), tabela);
 
 
@@ -456,6 +473,13 @@ public class ViewFilme extends javax.swing.JFrame {
         Midia excluida = bancoFilmes.excluir(campoBuscar.getText());
         JOptionPane.showMessageDialog(rootPane, "O Filme excluido foi: \n \n" + excluida.toString());
         atualizaTabela(bancoFilmes.getMidias(), tabela);        // TODO add your handling code here:
+        try {
+            bancoFilmes.gravar("BancoFilmes.txt");
+        } catch (FileNotFoundException exc) {
+            System.out.println("Erro: Banco.txt não encontrado");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed

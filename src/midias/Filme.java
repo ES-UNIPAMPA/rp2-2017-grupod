@@ -5,6 +5,7 @@
  */
 package midias;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,12 +21,12 @@ public class Filme extends Midia {
     private List<String> atoresPrincipais;
     private int duracao;
 
-    public Filme(String genero, String idioma, String diretor, List<String> atoresPrincipais, int duracao, String caminho, String titulo, String descricao, int ano, int id) {
-        super(caminho, titulo, descricao, ano, id);
+    public Filme(String genero, String idioma, String diretor, List<String> atoresPrincipais, int duracao, String caminho, String titulo, String descricao, int ano) {
+        super(caminho, titulo, descricao, ano);
         this.genero = genero;
         this.idioma = idioma;
         this.diretor = diretor;
-        this.atoresPrincipais = atoresPrincipais;
+        this.atoresPrincipais = (ArrayList<String>)atoresPrincipais;
         this.duracao = duracao;
     }
 

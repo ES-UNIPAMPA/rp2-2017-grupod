@@ -17,7 +17,7 @@ public abstract class  Midia {
     private String descricao;
     private int ano;
     private static int id;
-
+    @Deprecated
     public Midia(String caminho, String titulo, String descricao, int ano, int id) {
         this.caminho = caminho;
         this.titulo = titulo;
@@ -25,11 +25,16 @@ public abstract class  Midia {
         this.ano = ano;
         Midia.id = id;
     }
-
+    public Midia(String caminho, String titulo, String descricao, int ano) {
+        this.caminho = caminho;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.ano = ano;
+        Midia.id += 0;
+    }
     public void setCaminho(String caminho) {
         this.caminho = caminho;
     }
-
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }

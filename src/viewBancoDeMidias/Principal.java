@@ -6,8 +6,8 @@
 package viewBancoDeMidias;
 
 import bancoDeMidias.BancoPodcast;
-import bancoDeMidias.BancoDeFilmes;
-import sistema.SistemaEbook;
+import bancoDeMidias.BancoFilmes;
+
 
 /**
  *
@@ -16,14 +16,14 @@ import sistema.SistemaEbook;
 public class Principal extends javax.swing.JFrame {
 
     private BancoPodcast bancoPodcast;
-    private BancoDeFilmes bancoFilme;
+    private BancoFilmes bancoFilme;
     private ViewPodcast telaDePodcast;
     private ViewFilme telaDeFilme;
 
     public Principal() {
         initComponents();
         this.bancoPodcast = new BancoPodcast();
-        this.bancoFilme = new BancoDeFilmes();
+        this.bancoFilme = new BancoFilmes();
         this.telaDePodcast = new ViewPodcast(bancoPodcast);
         this.telaDeFilme = new ViewFilme(bancoFilme, this);
     }
@@ -38,7 +38,6 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         botaoFilme = new javax.swing.JButton();
-        botaoEbook = new javax.swing.JButton();
         botaoPodCast = new javax.swing.JButton();
         botaoAudioLivro = new javax.swing.JButton();
 
@@ -48,13 +47,6 @@ public class Principal extends javax.swing.JFrame {
         botaoFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoFilmeActionPerformed(evt);
-            }
-        });
-
-        botaoEbook.setText("Ebook");
-        botaoEbook.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEbookActionPerformed(evt);
             }
         });
 
@@ -81,17 +73,14 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botaoAudioLivro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botaoFilme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoEbook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botaoPodCast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(103, 103, 103)
                 .addComponent(botaoFilme)
-                .addGap(18, 18, 18)
-                .addComponent(botaoEbook)
                 .addGap(18, 18, 18)
                 .addComponent(botaoPodCast)
                 .addGap(18, 18, 18)
@@ -113,10 +102,6 @@ public class Principal extends javax.swing.JFrame {
         telaDeFilme.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_botaoFilmeActionPerformed
-
-    private void botaoEbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEbookActionPerformed
-        new ViewEbook(new SistemaEbook()).setVisible(true);
-    }//GEN-LAST:event_botaoEbookActionPerformed
 
     private void botaoPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPodCastActionPerformed
         try {
@@ -169,7 +154,6 @@ public class Principal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAudioLivro;
-    private javax.swing.JButton botaoEbook;
     private javax.swing.JButton botaoFilme;
     private javax.swing.JButton botaoPodCast;
     // End of variables declaration//GEN-END:variables

@@ -26,10 +26,10 @@ import midias.Podcast;
  * @author SABRINA
  */
 //Classe que gerencia os Filmes
-public class BancoDeFilmes extends BancoDeMidias {
+public class BancoFilmes extends BancoDeMidias {
 
 
-    public BancoDeFilmes() {
+    public BancoFilmes() {
         super();
     }
 
@@ -99,14 +99,14 @@ public class BancoDeFilmes extends BancoDeMidias {
 
             linha = buff.readLine();
             int numeroAtores = Integer.parseInt(linha);
-            for (int j = 0; j < numeroAtores; j++) {//pegar tamanho da lista de atores
+            for (int j = 0; j < numeroAtores; j++) {
                 atoresPrincipais.add(j, buff.readLine());
             }
 
             linha = buff.readLine();
             duracao = Integer.parseInt(linha);
 
-            filmeArquivo = new Filme(genero, idioma, diretor, atoresPrincipais, duracao, caminho, titulo, descricao, ano, 0);
+            filmeArquivo = new Filme(genero, idioma, diretor, atoresPrincipais, duracao, caminho, titulo, descricao, ano);
 
             this.cadastrar(filmeArquivo);
 

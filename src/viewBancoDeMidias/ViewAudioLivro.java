@@ -16,22 +16,22 @@ import javax.swing.table.DefaultTableModel;
 import midias.AudioLivro;
 import midias.Midia;
 import midias.Podcast;
-import sistema.SistemaAudioLivro;
+
 /**
  *
  * @author Rafae
  */
 public class ViewAudioLivro extends javax.swing.JFrame {
-    private SistemaAudioLivro sistemaAudioLivro;
+  
     private BancoDeMidias listaDeAudioLivros;
     
 
     /**
      * Creates new form ViewAudioLivro
      */
-    public ViewAudioLivro(SistemaAudioLivro sistemaAudioLivro) {
+    public ViewAudioLivro() {
         initComponents();
-        this.sistemaAudioLivro = sistemaAudioLivro;
+
         this.listaDeAudioLivros = new BancoDeMidias();
         tabelaA.addMouseListener(new MouseListener() {
             @Override
@@ -436,7 +436,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                Integer.parseInt(campoDuracao.getText())
        );
        
-       sistemaAudioLivro.cadastrar(al);
+   
        
        atualizaTabelaA(listaDeAudioLivros.getMidias(), tabelaA);
        LimparCampos();
@@ -451,7 +451,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
       int result = fileChooser.showOpenDialog(this);
       if (result == JFileChooser.APPROVE_OPTION){
        File selectedFile = fileChooser.getSelectedFile();   
-       sistemaAudioLivro.setCaminho(selectedFile.getAbsolutePath());
+      
        campoCaminho.setText(selectedFile.getAbsolutePath());
       }
     }//GEN-LAST:event_jButton2ActionPerformed
