@@ -33,9 +33,6 @@ public class BancoFilmes extends BancoDeMidias {
         super();
     }
 
-
-
-    
     public int getTamanhoLista() {
         return this.getMidias().size();
     }
@@ -100,13 +97,13 @@ public class BancoFilmes extends BancoDeMidias {
             linha = buff.readLine();
             int numeroAtores = Integer.parseInt(linha);
             for (int j = 0; j < numeroAtores; j++) {
-                atoresPrincipais.add(j, buff.readLine());
+                atoresPrincipais.add(buff.readLine());
             }
-
+            
             linha = buff.readLine();
             duracao = Integer.parseInt(linha);
 
-            filmeArquivo = new Filme(genero, idioma, diretor, atoresPrincipais, duracao, caminho, titulo, descricao, ano);
+            filmeArquivo = new Filme(genero, idioma, diretor, numeroAtores, atoresPrincipais, duracao, caminho, titulo, descricao, ano, id);
 
             this.cadastrar(filmeArquivo);
 

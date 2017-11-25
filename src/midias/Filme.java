@@ -20,13 +20,15 @@ public class Filme extends Midia {
     private String diretor;
     private List<String> atoresPrincipais;
     private int duracao;
+    private int numeroAtores;
 
-    public Filme(String genero, String idioma, String diretor, List<String> atoresPrincipais, int duracao, String caminho, String titulo, String descricao, int ano) {
-        super(caminho, titulo, descricao, ano);
+    public Filme(String genero, String idioma, String diretor, int numeroAtores, List<String> atoresPrincipais, int duracao, String caminho, String titulo, String descricao, int ano, int id) {
+        super(caminho, titulo, descricao, ano, id);
         this.genero = genero;
         this.idioma = idioma;
         this.diretor = diretor;
-        this.atoresPrincipais = (ArrayList<String>)atoresPrincipais;
+        this.numeroAtores = numeroAtores;
+        this.atoresPrincipais = atoresPrincipais;
         this.duracao = duracao;
     }
 
@@ -72,7 +74,7 @@ public class Filme extends Midia {
 
     @Override
     public String toString() {
-        String dados = " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() + "\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor + "\n Atores Principais:";
+        String dados = " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() + "\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor +"\n Número de Atores: "+ numeroAtores +"\n Atores Principais:";
          for (int i = 0; i < atoresPrincipais.size(); i++) {
             dados += atoresPrincipais.get(i) + "\r\n";
         }
@@ -81,6 +83,10 @@ public class Filme extends Midia {
 
     }
 
+    public String toFile2() {
+        String dados = super.toFile() + genero + "\r\n" + idioma + "\r\n" + diretor + "\r\n" + numeroAtores + "\r\n"+ atoresPrincipais + "\r\n" + duracao + "\r\n";
+        return dados;
+    }
     public String toFile() {
         String dados = super.toFile() + genero + "\r\n" + idioma + "\r\n" + diretor + "\r\n" + atoresPrincipais.size() + "\r\n";
         for (int i = 0; i < atoresPrincipais.size(); i++) {

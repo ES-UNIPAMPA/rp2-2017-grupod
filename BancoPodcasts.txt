@@ -1,4 +1,4 @@
-3
+4
 1
 C:\Users\vagne\.jeliot
 Título
@@ -22,4 +22,12 @@ TítuloTrês
 DescriçãoTrês
 IdiomaTrês
 AutorTrês
+
+1
+null
+Título
+2010
+Descrição
+Idioma
+Autor
 

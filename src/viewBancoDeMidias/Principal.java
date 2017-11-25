@@ -164,6 +164,10 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+    public void gerarBackground(){
+        String pasta = System.getProperty("user.dir");
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAudioLivro;
     private javax.swing.JButton botaoFilme;

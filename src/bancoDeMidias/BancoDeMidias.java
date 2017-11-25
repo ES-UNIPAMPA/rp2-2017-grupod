@@ -35,6 +35,9 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
 
     @Override
     public boolean cadastrar(Midia midia) {
+        System.out.println("add : "+midia.toString());       
+        
+        
         return this.midias.add(midia);
     }
     

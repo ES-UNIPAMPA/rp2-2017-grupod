@@ -9,9 +9,12 @@ import midias.Midia;
 import java.io.File;
 import javax.swing.JFileChooser;
 import bancoDeMidias.BancoFilmes;
+import excecao.ExceptionEmptySpace;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import midias.Filme;
@@ -24,7 +27,7 @@ public class ViewFilme extends javax.swing.JFrame {
 
     private BancoFilmes bancoFilmes;
     private Principal viewInicial;
-    
+
     private String caminho;
     private List<String> atores;
 
@@ -37,7 +40,8 @@ public class ViewFilme extends javax.swing.JFrame {
         this.viewInicial = view;
         this.atores = new ArrayList<String>();
         this.caminho = null;
-        
+        gerarBackground();
+
     }
 
     /**
@@ -49,6 +53,7 @@ public class ViewFilme extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelFundo = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -82,30 +87,53 @@ public class ViewFilme extends javax.swing.JFrame {
         remover = new javax.swing.JButton();
         exibir = new javax.swing.JButton();
         editar = new javax.swing.JButton();
+        fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelFundo.setBackground(new java.awt.Color(240, 42, 95));
+        jPanelFundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("ID:");
+        jPanelFundo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 17, -1, -1));
 
         jLabel4.setText("Título:");
+        jPanelFundo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel2.setText("Diretor:");
+        jPanelFundo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 135, -1, 23));
 
         jLabel6.setText("Gênero:");
+        jPanelFundo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 179, -1, -1));
 
         jLabel7.setText("Idioma:");
+        jPanelFundo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
         jLabel8.setText("Ano:");
+        jPanelFundo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 283, -1, -1));
 
         jLabel9.setText("Caminho:");
+        jPanelFundo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 319, -1, -1));
 
         jLabel5.setText("Descrição:");
+        jPanelFundo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanelFundo.add(campoId, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 11, 274, -1));
+        jPanelFundo.add(campoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 59, 274, -1));
+        jPanelFundo.add(campoDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 97, 274, -1));
+        jPanelFundo.add(campoDiretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 136, 274, -1));
 
         campoCaminho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCaminhoActionPerformed(evt);
             }
         });
+        jPanelFundo.add(campoCaminho, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 316, 274, -1));
+        jPanelFundo.add(campoGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 176, 274, -1));
+        jPanelFundo.add(campoAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 275, 274, -1));
+        jPanelFundo.add(campoIdioma, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 237, 274, -1));
+        jPanelFundo.add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 11, 217, -1));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +141,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
+        jPanelFundo.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 37, -1, -1));
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +149,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
+        jPanelFundo.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 110, 217, -1));
 
         btnSalvarAlteracoes.setText("Salvar Alterações");
         btnSalvarAlteracoes.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +157,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnSalvarAlteracoesActionPerformed(evt);
             }
         });
+        jPanelFundo.add(btnSalvarAlteracoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 139, 217, -1));
 
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +165,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
+        jPanelFundo.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 168, 217, -1));
 
         sair.setText("Sair");
         sair.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +173,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 sairActionPerformed(evt);
             }
         });
+        jPanelFundo.add(sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 207, 217, -1));
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,9 +188,15 @@ public class ViewFilme extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabela);
 
+        jPanelFundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 423, 598, 97));
+
         jLabel10.setText("Atores:");
+        jPanelFundo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+        jPanelFundo.add(campoAtores, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 357, 280, -1));
 
         jLabel1.setText("Duração:");
+        jPanelFundo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 397, -1, -1));
+        jPanelFundo.add(campoDuracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 397, 280, -1));
 
         btnEscolherCaminho.setText("Escolher");
         btnEscolherCaminho.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +204,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnEscolherCaminhoActionPerformed(evt);
             }
         });
+        jPanelFundo.add(btnEscolherCaminho, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 315, -1, -1));
 
         adicionar.setText("Adicionar");
         adicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +212,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 adicionarActionPerformed(evt);
             }
         });
+        jPanelFundo.add(adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 356, -1, -1));
 
         remover.setText("Remover");
         remover.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +220,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 removerActionPerformed(evt);
             }
         });
+        jPanelFundo.add(remover, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 356, -1, -1));
 
         exibir.setText("Exibir");
         exibir.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +228,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 exibirActionPerformed(evt);
             }
         });
+        jPanelFundo.add(exibir, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 356, -1, -1));
 
         editar.setText("Editar");
         editar.addActionListener(new java.awt.event.ActionListener() {
@@ -193,154 +236,12 @@ public class ViewFilme extends javax.swing.JFrame {
                 editarActionPerformed(evt);
             }
         });
+        jPanelFundo.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 81, 217, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(20, 20, 20))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(campoDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(campoDiretor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(campoGenero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(campoIdioma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(campoAno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(campoCaminho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoAtores)
-                                    .addComponent(campoDuracao))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(campoBuscar)
-                                    .addComponent(btnSalvarAlteracoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                                    .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(20, 20, 20))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBuscar)
-                                .addGap(91, 91, 91))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(adicionar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(remover)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(exibir))
-                                    .addComponent(btnEscolherCaminho))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(editar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalvarAlteracoes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluir)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sair)
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(campoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel8)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEscolherCaminho))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(campoAtores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adicionar)
-                    .addComponent(remover)
-                    .addComponent(exibir))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(campoDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        fundo.setText("jLabel11");
+        jPanelFundo.add(fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1097, 672));
+
+        getContentPane().add(jPanelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 530));
 
         pack();
         setLocationRelativeTo(null);
@@ -353,16 +254,29 @@ public class ViewFilme extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
         try {
-            if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && getAtores().get(0) != null) {
-                int time = Integer.parseInt(campoDuracao.getText());
-                int year = Integer.parseInt(campoAno.getText());
-                Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores, time, campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year);//id não deve ser passado pelo construtor
-                bancoFilmes.cadastrar(midia);
-                JOptionPane.showMessageDialog(null, "\n" + midia.getTitulo() + "\n Filme Cadastrado!");
-                esvaziarCampos();
-            } else {
-                JOptionPane.showMessageDialog(null, "Você esqueceu de informar algum dado do Filme. \n Por Favor, preencha-o e tente novamente.");
+            ExceptionEmptySpace.informaDado(campoCaminho.getText());
+            ExceptionEmptySpace.informaDado(campoTitulo.getText());
+            ExceptionEmptySpace.informaDado(campoAno.getText());
+            ExceptionEmptySpace.informaDado(campoDiretor.getText());
+            ExceptionEmptySpace.informaDado(campoDescricao.getText());
+            ExceptionEmptySpace.informaDado(campoDuracao.getText());
+            ExceptionEmptySpace.informaDado(campoIdioma.getText());
+            ExceptionEmptySpace.informaDado(campoGenero.getText());
+            ExceptionEmptySpace.informaDado(getAtores().get(0));
+            int time = Integer.parseInt(campoDuracao.getText());
+            int year = Integer.parseInt(campoAno.getText());
+            int id = Midia.atualizaId();
+            List<String> atoresPrincipais = new ArrayList();
+            for(int i = 0; i< this.atores.size(); i++ ){
+                atoresPrincipais.add(atores.get(i));
             }
+            Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores.size(), atoresPrincipais , time, campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year, id);//id não deve ser passado pelo construtor
+
+            bancoFilmes.cadastrar(midia);
+            System.out.println(bancoFilmes.getMidias().get(0).toString());
+            JOptionPane.showMessageDialog(null, "\n" + midia.getTitulo() + "\n Filme Cadastrado!");
+            esvaziarCampos();
+
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
         } catch (IndexOutOfBoundsException e) {
@@ -376,7 +290,7 @@ public class ViewFilme extends javax.swing.JFrame {
             System.out.println("Erro: " + e.getMessage());
         }
         atualizaTabela(bancoFilmes.getMidias(), tabela);
-        
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnEscolherCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscolherCaminhoActionPerformed
@@ -407,7 +321,7 @@ public class ViewFilme extends javax.swing.JFrame {
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Este ator não foi adicionado!");
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Nenhum ator foi adicionado!");
         }
 
@@ -415,6 +329,7 @@ public class ViewFilme extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
+            System.out.println("Buscar: "+bancoFilmes.getMidias().get(0).toString());
             Midia midia = bancoFilmes.consultar(campoBuscar.getText());
             JOptionPane.showMessageDialog(rootPane, midia.toString());
         } catch (NullPointerException e) {
@@ -435,27 +350,36 @@ public class ViewFilme extends javax.swing.JFrame {
     }//GEN-LAST:event_sairActionPerformed
 
     private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Atores Principais: \n" + getAtores().toString());
+
+        JOptionPane.showMessageDialog(rootPane, "Atores Principais: \n" + this.atores.toString());
     }//GEN-LAST:event_exibirActionPerformed
 
     private void btnSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlteracoesActionPerformed
         try {
-            if (campoTitulo.getText() != null && campoAno.getText() != null && this.campoCaminho != null && campoDiretor.getText() != null && campoDescricao.getText() != null && campoDuracao.getText() != null && campoIdioma.getText() != null && campoGenero.getText() != null && getAtores().get(0) != null) {
-                int time = Integer.parseInt(campoDuracao.getText());
-                int year = Integer.parseInt(campoAno.getText());
-                Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores, time, campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year);//id não deve ser passado pelo construtor
-                bancoFilmes.editar(0, midiaEditada);
-                JOptionPane.showMessageDialog(null, "\n" + midiaEditada.getTitulo() + "\n Filme Editado!");
-                esvaziarCampos();
-            } else {
-                JOptionPane.showMessageDialog(null, "Você esqueceu de informar algum dado do Filme. \n Por Favor, preencha-o e tente novamente.");
+            ExceptionEmptySpace.informaDado(campoCaminho.getText());
+            ExceptionEmptySpace.informaDado(campoTitulo.getText());
+            ExceptionEmptySpace.informaDado(campoAno.getText());
+            ExceptionEmptySpace.informaDado(campoDiretor.getText());
+            ExceptionEmptySpace.informaDado(campoDescricao.getText());
+            ExceptionEmptySpace.informaDado(campoDuracao.getText());
+            ExceptionEmptySpace.informaDado(campoIdioma.getText());
+            ExceptionEmptySpace.informaDado(campoGenero.getText());
+            ExceptionEmptySpace.informaDado(getAtores().get(0));
+            int time = Integer.parseInt(campoDuracao.getText());
+            int year = Integer.parseInt(campoAno.getText());
+            List<String> atoresPrincipais = new ArrayList();
+            for(int i = 0; i< this.atores.size(); i++ ){
+                atoresPrincipais.add(atores.get(i));
             }
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
-        } catch (IndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
-        } catch (NumberFormatException e) {
+            Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores.size(), atoresPrincipais, time, campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year, Midia.atualizaId());//id não deve ser passado pelo construtor
+            bancoFilmes.editar(0, midiaEditada);
+            JOptionPane.showMessageDialog(null, "\n" + midiaEditada.getTitulo() + "\n Filme Editado!");
+            esvaziarCampos();
 
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações!");
         }
         try {
             bancoFilmes.gravar("BancoFilmes.txt");
@@ -483,9 +407,13 @@ public class ViewFilme extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        String filmeEdit = JOptionPane.showInputDialog(rootPane, "Qual filme você deseja Editar?");
-        Filme midia = (Filme) bancoFilmes.consultar(filmeEdit);
-        setarCampos(midia);
+        try {
+            String filmeEdit = JOptionPane.showInputDialog(rootPane, "Qual filme você deseja Editar?");
+            Filme midia = (Filme) bancoFilmes.consultar(filmeEdit);
+            setarCampos(midia);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(rootPane, "Operação Cancelada!");
+        }
 
     }//GEN-LAST:event_editarActionPerformed
     public void esvaziarCampos() {
@@ -511,8 +439,11 @@ public class ViewFilme extends javax.swing.JFrame {
         campoCaminho.setText(filme.getCaminho());
         campoDuracao.setText(String.valueOf(filme.getDuracao()));
         campoDiretor.setText(filme.getDiretor());
+        this.atores.clear();
+        this.atores.addAll(filme.getAtoresPrincipais());
 
     }
+
     public JTable atualizaTabela(List<Midia> bancoFilme, JTable tabela) {
 
         String matriz[][] = new String[bancoFilme.size()][10];
@@ -537,7 +468,8 @@ public class ViewFilme extends javax.swing.JFrame {
         ));
         return tabela;
     }
-        public void setAtores(List<String> atores) {
+
+    public void setAtores(List<String> atores) {
         this.atores = atores;
     }
 
@@ -559,6 +491,7 @@ public class ViewFilme extends javax.swing.JFrame {
         }
         return false;
     }
+
     public boolean adcionarAtores(String nome) {//Arrumar este método depois
 
         if (nome != null && nome != "" && this.atores.add(nome)) {
@@ -568,7 +501,11 @@ public class ViewFilme extends javax.swing.JFrame {
 
         return false;
     }
-
+    public void gerarBackground(){
+        String pasta = System.getProperty("user.dir");
+        fundo.setIcon(new ImageIcon(pasta + "/imagens/filme.jpg"));
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -593,6 +530,7 @@ public class ViewFilme extends javax.swing.JFrame {
     private javax.swing.JTextField campoTitulo;
     private javax.swing.JButton editar;
     private javax.swing.JButton exibir;
+    private javax.swing.JLabel fundo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -603,6 +541,7 @@ public class ViewFilme extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton remover;
     private javax.swing.JButton sair;

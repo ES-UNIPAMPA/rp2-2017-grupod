@@ -30,7 +30,7 @@ public abstract class  Midia {
         this.titulo = titulo;
         this.descricao = descricao;
         this.ano = ano;
-        Midia.id += 0;
+        this.id = 1;
     }
     public void setCaminho(String caminho) {
         this.caminho = caminho;
@@ -47,8 +47,9 @@ public abstract class  Midia {
         this.ano = ano;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public static int atualizaId() {
+        return Midia.id ++;
+        
     }
 
     public String getCaminho() {
