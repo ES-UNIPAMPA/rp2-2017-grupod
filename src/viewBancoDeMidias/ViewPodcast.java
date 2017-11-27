@@ -35,6 +35,7 @@ public class ViewPodcast extends javax.swing.JFrame {
     public ViewPodcast(BancoPodcast bancoPodcast) {
         this.bancoPodcast = bancoPodcast;
         this.caminho = null;
+        bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
         /**
          * LER DO ARQUIVO
          */
@@ -348,6 +349,11 @@ public class ViewPodcast extends javax.swing.JFrame {
 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
         bancoPodcast.excluir(Integer.valueOf(campoId.getText()));
+        try {
+            bancoPodcast.gravar("BancoPodcasts.txt");
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+        }
         bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
@@ -383,6 +389,11 @@ public class ViewPodcast extends javax.swing.JFrame {
                     campoAutor.getText()
             );
             bancoPodcast.editar(Integer.valueOf(campoId.getText()), s);
+        }
+        try {
+            bancoPodcast.gravar("BancoPodcasts.txt");
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
         }
         bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
