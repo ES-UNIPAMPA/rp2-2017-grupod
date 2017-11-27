@@ -74,19 +74,15 @@ public class Filme extends Midia {
 
     @Override
     public String toString() {
-        String dados = " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() + "\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor +"\n Número de Atores: "+ numeroAtores +"\n Atores Principais:";
+        String dados = " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() + "\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor +"\n Número de Atores: "+ numeroAtores +"\n Atores Principais:" + "\n";
          for (int i = 0; i < atoresPrincipais.size(); i++) {
-            dados += atoresPrincipais.get(i) + "\r\n";
+            dados += atoresPrincipais.get(i) + "\n";
         }
         dados+= "Duracao: " + duracao + '\n';
         return dados;
 
     }
 
-    public String toFile2() {
-        String dados = super.toFile() + genero + "\r\n" + idioma + "\r\n" + diretor + "\r\n" + numeroAtores + "\r\n"+ atoresPrincipais + "\r\n" + duracao + "\r\n";
-        return dados;
-    }
     public String toFile() {
         String dados = super.toFile() + genero + "\r\n" + idioma + "\r\n" + diretor + "\r\n" + atoresPrincipais.size() + "\r\n";
         for (int i = 0; i < atoresPrincipais.size(); i++) {

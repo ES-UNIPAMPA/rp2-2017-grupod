@@ -8,6 +8,7 @@ package viewBancoDeMidias;
 import bancoDeMidias.BancoAudioLivro;
 import bancoDeMidias.BancoPodcast;
 import bancoDeMidias.BancoFilmes;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -42,56 +43,59 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         botaoFilme = new javax.swing.JButton();
         botaoPodCast = new javax.swing.JButton();
         botaoAudioLivro = new javax.swing.JButton();
+        todos = new javax.swing.JButton();
+        texto = new javax.swing.JLabel();
+        fundoPrincipal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botaoFilme.setText("Filme");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        botaoFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/filme3.png"))); // NOI18N
+        botaoFilme.setMaximumSize(new java.awt.Dimension(200, 75));
+        botaoFilme.setMinimumSize(new java.awt.Dimension(200, 75));
+        botaoFilme.setPreferredSize(new java.awt.Dimension(200, 75));
         botaoFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoFilmeActionPerformed(evt);
             }
         });
+        jPanel1.add(botaoFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 130, 110));
 
-        botaoPodCast.setText("PodCast");
+        botaoPodCast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/podcast2.png"))); // NOI18N
         botaoPodCast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoPodCastActionPerformed(evt);
             }
         });
+        jPanel1.add(botaoPodCast, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 130, 110));
 
-        botaoAudioLivro.setText("AudioLivro");
+        botaoAudioLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/audiol2.png"))); // NOI18N
         botaoAudioLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAudioLivroActionPerformed(evt);
             }
         });
+        jPanel1.add(botaoAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 130, 110));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoAudioLivro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoFilme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoPodCast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(157, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(botaoFilme)
-                .addGap(18, 18, 18)
-                .addComponent(botaoPodCast)
-                .addGap(18, 18, 18)
-                .addComponent(botaoAudioLivro)
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
+        todos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/folder.png"))); // NOI18N
+        jPanel1.add(todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 130, 110));
+
+        texto.setFont(new java.awt.Font("The Blacklist", 0, 48)); // NOI18N
+        texto.setForeground(new java.awt.Color(255, 255, 255));
+        texto.setText("Banco de Mídias:");
+        texto.setToolTipText("");
+        jPanel1.add(texto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 310, -1));
+
+        fundoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/background.jpg"))); // NOI18N
+        jPanel1.add(fundoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, 30, 790, 430));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 630, 460));
 
         pack();
         setLocationRelativeTo(null);
@@ -166,11 +170,21 @@ public class Principal extends javax.swing.JFrame {
     }
     public void gerarBackground(){
         String pasta = System.getProperty("user.dir");
-        
+        fundoPrincipal.setIcon(new ImageIcon(pasta + "/imagens/background.jpg"));
+        botaoFilme.setIcon(new ImageIcon(pasta + "/imagens/filmes3.png"));
+        botaoPodCast.setIcon(new ImageIcon(pasta + "/imagens/podcast2.png"));
+        botaoAudioLivro.setIcon(new ImageIcon(pasta + "/imagens/audioL2.png"));
+        todos.setIcon(new ImageIcon(pasta + "/imagens/folder.png"));
+
+ 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAudioLivro;
     private javax.swing.JButton botaoFilme;
     private javax.swing.JButton botaoPodCast;
+    private javax.swing.JLabel fundoPrincipal;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel texto;
+    private javax.swing.JButton todos;
     // End of variables declaration//GEN-END:variables
 }

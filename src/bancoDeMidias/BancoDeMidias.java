@@ -7,10 +7,8 @@ package bancoDeMidias;
 
 import midias.Midia;
 import gerenciadores.GerenciadorBancoDeMidias;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFileChooser;
 
 /**
  *
@@ -35,7 +33,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
 
     @Override
     public boolean cadastrar(Midia midia) {
-        System.out.println("add : "+midia.toString());       
+    
         
         
         return this.midias.add(midia);
@@ -44,7 +42,10 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     @Override
     public Midia consultar(String titulo) {
         for (int i = 0; i < getMidias().size(); i++) {
-            if (getMidias().get(i).getTitulo().equals(titulo)) {
+            if (getMidias().get(i).getTitulo().equalsIgnoreCase(titulo)) {
+                return getMidias().get(i);
+            }
+            if (getMidias().get(i).getTitulo().contains(titulo)) {
                 return getMidias().get(i);
             }
         }
@@ -59,6 +60,13 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
             }
         }
         return null;
+    }
+    public List<Midia> consultarTudo(Midia midia){
+        List<Midia> midias = new ArrayList<Midia>();
+        for (int i = 0; i < getMidias().size(); i++) {
+                midia = consultar(midia.getTitulo());
+        }
+        return midias;
     }
 
     @Override
