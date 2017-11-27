@@ -35,12 +35,17 @@ public class ViewPodcast extends javax.swing.JFrame {
     public ViewPodcast(BancoPodcast bancoPodcast) {
         this.bancoPodcast = bancoPodcast;
         this.caminho = null;
-        bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
         /**
          * LER DO ARQUIVO
          */
         initComponents();
         campoId.setText(String.valueOf(bancoPodcast.getMidias().size() + 1));
+        try {
+            bancoPodcast.ler("BancoPodcasts.txt");
+            bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         tabelaPodCast.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
