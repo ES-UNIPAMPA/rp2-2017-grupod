@@ -27,8 +27,24 @@ public class BancoPodcast extends BancoDeMidias {
         super();
     }
 
-    public boolean ordenar() {
-        return false;
+    public static void ordenar(BancoPodcast bancoPodcast) {
+        boolean houveTroca;
+        do {
+            /* quando começamos a avaliar o vetor, não há trocas */
+            houveTroca = false;
+            /* percorre toda a lista de podcasts */
+            for (int i = 0; i < bancoPodcast.getTamanhoLista(); i++) {
+                /* se o elemento i e o próximo estão na ordem trocada */
+//                if (bancoPodcast.getTamanhoLista(i) > bancoPodcast.getTamanhoLista(i + 1)) {
+//                    /* troca de lugar os conteúdos deles */
+//                    int temp = vetor[i];
+//                    vetor[i] = vetor[i + 1];
+//                    vetor[i + 1] = temp;
+//                    /* marca que houve troca */
+//                    houveTroca = true;
+//                }
+            }
+        } while (houveTroca);
     }
 
     public void gravar(String bancoPodcasts) throws Exception {
