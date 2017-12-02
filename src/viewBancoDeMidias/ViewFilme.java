@@ -10,11 +10,14 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import bancoDeMidias.BancoFilmes;
 import excecao.ExceptionEmptySpace;
+import java.awt.Button;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -29,9 +32,12 @@ public class ViewFilme extends javax.swing.JFrame {
     private BancoFilmes bancoFilmes;
     private Principal viewInicial;
 
+    public BancoFilmes getBancoFilmes() {
+        return bancoFilmes;
+    }
+
     private String caminho;
     private List<String> atores;
-
 
     /**
      * Creates new form ViewCadastroFilme
@@ -316,8 +322,8 @@ public class ViewFilme extends javax.swing.JFrame {
     private void campoCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCaminhoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCaminhoActionPerformed
- /**
-  * Botão que cadastra um novo filme
+    /**
+     * Botão que cadastra um novo filme
      */
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
@@ -361,8 +367,8 @@ public class ViewFilme extends javax.swing.JFrame {
         atualizaTabela(bancoFilmes.getMidias(), tabela);
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
-/**
-  * Botão que escolhe o caminho do arquivo que a pessoa está cadastrando
+    /**
+     * Botão que escolhe o caminho do arquivo que a pessoa está cadastrando
      */
     private void btnEscolherCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscolherCaminhoActionPerformed
         // TODO add your handling code here:
@@ -376,8 +382,8 @@ public class ViewFilme extends javax.swing.JFrame {
             campoCaminho.setText(selectedFile.getAbsolutePath());
         }
     }//GEN-LAST:event_btnEscolherCaminhoActionPerformed
-/**
-  * Botão que adiciona atores a lista de atores
+    /**
+     * Botão que adiciona atores a lista de atores
      */
     private void adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarActionPerformed
         try {
@@ -389,8 +395,8 @@ public class ViewFilme extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_adicionarActionPerformed
-/**
-  * Botão que remove atores a lista de atores
+    /**
+     * Botão que remove atores a lista de atores
      */
     private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
         try {
@@ -406,45 +412,52 @@ public class ViewFilme extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_removerActionPerformed
-/**
-  * Botão que consulta o filme digitado na lista de filmes
+    /**
+     * Botão que consulta o filme digitado na lista de filmes
      */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             //String midia = bancoFilmes.exibir();
-            
-            System.out.println(bancoFilmes.consultar(campoBuscar.getText()).toString());
-            JPanel frame = new JPanel();
-            frame.setBackground(new java.awt.Color(153, 153, 153));
-            frame.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-            frame.setVisible(true);
+
+            String procurado = "Não existe este Filme!";
+            procurado = bancoFilmes.consultar(campoBuscar.getText()).toString();
+            JFrame janela = new JFrame();
+            JLabel encontrado = new JLabel();
+            JPanel painel = new JPanel();
+            painel.setSize(300, 200);
+            janela.setSize(300, 200);
+            janela.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            janela.setBackground(new java.awt.Color(255, 255, 255));
+            janela.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            encontrado.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
+            encontrado.setForeground(new java.awt.Color(255, 255, 255));
+            encontrado.setText(procurado);
+
+            painel.add(encontrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 80, 30));
+            janela.add(painel);
+            janela.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Este filme não Existe!");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
-/**
-  * Volta para a tela inicial do programa
+    /**
+     * Volta para a tela inicial do programa
      */
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
-        try {
-            bancoFilmes.gravar("BancoFilmes.txt");
-        } catch (FileNotFoundException exc) {
-            System.out.println("Erro: Banco.txt não encontrado");
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
+
         setVisible(false);
         viewInicial.setVisible(true);
     }//GEN-LAST:event_sairActionPerformed
-/**
-  * Botão que exibe a lista de atores já casdastrados
+    /**
+     * Botão que exibe a lista de atores já casdastrados
      */
     private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
 
         JOptionPane.showMessageDialog(rootPane, "Atores Principais: \n" + this.atores.toString());
     }//GEN-LAST:event_exibirActionPerformed
-/**
-  * Botão que salva a midia editada
+    /**
+     * Botão que salva a midia editada
      */
     private void btnSalvarAlteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlteracoesActionPerformed
         try {
@@ -485,16 +498,16 @@ public class ViewFilme extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnSalvarAlteracoesActionPerformed
-/**
-  * Botão que exclui atores a lista de atores
+    /**
+     * Botão que exclui atores a lista de atores
      */
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        try{
-        Midia excluida = bancoFilmes.excluir(campoBuscar.getText());
-        JOptionPane.showMessageDialog(rootPane, "O Filme excluido foi: \n \n" + excluida.toString());
-        atualizaTabela(bancoFilmes.getMidias(), tabela);   
-        }catch(Exception e){
-             System.out.println("Erro: " + e.getMessage());
+        try {
+            Midia excluida = bancoFilmes.excluir(campoBuscar.getText());
+            JOptionPane.showMessageDialog(rootPane, "O Filme excluido foi: \n \n" + excluida.toString());
+            atualizaTabela(bancoFilmes.getMidias(), tabela);
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
         }// TODO add your handling code here:
         try {
             bancoFilmes.gravar("BancoFilmes.txt");
@@ -504,8 +517,8 @@ public class ViewFilme extends javax.swing.JFrame {
             System.out.println("Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
-/**
-  * Botão para esvcolher o filme a ser editado
+    /**
+     * Botão para esvcolher o filme a ser editado
      */
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         try {

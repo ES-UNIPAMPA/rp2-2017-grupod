@@ -23,7 +23,7 @@ public class Principal extends javax.swing.JFrame {
     private ViewFilme telaDeFilme;
     private ViewAudioLivro telaAudioLivro;
     private BancoAudioLivro bancoAudioLivro;
-
+    private Geral geral;
     public Principal() {
         initComponents();
         this.bancoPodcast = new BancoPodcast();
@@ -32,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
         this.telaDeFilme = new ViewFilme(bancoFilme, this);
         this.bancoAudioLivro = new BancoAudioLivro();
         this.telaAudioLivro = new ViewAudioLivro(bancoAudioLivro);
+        this.geral = new Geral(this, telaDePodcast, telaDeFilme, telaAudioLivro);
     }
 
     /**
@@ -84,6 +85,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(botaoAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 130, 110));
 
         todos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/folder.png"))); // NOI18N
+        todos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                todosActionPerformed(evt);
+            }
+        });
         jPanel1.add(todos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 130, 110));
 
         texto.setFont(new java.awt.Font("The Blacklist", 0, 48)); // NOI18N
@@ -133,6 +139,27 @@ public class Principal extends javax.swing.JFrame {
         telaAudioLivro.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_botaoAudioLivroActionPerformed
+
+    private void todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosActionPerformed
+         try {
+            bancoAudioLivro.ler("BancoAudioLivro.txt");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+        try {
+            bancoPodcast.ler("BancoPodcasts.txt");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            e.printStackTrace();
+        }
+        try {
+            bancoFilme.ler("BancoFilmes.txt");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        } 
+        geral.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_todosActionPerformed
 
     /**
      * @param args the command line arguments

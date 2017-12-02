@@ -14,9 +14,11 @@ import midias.Podcast;
 import bancoDeMidias.BancoDeMidias;
 import bancoDeMidias.BancoPodcast;
 import java.io.File;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import midias.Midia;
 
 /**
  *
@@ -517,5 +519,26 @@ public class ViewPodcast extends javax.swing.JFrame {
         campoAutor.setText("");
         campoAno.setText("");
         getCampoCaminho().setText("");
+    }
+    public JTable atualizaTabela(List<Midia> midiaPodcast, JTable tabela) {
+
+        String matriz[][] = new String[midiaPodcast.size()][7];
+        for (int i = 0; i < midiaPodcast.size(); i++) {
+            Podcast podcast = (Podcast) midiaPodcast.get(i);
+            matriz[i][0] = String.valueOf(podcast.getId());
+            matriz[i][1] = String.valueOf(podcast.getTitulo());
+            matriz[i][2] = String.valueOf(podcast.getDescricao());
+            matriz[i][3] = String.valueOf(podcast.getIdioma());
+            matriz[i][4] = String.valueOf(podcast.getAutor());
+            matriz[i][5] = String.valueOf(podcast.getAno());
+            matriz[i][6] = String.valueOf(podcast.getCaminho());
+        }
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "ID", "Título", "Descrição", "Idioma", "Autores", "Ano", "Caminho"
+                }
+        ));
+        return tabela;
     }
 }
