@@ -24,6 +24,6 @@ public interface GerenciadorBancoDeMidias {
      */
     public Midia consultar(int id);
     public boolean excluir(int id);
-    public boolean editar(int id, Midia novo);
+    public boolean editar(Midia id, Midia novo);
     public String exibir(List<Midia> midias);
 }

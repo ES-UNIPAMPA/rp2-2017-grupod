@@ -103,9 +103,9 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     }
 
     @Override
-    public boolean editar(int id, Midia novo) {
+    public boolean editar(Midia antiga, Midia novo) {
         for (int i = 0; i < getMidias().size(); i++) {
-            if (getMidias().get(i).getId() == id) {
+            if (getMidias().get(i).equals(antiga)) {
                 getMidias().set(i, novo);
                 return true;
             }

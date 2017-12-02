@@ -31,7 +31,8 @@ public class ViewFilme extends javax.swing.JFrame {
 
     private BancoFilmes bancoFilmes;
     private Principal viewInicial;
-
+    Midia filmeEdit; 
+            
     public BancoFilmes getBancoFilmes() {
         return bancoFilmes;
     }
@@ -48,6 +49,7 @@ public class ViewFilme extends javax.swing.JFrame {
         this.viewInicial = view;
         this.atores = new ArrayList<String>();
         this.caminho = null;
+        this.filmeEdit = null;
         gerarBackground();
 
     }
@@ -77,7 +79,6 @@ public class ViewFilme extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         campoDescricao = new javax.swing.JTextArea();
         campoGenero = new javax.swing.JTextField();
-        campoAno = new javax.swing.JTextField();
         campoIdioma = new javax.swing.JTextField();
         campoBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -90,12 +91,13 @@ public class ViewFilme extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         campoAtores = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        campoDuracao = new javax.swing.JTextField();
         btnEscolherCaminho = new javax.swing.JButton();
         adicionar = new javax.swing.JButton();
         remover = new javax.swing.JButton();
         exibir = new javax.swing.JButton();
         editar = new javax.swing.JButton();
+        campoDuracao = new javax.swing.JFormattedTextField();
+        campoAno = new javax.swing.JFormattedTextField();
         fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -160,13 +162,6 @@ public class ViewFilme extends javax.swing.JFrame {
 
         jPanelFundo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 270, 60));
         jPanelFundo.add(campoGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 270, -1));
-
-        campoAno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoAnoActionPerformed(evt);
-            }
-        });
-        jPanelFundo.add(campoAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 90, -1));
         jPanelFundo.add(campoIdioma, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 270, -1));
         jPanelFundo.add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 40, 190, -1));
 
@@ -257,7 +252,6 @@ public class ViewFilme extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Duração:");
         jPanelFundo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 74, -1, -1));
-        jPanelFundo.add(campoDuracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 90, -1));
 
         btnEscolherCaminho.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnEscolherCaminho.setText("Escolher");
@@ -310,6 +304,20 @@ public class ViewFilme extends javax.swing.JFrame {
         });
         jPanelFundo.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 110, 180, 30));
 
+        try {
+            campoDuracao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanelFundo.add(campoDuracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 90, -1));
+
+        try {
+            campoAno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanelFundo.add(campoAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 90, -1));
+
         fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/atores.jpg"))); // NOI18N
         jPanelFundo.add(fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-410, -10, 1100, 680));
 
@@ -337,17 +345,17 @@ public class ViewFilme extends javax.swing.JFrame {
             ExceptionEmptySpace.informaDado(campoIdioma.getText());
             ExceptionEmptySpace.informaDado(campoGenero.getText());
             ExceptionEmptySpace.informaDado(getAtores().get(0));
-            int time = Integer.parseInt(campoDuracao.getText());
+            
             int year = Integer.parseInt(campoAno.getText());
             int id = Midia.atualizaId();
             List<String> atoresPrincipais = new ArrayList();
             for (int i = 0; i < this.atores.size(); i++) {
                 atoresPrincipais.add(atores.get(i));
             }
-            Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores.size(), atoresPrincipais, time, campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year, id);//id não deve ser passado pelo construtor
+            Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores.size(), atoresPrincipais, campoDuracao.getText(), campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year, id);//id não deve ser passado pelo construtor
 
             bancoFilmes.cadastrar(midia);
-
+            BancoFilmes.gnomeSort(bancoFilmes.getMidias());
             JOptionPane.showMessageDialog(null, "\n" + midia.getTitulo() + "\n Filme Cadastrado!");
             esvaziarCampos();
 
@@ -421,22 +429,20 @@ public class ViewFilme extends javax.swing.JFrame {
 
             String procurado = "Não existe este Filme!";
             procurado = bancoFilmes.consultar(campoBuscar.getText()).toString();
-            JFrame janela = new JFrame();
-            JLabel encontrado = new JLabel();
-            JPanel painel = new JPanel();
-            painel.setSize(300, 200);
-            janela.setSize(300, 200);
-            janela.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-            janela.setBackground(new java.awt.Color(255, 255, 255));
-            janela.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+            JOptionPane.showMessageDialog(null, procurado);
+//            JFrame janela = new JFrame();
+//            JLabel encontrado = new JLabel();
+//            
+//            janela.setSize(300, 200);
+//            janela.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+//            janela.setBackground(new java.awt.Color(255, 255, 255));
+//            janela.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+//            encontrado.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
+//            encontrado.setForeground(new java.awt.Color(255, 255, 255));
+//            encontrado.setText(procurado);
+//            janela.add(encontrado);
+//            janela.setVisible(true);
 
-            encontrado.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
-            encontrado.setForeground(new java.awt.Color(255, 255, 255));
-            encontrado.setText(procurado);
-
-            painel.add(encontrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 80, 30));
-            janela.add(painel);
-            janela.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Este filme não Existe!");
         }
@@ -470,14 +476,14 @@ public class ViewFilme extends javax.swing.JFrame {
             ExceptionEmptySpace.informaDado(campoIdioma.getText());
             ExceptionEmptySpace.informaDado(campoGenero.getText());
             ExceptionEmptySpace.informaDado(getAtores().get(0));
-            int time = Integer.parseInt(campoDuracao.getText());
+            
             int year = Integer.parseInt(campoAno.getText());
             List<String> atoresPrincipais = new ArrayList();
             for (int i = 0; i < this.atores.size(); i++) {
-                atoresPrincipais.add(atores.get(i));
+                atoresPrincipais.add( atores.get(i));
             }
-            Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores.size(), atoresPrincipais, time, campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year, Midia.atualizaId());//id não deve ser passado pelo construtor
-            bancoFilmes.editar(0, midiaEditada);
+            Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores.size(), atoresPrincipais, campoDuracao.getText(), campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year, Midia.atualizaId());//id não deve ser passado pelo construtor
+            bancoFilmes.editar(this.filmeEdit, midiaEditada);
             JOptionPane.showMessageDialog(null, "\n" + midiaEditada.getTitulo() + "\n Filme Editado!");
             esvaziarCampos();
 
@@ -486,6 +492,7 @@ public class ViewFilme extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Por favor insira todas as informações!");
         }
+        BancoFilmes.gnomeSort(bancoFilmes.getMidias());
         try {
             bancoFilmes.gravar("BancoFilmes.txt");
         } catch (FileNotFoundException exc) {
@@ -493,7 +500,7 @@ public class ViewFilme extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
-        BancoFilmes.gnomeSort(bancoFilmes.getMidias());
+
         atualizaTabela(bancoFilmes.getMidias(), tabela);
 
 
@@ -522,18 +529,14 @@ public class ViewFilme extends javax.swing.JFrame {
      */
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         try {
-            String filmeEdit = JOptionPane.showInputDialog(rootPane, "Qual filme você deseja Editar?");
-            Filme midia = (Filme) bancoFilmes.consultar(filmeEdit);
-            setarCampos(midia);
+            String escolha = JOptionPane.showInputDialog(rootPane, "Qual filme você deseja Editar?");
+            filmeEdit = (Filme) bancoFilmes.consultar(escolha);
+            setarCampos((Filme) filmeEdit);
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(rootPane, "Operação Cancelada!");
         }
 
     }//GEN-LAST:event_editarActionPerformed
-
-    private void campoAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoAnoActionPerformed
 
     private void editarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarMouseDragged
         editar.setBackground(Color.blue);
@@ -655,13 +658,13 @@ public class ViewFilme extends javax.swing.JFrame {
     private javax.swing.JButton btnEscolherCaminho;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvarAlteracoes;
-    private javax.swing.JTextField campoAno;
+    private javax.swing.JFormattedTextField campoAno;
     private javax.swing.JTextField campoAtores;
     private javax.swing.JTextField campoBuscar;
     private javax.swing.JTextField campoCaminho;
     private javax.swing.JTextArea campoDescricao;
     private javax.swing.JTextField campoDiretor;
-    private javax.swing.JTextField campoDuracao;
+    private javax.swing.JFormattedTextField campoDuracao;
     private javax.swing.JTextField campoGenero;
     private javax.swing.JTextField campoIdioma;
     private javax.swing.JTextField campoTitulo;

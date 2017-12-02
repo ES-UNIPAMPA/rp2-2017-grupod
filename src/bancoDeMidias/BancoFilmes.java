@@ -59,8 +59,8 @@ public class BancoFilmes extends BancoDeMidias {
         FileInputStream inFile;
         BufferedReader buff;
         Filme filmeArquivo;
-        String linha, caminho, titulo, descricao, idioma, genero, diretor;
-        int ano, id, duracao, numeroDeFilmes, numeroAtores;
+        String linha, caminho, titulo, descricao, idioma, genero, diretor, duracao;
+        int ano, id, numeroDeFilmes, numeroAtores;
         List<String> atoresPrincipais = new ArrayList<String>();
 
         /**
@@ -98,9 +98,8 @@ public class BancoFilmes extends BancoDeMidias {
                 atoresPrincipais.add(buff.readLine());
             }
 
-            linha = buff.readLine();
-            duracao = Integer.parseInt(linha);
-
+            duracao = buff.readLine();
+           
             filmeArquivo = new Filme(genero, idioma, diretor, numeroAtores, atoresPrincipais, duracao, caminho, titulo, descricao, ano, id);
 
             this.cadastrar(filmeArquivo);

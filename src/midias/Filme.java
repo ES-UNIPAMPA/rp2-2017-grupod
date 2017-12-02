@@ -19,10 +19,10 @@ public class Filme extends Midia {
     private String idioma;
     private String diretor;
     private List<String> atoresPrincipais;
-    private int duracao;
+    private String duracao;
     private int numeroAtores;
 
-    public Filme(String genero, String idioma, String diretor, int numeroAtores, List<String> atoresPrincipais, int duracao, String caminho, String titulo, String descricao, int ano, int id) {
+    public Filme(String genero, String idioma, String diretor, int numeroAtores, List<String> atoresPrincipais, String duracao, String caminho, String titulo, String descricao, int ano, int id) {
         super(caminho, titulo, descricao, ano, id);
         this.genero = genero;
         this.idioma = idioma;
@@ -48,7 +48,7 @@ public class Filme extends Midia {
         this.atoresPrincipais = atoresPrincipais;
     }
 
-    public void setDuracao(int duracao) {
+    public void setDuracao(String duracao) {
         this.duracao = duracao;
     }
 
@@ -68,17 +68,17 @@ public class Filme extends Midia {
         return atoresPrincipais;
     }
 
-    public int getDuracao() {
+    public String getDuracao() {
         return duracao;
     }
 
     @Override
     public String toString() {
-        String dados = " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() + "\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor +"\n Número de Atores: "+ numeroAtores +"\n Atores Principais:" + "\n";
+        String dados = " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() + "\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor +"\n Atores Principais:" + "\n";
          for (int i = 0; i < atoresPrincipais.size(); i++) {
             dados += atoresPrincipais.get(i) + "\n";
         }
-        dados+= "Duracao: " + duracao + '\n';
+        dados+= "Duracao: " + duracao + " minutos"+ '\n';
         return dados;
 
     }
@@ -99,7 +99,7 @@ public class Filme extends Midia {
         hash = 19 * hash + Objects.hashCode(this.idioma);
         hash = 19 * hash + Objects.hashCode(this.diretor);
         hash = 19 * hash + Objects.hashCode(this.atoresPrincipais);
-        hash = 19 * hash + this.duracao;
+        hash = 19 * hash + Objects.hashCode(this.duracao);
         return hash;
     }
 
@@ -124,7 +124,7 @@ public class Filme extends Midia {
 
     public boolean compareTo(Object obj) {//arrumar
         Filme filme = (Filme) obj;
-        if (this.getAno() <= filme.getAno()) {
+        if (this.getAno() >= filme.getAno()) {
             return true;
         }
         return false;
