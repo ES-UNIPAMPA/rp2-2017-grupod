@@ -1,6 +1,5 @@
 package midias;
 
-import midias.Midia;
 
 /**
  *
@@ -15,9 +14,9 @@ public class AudioLivro extends Midia {
     private int duracao;
 
     
-    public AudioLivro(String caminho, String titulo, String descricao, int ano, int id, String genero, String idioma,
+    public AudioLivro(String caminho, String titulo, String descricao, int ano, String genero, String idioma,
             String autores, String local, String editora, int duracao) {
-        super(caminho, titulo, descricao, ano, id);
+        super(caminho, titulo, descricao, ano);
         this.genero = genero;
         this.idioma = idioma;
         this.autores = autores;

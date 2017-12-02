@@ -11,12 +11,14 @@ import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import midias.AudioLivro;
 import midias.Midia;
+
 
 /**
  *
@@ -48,19 +50,18 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 JTable target = (JTable) e.getSource();
                 int row = target.getSelectedRow();
 
-                String id = String.valueOf(target.getValueAt(row, 0));
-                String titulo = String.valueOf(target.getValueAt(row, 1));
-                String descricao = String.valueOf(target.getValueAt(row, 2));
-                String ano = String.valueOf(target.getValueAt(row, 3));
-                String genero = String.valueOf(target.getValueAt(row, 4));
-                String autores = String.valueOf(target.getValueAt(row, 5));
-                String editora = String.valueOf(target.getValueAt(row, 6));
-                String idioma = String.valueOf(target.getValueAt(row, 7));
-                String local = String.valueOf(target.getValueAt(row, 8));
-                String duracao = String.valueOf(target.getValueAt(row, 9));
-                String caminho = String.valueOf(target.getValueAt(row, 10));
+                
+                String titulo = String.valueOf(target.getValueAt(row, 0));
+                String descricao = String.valueOf(target.getValueAt(row, 1));
+                String ano = String.valueOf(target.getValueAt(row, 2));
+                String genero = String.valueOf(target.getValueAt(row, 3));
+                String autores = String.valueOf(target.getValueAt(row, 4));
+                String editora = String.valueOf(target.getValueAt(row, 5));
+                String idioma = String.valueOf(target.getValueAt(row, 6));
+                String local = String.valueOf(target.getValueAt(row, 7));
+                String duracao = String.valueOf(target.getValueAt(row, 8));
+                String caminho = String.valueOf(target.getValueAt(row, 9));
 
-                campoID.setText(id);
                 campoTitulo.setText(titulo);
                 campoDescricao.setText(descricao);
                 campoAno.setText(ano);
@@ -110,37 +111,38 @@ public class ViewAudioLivro extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        campoID = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        campoTitulo = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        campoDescricao = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        campoAno = new javax.swing.JTextField();
-        campoGenero = new javax.swing.JTextField();
-        campoAutores = new javax.swing.JTextField();
-        campoEditora = new javax.swing.JTextField();
-        campoIdioma = new javax.swing.JTextField();
-        campoLocal = new javax.swing.JTextField();
-        campoDuracao = new javax.swing.JTextField();
-        campoCaminho = new javax.swing.JTextField();
-        campoPesquisa = new javax.swing.JTextField();
-        btnPesquisar = new javax.swing.JButton();
-        btnCadastrarAudioLivro = new javax.swing.JButton();
-        btnEditarAudioLivro = new javax.swing.JButton();
-        btnExcluirAudioLivro = new javax.swing.JButton();
-        btnVoltarAudioLivro = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaA = new javax.swing.JTable();
+        a = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        campoTitulo = new javax.swing.JTextField();
+        campoDescricao = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        campoAno = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        campoGenero = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        campoAutores = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        campoEditora = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        campoIdioma = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        campoLocal = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        campoDuracao = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        campoCaminho = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        campoPesquisa = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
+        btnVoltarAudioLivro = new javax.swing.JButton();
+        btnCadastrarAudioLivro = new javax.swing.JButton();
+        btnExcluirAudioLivro = new javax.swing.JButton();
+        btnEditarAudioLivro = new javax.swing.JButton();
+        btnOrganizar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,13 +159,18 @@ public class ViewAudioLivro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("ID:");
+        tabelaA.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        campoID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoIDActionPerformed(evt);
+            },
+            new String [] {
+                "ID", "Título", "Descrição", "Ano", "Gênero", "Autores", "Editora", "Idioma", "Local", "Duração", "Caminho"
             }
-        });
+        ));
+        tabelaA.setColumnSelectionAllowed(true);
+        tabelaA.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tabelaA);
+        tabelaA.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel2.setText("Título:");
 
@@ -181,15 +188,112 @@ public class ViewAudioLivro extends javax.swing.JFrame {
 
         jLabel9.setText("Local:");
 
-        jLabel10.setText("Duração:");
-
-        jLabel11.setText("Caminho:");
-
         campoLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoLocalActionPerformed(evt);
             }
         });
+
+        jLabel10.setText("Duração:");
+
+        jLabel11.setText("Caminho:");
+
+        jButton2.setText("Procurar Caminho");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel2))
+                                .addComponent(jLabel3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                            .addComponent(campoTitulo)
+                            .addComponent(campoAno)
+                            .addComponent(campoGenero)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel11))
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoAutores)
+                            .addComponent(campoEditora)
+                            .addComponent(campoIdioma)
+                            .addComponent(campoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoDuracao)
+                            .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(campoAutores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(campoEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(campoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(campoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(campoDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         campoPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +305,13 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        btnVoltarAudioLivro.setText("Voltar");
+        btnVoltarAudioLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarAudioLivroActionPerformed(evt);
             }
         });
 
@@ -216,13 +327,6 @@ public class ViewAudioLivro extends javax.swing.JFrame {
             }
         });
 
-        btnEditarAudioLivro.setText("Editar");
-        btnEditarAudioLivro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarAudioLivroActionPerformed(evt);
-            }
-        });
-
         btnExcluirAudioLivro.setText("Excluir");
         btnExcluirAudioLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,30 +334,58 @@ public class ViewAudioLivro extends javax.swing.JFrame {
             }
         });
 
-        btnVoltarAudioLivro.setText("Voltar");
-        btnVoltarAudioLivro.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarAudioLivro.setText("Editar");
+        btnEditarAudioLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarAudioLivroActionPerformed(evt);
+                btnEditarAudioLivroActionPerformed(evt);
             }
         });
 
-        tabelaA.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        javax.swing.GroupLayout aLayout = new javax.swing.GroupLayout(a);
+        a.setLayout(aLayout);
+        aLayout.setHorizontalGroup(
+            aLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addGroup(aLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aLayout.createSequentialGroup()
+                        .addComponent(campoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aLayout.createSequentialGroup()
+                        .addGroup(aLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnVoltarAudioLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPesquisar)
+                            .addComponent(btnCadastrarAudioLivro)
+                            .addComponent(btnExcluirAudioLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditarAudioLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(158, 158, 158))))
+        );
+        aLayout.setVerticalGroup(
+            aLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(campoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPesquisar)
+                .addGap(44, 44, 44)
+                .addComponent(btnVoltarAudioLivro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCadastrarAudioLivro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnExcluirAudioLivro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEditarAudioLivro))
+            .addGroup(aLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-            },
-            new String [] {
-                "ID", "Título", "Descrição", "Ano", "Gênero", "Autores", "Editora", "Idioma", "Local", "Duração", "Caminho"
-            }
-        ));
-        tabelaA.setColumnSelectionAllowed(true);
-        tabelaA.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(tabelaA);
-        tabelaA.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        jButton2.setText("Procurar Caminho");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnOrganizar.setText("Organizar lista ");
+        btnOrganizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnOrganizarActionPerformed(evt);
             }
         });
 
@@ -262,142 +394,20 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoCaminho))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoDuracao))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(38, 38, 38)
-                            .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(48, 48, 48)
-                            .addComponent(campoID, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(28, 28, 28)
-                            .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(19, 19, 19)
-                                .addComponent(campoGenero))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(campoAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel9))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(campoEditora)
-                                .addComponent(campoIdioma)
-                                .addComponent(campoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
-                        .addComponent(btnPesquisar)
-                        .addGap(237, 237, 237))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnExcluirAudioLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnVoltarAudioLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnCadastrarAudioLivro)
-                                    .addGap(55, 55, 55)
-                                    .addComponent(btnEditarAudioLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addComponent(jScrollPane2)
+                .addComponent(a, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addComponent(btnOrganizar, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(campoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(campoAutores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(campoEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 14, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(campoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCadastrarAudioLivro)
-                            .addComponent(btnEditarAudioLivro))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnExcluirAudioLivro)
-                            .addComponent(btnVoltarAudioLivro))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(a, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOrganizar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
         );
 
         pack();
@@ -410,10 +420,6 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     private void campoLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoLocalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoLocalActionPerformed
-
-    private void campoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoIDActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
             AudioLivro audioLivro;
@@ -450,7 +456,6 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                campoTitulo.getText(), 
                campoDescricao.getText(),
                Integer.parseInt(campoAno.getText()),
-               Integer.parseInt(campoID.getText()),
                campoGenero.getText(),
                campoIdioma.getText(),
                campoAutores.getText(),
@@ -483,7 +488,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnExcluirAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirAudioLivroActionPerformed
-         bancoAudioLivro.excluir(Integer.valueOf(campoID.getText()));
+        // bancoAudioLivro.excluir(Integer.valueOf(campoID.getText()));
          atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
     }//GEN-LAST:event_btnExcluirAudioLivroActionPerformed
 
@@ -494,7 +499,6 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                campoTitulo.getText(), 
                campoDescricao.getText(),
                Integer.parseInt(campoAno.getText()),
-               Integer.parseInt(campoID.getText()),
                campoGenero.getText(),
                campoIdioma.getText(),
                campoAutores.getText(),
@@ -503,9 +507,13 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                Integer.parseInt(campoDuracao.getText())
        );
        
-       bancoAudioLivro.editar(Integer.valueOf(campoID.getText()),audioLivroEditado);
+       //bancoAudioLivro.editar(Integer.valueOf(campoID.getText()),audioLivroEditado);
        atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
     }//GEN-LAST:event_btnEditarAudioLivroActionPerformed
+
+    private void btnOrganizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrganizarActionPerformed
+        atualizaTabelaA(bancoAudioLivro.ordenarOddEven(bancoAudioLivro), tabelaA);
+    }//GEN-LAST:event_btnOrganizarActionPerformed
 
     
        public BancoAudioLivro getBancoAudioLivro() {
@@ -521,7 +529,6 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         campoTitulo.setText(audioLivro.getTitulo());
         campoDescricao.setText(audioLivro.getDescricao());
         campoAno.setText(String.valueOf(audioLivro.getAno()));
-        campoID.setText(String.valueOf(audioLivro.getId()));
         campoGenero.setText(audioLivro.getGenero());
         campoIdioma.setText(audioLivro.getIdioma());
         campoAutores.setText(audioLivro.getAutores());
@@ -535,7 +542,6 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         campoTitulo.setText("");
         campoDescricao.setText("");
         campoAno.setText("");
-        campoID.setText("");
         campoGenero.setText("");
         campoIdioma.setText("");
         campoAutores.setText("");
@@ -546,36 +552,42 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     
     public JTable atualizaTabelaA(List<Midia> midiaAudioLivro, JTable tabela) {
 
-        String matriz[][] = new String[midiaAudioLivro.size()][11];
+        String matriz[][] = new String[midiaAudioLivro.size()][10];
         for (int i = 0; i < midiaAudioLivro.size(); i++) {
             AudioLivro al = (AudioLivro) midiaAudioLivro.get(i);
-            matriz[i][0] = String.valueOf(al.getId());
-            matriz[i][1] = String.valueOf(al.getTitulo());
-            matriz[i][2] = String.valueOf(al.getDescricao());
-            matriz[i][3] = String.valueOf(al.getAno());
-            matriz[i][4] = String.valueOf(al.getGenero());
-            matriz[i][5] = String.valueOf(al.getAutores());
-            matriz[i][6] = String.valueOf(al.getEditora());
-            matriz[i][7] = String.valueOf(al.getIdioma());
-            matriz[i][8] = String.valueOf(al.getLocal());
-            matriz[i][9] = String.valueOf(al.getDuracao());
-            matriz[i][10] = String.valueOf(al.getCaminho());
+            matriz[i][0] = String.valueOf(al.getTitulo());
+            matriz[i][1] = String.valueOf(al.getDescricao());
+            matriz[i][2] = String.valueOf(al.getAno());
+            matriz[i][3] = String.valueOf(al.getGenero());
+            matriz[i][4] = String.valueOf(al.getAutores());
+            matriz[i][5] = String.valueOf(al.getEditora());
+            matriz[i][6] = String.valueOf(al.getIdioma());
+            matriz[i][7] = String.valueOf(al.getLocal());
+            matriz[i][8] = String.valueOf(al.getDuracao());
+            matriz[i][9] = String.valueOf(al.getCaminho());
         }
         tabela.setModel(new javax.swing.table.DefaultTableModel(
                 matriz,
                 new String[]{
-                    "ID", "Título", "Descrição", "Ano", "Genero", "Autores", "Editora", "Idioma", "Local", "Duracao", "Caminho"
+                     "Título", "Descrição", "Ano", "Genero", "Autores", "Editora", "Idioma", "Local", "Duracao", "Caminho"
                 }
         ));
         return tabela;
     }
- 
     
+ public void background(){
+        String pasta = System.getProperty("user.dir");
+       
+ }
+    
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel a;
     private javax.swing.JButton btnCadastrarAudioLivro;
     private javax.swing.JButton btnEditarAudioLivro;
     private javax.swing.JButton btnExcluirAudioLivro;
+    private javax.swing.JButton btnOrganizar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVoltarAudioLivro;
     private javax.swing.JTextField campoAno;
@@ -585,13 +597,11 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     private javax.swing.JTextField campoDuracao;
     private javax.swing.JTextField campoEditora;
     private javax.swing.JTextField campoGenero;
-    private javax.swing.JTextField campoID;
     private javax.swing.JTextField campoIdioma;
     private javax.swing.JTextField campoLocal;
     private javax.swing.JTextField campoPesquisa;
     private javax.swing.JTextField campoTitulo;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -602,6 +612,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
