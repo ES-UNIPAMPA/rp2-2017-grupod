@@ -28,7 +28,6 @@ import midias.Podcast;
 //Classe que gerencia os Filmes
 public class BancoFilmes extends BancoDeMidias {
 
-
     public BancoFilmes() {
         super();
     }
@@ -51,7 +50,6 @@ public class BancoFilmes extends BancoDeMidias {
             /**
              * Fecha o arquivo
              */
-
         }
         buff.close();
         outFile.close();
@@ -62,7 +60,7 @@ public class BancoFilmes extends BancoDeMidias {
         BufferedReader buff;
         Filme filmeArquivo;
         String linha, caminho, titulo, descricao, idioma, genero, diretor;
-        int ano, id, duracao;
+        int ano, id, duracao, numeroDeFilmes, numeroAtores;
         List<String> atoresPrincipais = new ArrayList<String>();
 
         /**
@@ -72,7 +70,7 @@ public class BancoFilmes extends BancoDeMidias {
         buff = new BufferedReader(new InputStreamReader(inFile, "UTF-8"));
 
         linha = buff.readLine();
-        int numeroDeFilmes = Integer.parseInt(linha);
+        numeroDeFilmes = Integer.parseInt(linha);
 
         for (int i = 0; i < numeroDeFilmes; i++) {
 
@@ -95,11 +93,11 @@ public class BancoFilmes extends BancoDeMidias {
             diretor = buff.readLine();
 
             linha = buff.readLine();
-            int numeroAtores = Integer.parseInt(linha);
+            numeroAtores = Integer.parseInt(linha);
             for (int j = 0; j < numeroAtores; j++) {
                 atoresPrincipais.add(buff.readLine());
             }
-            
+
             linha = buff.readLine();
             duracao = Integer.parseInt(linha);
 
@@ -112,6 +110,24 @@ public class BancoFilmes extends BancoDeMidias {
         buff.close();
         inFile.close();
 
+    }
+
+    public static void gnomeSort(List<Midia> filmes) {
+        if (!filmes.isEmpty() && filmes.size() > 0) {
+            
+            int i = 1;
+            Filme troca = (Filme)filmes.get(0);
+            while (i < filmes.size()) {
+                if (i == 0 || filmes.get(i - 1).compareTo(filmes.get(i))) {
+                    i++;
+                } else {
+                    troca = (Filme)filmes.get(i - 1);
+                    filmes.set(i - 1, filmes.get(i));
+                    filmes.set(i, troca);
+                    i--;
+                }
+            }
+        }
     }
 
 }

@@ -122,9 +122,9 @@ public class Filme extends Midia {
         }
     }
 
-    public boolean compareTo(Object obj) {
+    public boolean compareTo(Object obj) {//arrumar
         Filme filme = (Filme) obj;
-        if (this.duracao >= filme.getDuracao()) {
+        if (this.getAno() <= filme.getAno()) {
             return true;
         }
         return false;

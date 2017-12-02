@@ -33,18 +33,19 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
 
     @Override
     public boolean cadastrar(Midia midia) {
-    
-        
-        
+
         return this.midias.add(midia);
     }
-    
+
     @Override
     public Midia consultar(String titulo) {
         for (int i = 0; i < getMidias().size(); i++) {
             if (getMidias().get(i).getTitulo().equalsIgnoreCase(titulo)) {
                 return getMidias().get(i);
             }
+
+        }
+        for (int i = 0; i < getMidias().size(); i++) {
             if (getMidias().get(i).getTitulo().contains(titulo)) {
                 return getMidias().get(i);
             }
@@ -61,10 +62,19 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
         }
         return null;
     }
-    public List<Midia> consultarTudo(Midia midia){
+
+    public List<Midia> consultarTudo(String midia) {
         List<Midia> midias = new ArrayList<Midia>();
-        for (int i = 0; i < getMidias().size(); i++) {
-                midia = consultar(midia.getTitulo());
+        Midia midiaEncontrada = null;
+        if (!midias.isEmpty()) {
+            midiaEncontrada = consultar(midia);
+            
+            midias.add(midiaEncontrada);
+            System.out.println(midias.get(0));
+            for (int i = 0; i < getMidias().size(); i++) {
+                midiaEncontrada = consultar(midia);
+                midias.add(midiaEncontrada);
+            }
         }
         return midias;
     }
@@ -79,6 +89,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
         }
         return false;
     }
+
     public Midia excluir(String titulo) {
         Midia removida = null;
         for (int i = 0; i < midias.size(); i++) {
@@ -90,6 +101,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
         }
         return removida;
     }
+
     @Override
     public boolean editar(int id, Midia novo) {
         for (int i = 0; i < getMidias().size(); i++) {
@@ -102,9 +114,15 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     }
 
     @Override
-    public List<Midia> exibir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String exibir(List<Midia> midiasRecebidas) {
+        String dados = "";
+        if (!midiasRecebidas.isEmpty()) {
+            dados += midiasRecebidas.get(0).toString() + "\n";
+            for (int i = 0; i < midiasRecebidas.size(); i++) {
+                dados += midiasRecebidas.get(i).toString() + "\n";
+            }
+        }
+        return dados;
     }
- 
 
 }
