@@ -59,5 +59,14 @@ public class Podcast extends Midia {
         String dados = super.toFile() + idioma +  "\r\n" + autor +  "\r\n";
         return dados;
     }
+    
+    @Override
+     public boolean compareTo(Object obj){
+        Midia midia = (Midia) obj;
+        if(this.getAno() < midia.getAno()){ // True = trocar
+            return true;
+        }
+        return false;
+    }
 
 }

@@ -27,24 +27,26 @@ public class BancoPodcast extends BancoDeMidias {
         super();
     }
 
-    public static void ordenar(BancoPodcast bancoPodcast) {
+    public List<Midia> ordenar(BancoPodcast bancoPodcast) {
         boolean houveTroca;
+        List<Midia> midias = bancoPodcast.getMidias();
         do {
             /* quando começamos a avaliar o vetor, não há trocas */
             houveTroca = false;
             /* percorre toda a lista de podcasts */
-            for (int i = 0; i < bancoPodcast.getTamanhoLista(); i++) {
-                /* se o elemento i e o próximo estão na ordem trocada */
-//                if (bancoPodcast.getTamanhoLista(i) > bancoPodcast.getTamanhoLista(i + 1)) {
-//                    /* troca de lugar os conteúdos deles */
-//                    int temp = vetor[i];
-//                    vetor[i] = vetor[i + 1];
-//                    vetor[i + 1] = temp;
-//                    /* marca que houve troca */
-//                    houveTroca = true;
-//                }
+            for (int i = 0; i < bancoPodcast.getTamanhoLista()-1; i++) {
+
+                Podcast podcast1 = (Podcast) midias.get(i);
+                Podcast podcast2 = (Podcast) midias.get(i + 1);
+                if (podcast1.compareTo(podcast2)) { // True = Trocar
+                    midias.set(i, podcast2);
+                    midias.set(i + 1, podcast1);
+                    bancoPodcast.setMidias(midias);
+                    houveTroca = true;
+                }
             }
         } while (houveTroca);
+        return midias;
     }
 
     public void gravar(String bancoPodcasts) throws Exception {
@@ -100,7 +102,7 @@ public class BancoPodcast extends BancoDeMidias {
             autor = buff.readLine();
 
             buff.readLine();
-            
+
             podcastArquivo = new Podcast(caminho, titulo, descricao, ano, idioma, id, autor);
             this.cadastrar(podcastArquivo);
         }
