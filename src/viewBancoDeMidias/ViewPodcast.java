@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import midias.Midia;
+import static midias.Midia.idGeral;
 
 /**
  *
@@ -37,11 +38,19 @@ public class ViewPodcast extends javax.swing.JFrame {
     public ViewPodcast(BancoPodcast bancoPodcast) {
         this.bancoPodcast = bancoPodcast;
         this.caminho = null;
+
         /**
          * LER DO ARQUIVO
          */
         initComponents();
-        campoId.setText(String.valueOf(bancoPodcast.getMidias().size() + 1));
+
+        try {
+            int idGeral = Midia.obterIDGeral("IDGeral.txt", false); // false apenas recupera, sem atualizar
+            campoId.setText(String.valueOf(idGeral));
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         try {
             bancoPodcast.ler("BancoPodcasts.txt");
             bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
@@ -340,15 +349,20 @@ public class ViewPodcast extends javax.swing.JFrame {
 
         if (campoCaminho.getText() != null && campoTitulo.getText() != null && campoDescricao.getText() != null && this.campoAno != null && campoIdioma.getText() != null && campoAutor.getText() != null) {
             Podcast p;
-            p = new Podcast(getCaminho(),
-                    campoTitulo.getText(),
-                    campoDescricao.getText(),
-                    Integer.valueOf(campoAno.getText()),
-                    campoIdioma.getText(),
-                    Integer.valueOf(campoId.getText()),
-                    campoAutor.getText()
-            );
-            getBancoDeMidias().cadastrar(p);
+            try {
+                p = new Podcast(getCaminho(),
+                        campoTitulo.getText(),
+                        campoDescricao.getText(),
+                        Integer.valueOf(campoAno.getText()),
+                        campoIdioma.getText(),
+                        campoAutor.getText(),
+                        Midia.obterIDGeral("IDGeral.txt", true)
+                );
+                getBancoDeMidias().cadastrar(p);
+                limpar();
+            } catch (Exception ex) {
+                Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Você não preencheu todos os campos de texto. \n Tente novamente preenchendo todos os campos!");
         }
@@ -357,6 +371,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoCadastrarPodCastActionPerformed
 
@@ -405,8 +420,8 @@ public class ViewPodcast extends javax.swing.JFrame {
                     campoDescricao.getText(),
                     Integer.valueOf(campoAno.getText()),
                     campoIdioma.getText(),
-                    Integer.valueOf(campoId.getText()),
-                    campoAutor.getText()
+                    campoAutor.getText(),
+                    Integer.valueOf(campoId.getText())
             );
             bancoPodcast.editar(Integer.valueOf(campoId.getText()), s);
         }
@@ -502,7 +517,7 @@ public class ViewPodcast extends javax.swing.JFrame {
     }
 
     private void exibir(Podcast podcast) {
-        campoId.setText(String.valueOf(podcast.getId()));
+        campoId.setText(String.valueOf(podcast.getIdGeral()));
         campoTitulo.setText(podcast.getTitulo());
         campoDescricao.setText(podcast.getDescricao());
         campoIdioma.setText(podcast.getIdioma());
@@ -512,7 +527,11 @@ public class ViewPodcast extends javax.swing.JFrame {
     }
 
     private void limpar() {
-        campoId.setText("");
+        try {
+            campoId.setText(String.valueOf(Midia.obterIDGeral("IDGeral.txt", false)));
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+        }
         campoTitulo.setText("");
         campoDescricao.setText("");
         campoIdioma.setText("");
@@ -520,12 +539,13 @@ public class ViewPodcast extends javax.swing.JFrame {
         campoAno.setText("");
         getCampoCaminho().setText("");
     }
+
     public JTable atualizaTabela(List<Midia> midiaPodcast, JTable tabela) {
 
         String matriz[][] = new String[midiaPodcast.size()][7];
         for (int i = 0; i < midiaPodcast.size(); i++) {
             Podcast podcast = (Podcast) midiaPodcast.get(i);
-            matriz[i][0] = String.valueOf(podcast.getId());
+            matriz[i][0] = String.valueOf(podcast.getIdGeral());
             matriz[i][1] = String.valueOf(podcast.getTitulo());
             matriz[i][2] = String.valueOf(podcast.getDescricao());
             matriz[i][3] = String.valueOf(podcast.getIdioma());

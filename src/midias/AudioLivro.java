@@ -16,7 +16,7 @@ public class AudioLivro extends Midia {
     
     public AudioLivro(String caminho, String titulo, String descricao, int ano, String genero, String idioma,
             String autores, String local, String editora, int duracao) {
-        super(caminho, titulo, descricao, ano);
+        super(caminho, titulo, descricao, ano, 0);
         this.genero = genero;
         this.idioma = idioma;
         this.autores = autores;

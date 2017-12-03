@@ -56,7 +56,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     @Override
     public Midia consultar(int id) {
         for (int i = 0; i < getMidias().size(); i++) {
-            if (getMidias().get(i).getId() == id) {
+            if (getMidias().get(i).getIdGeral() == id) {
                 return getMidias().get(i);
             }
         }
@@ -112,6 +112,16 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
         }
         return false;
     }
+    @Override
+    public boolean editar(int id, Midia novo) {
+        for (int i = 0; i < getMidias().size(); i++) {
+            if (getMidias().get(i).getId() == (id)) {
+                getMidias().set(i, novo);
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public String exibir(List<Midia> midiasRecebidas) {
@@ -125,4 +135,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
         return dados;
     }
 
+    public void esvaziarLista() {
+        this.midias = new ArrayList<>();
+    }
 }

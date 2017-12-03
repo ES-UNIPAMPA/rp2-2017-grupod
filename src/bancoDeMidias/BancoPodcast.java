@@ -34,7 +34,7 @@ public class BancoPodcast extends BancoDeMidias {
             /* quando começamos a avaliar o vetor, não há trocas */
             houveTroca = false;
             /* percorre toda a lista de podcasts */
-            for (int i = 0; i < bancoPodcast.getTamanhoLista()-1; i++) {
+            for (int i = 0; i < bancoPodcast.getTamanhoLista() - 1; i++) {
 
                 Podcast podcast1 = (Podcast) midias.get(i);
                 Podcast podcast2 = (Podcast) midias.get(i + 1);
@@ -83,6 +83,7 @@ public class BancoPodcast extends BancoDeMidias {
         linha = buff.readLine();
         int numeroDePodcasts = Integer.parseInt(linha);
 
+        esvaziarLista();
         for (int i = 0; i < numeroDePodcasts; i++) {
 
             linha = buff.readLine();
@@ -103,7 +104,7 @@ public class BancoPodcast extends BancoDeMidias {
 
             buff.readLine();
 
-            podcastArquivo = new Podcast(caminho, titulo, descricao, ano, idioma, id, autor);
+            podcastArquivo = new Podcast(caminho, titulo, descricao, ano, idioma, autor, id);
             this.cadastrar(podcastArquivo);
         }
         /**
@@ -138,5 +139,4 @@ public class BancoPodcast extends BancoDeMidias {
     public int getTamanhoLista() {
         return this.getMidias().size();
     }
-
 }

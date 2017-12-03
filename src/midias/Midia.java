@@ -5,36 +5,48 @@
  */
 package midias;
 
-import java.util.Objects;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 
 /**
  *
  * @author SABRINA
  */
-public abstract class  Midia {
+public abstract class Midia {
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
     private String caminho;
     private String titulo;
     private String descricao;
     private int ano;
-    private static int id;
-    @Deprecated
+    public static int idGeral = 0;
+    private final int id;
+
     public Midia(String caminho, String titulo, String descricao, int ano, int id) {
         this.caminho = caminho;
         this.titulo = titulo;
         this.descricao = descricao;
         this.ano = ano;
-        Midia.id = id;
+        this.id = id;
     }
-    public Midia(String caminho, String titulo, String descricao, int ano) {
-        this.caminho = caminho;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.ano = ano;
-        this.id = 1;
-    }
+
     public void setCaminho(String caminho) {
         this.caminho = caminho;
     }
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -48,8 +60,8 @@ public abstract class  Midia {
     }
 
     public static int atualizaId() {
-        return Midia.id ++;
-        
+        return Midia.idGeral++;
+
     }
 
     public String getCaminho() {
@@ -68,20 +80,54 @@ public abstract class  Midia {
         return ano;
     }
 
-    public int getId() {
-        return id;
+    public int getIdGeral() {
+        return idGeral;
     }
-    
+
     @Override
     public String toString() {
         return "Midia{" + "caminho=" + caminho + ", titulo=" + titulo + ", descricao=" + descricao + ", ano=" + ano + ", id=" + getId() + '}';
     }
-     public String toFile(){
-        return id + "\r\n"+caminho + "\r\n" + titulo + "\r\n" +  ano + "\r\n" +descricao+ "\r\n" ;
+
+    public String toFile() {
+        return getId() + "\r\n" + caminho + "\r\n" + titulo + "\r\n" + ano + "\r\n" + descricao + "\r\n";
     }
-     public boolean compareTo(Object obj){
+
+    public static int obterIDGeral(String caminhoIDGeral, boolean atualizar) throws Exception {
+        int idLido = 0;
+        //Leitura
+        try {
+            FileInputStream inFile;
+            BufferedReader buff;
+
+            inFile = new FileInputStream(new File(caminhoIDGeral));
+            buff = new BufferedReader(new InputStreamReader(inFile, "UTF-8"));
+            String linha = buff.readLine();
+            idLido = Integer.parseInt(linha);
+
+            buff.close();
+            inFile.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        // Gravação 
+        idGeral = idLido + 1;
+        //Gravar
+        if (atualizar) {
+            FileWriter arq = new FileWriter(caminhoIDGeral);
+            PrintWriter gravarArq = new PrintWriter(arq);
+            gravarArq.printf(String.valueOf(idGeral));
+            arq.close();
+        }
+        return idGeral;
+    }
+
+    public boolean compareTo(Object obj) {
         Midia midia = (Midia) obj;
-        if(this.ano >= midia.getAno()){
+        if (this.ano >= midia.getAno()) {
             return true;
         }
         return false;

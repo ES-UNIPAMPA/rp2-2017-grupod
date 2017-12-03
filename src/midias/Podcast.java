@@ -5,6 +5,10 @@
  */
 package midias;
 
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author vagne
@@ -14,7 +18,7 @@ public class Podcast extends Midia {
     private String idioma;
     private String autor;
 
-    public Podcast(String caminho, String titulo, String descricao, int ano, String idioma, int id, String autor) {
+    public Podcast(String caminho, String titulo, String descricao, int ano, String idioma, String autor, int id) {
         super(caminho, titulo, descricao, ano, id);
         this.idioma = idioma;
         this.autor = autor;
@@ -50,20 +54,20 @@ public class Podcast extends Midia {
 
     @Override
     public String toString() {
-        String dados = " ID: " + super.getId() + "\n" + " Título: " + super.getTitulo() + "\n Descrição: " + super.getDescricao() + "\n Idioma: " + idioma + "\n Autor: " + autor + "\n Ano: " + super.getAno();
+        String dados = " ID: " + super.getIdGeral() + "\n" + " Título: " + super.getTitulo() + "\n Descrição: " + super.getDescricao() + "\n Idioma: " + idioma + "\n Autor: " + autor + "\n Ano: " + super.getAno();
         return dados;
     }
 
     @Override
     public String toFile() {
-        String dados = super.toFile() + idioma +  "\r\n" + autor +  "\r\n";
+        String dados = super.toFile() + idioma + "\r\n" + autor + "\r\n";
         return dados;
     }
-    
+
     @Override
-     public boolean compareTo(Object obj){
+    public boolean compareTo(Object obj) {
         Midia midia = (Midia) obj;
-        if(this.getAno() < midia.getAno()){ // True = trocar
+        if (this.getAno() < midia.getAno()) { // True = trocar
             return true;
         }
         return false;
