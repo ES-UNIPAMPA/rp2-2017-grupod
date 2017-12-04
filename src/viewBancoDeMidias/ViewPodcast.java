@@ -43,6 +43,7 @@ public class ViewPodcast extends javax.swing.JFrame {
          * LER DO ARQUIVO
          */
         initComponents();
+        setSize(617, 571);
 
         try {
             int idGeral = Midia.obterIDGeral("IDGeral.txt", false); // false apenas recupera, sem atualizar
@@ -137,6 +138,8 @@ public class ViewPodcast extends javax.swing.JFrame {
         tabelaPodCast = new javax.swing.JTable();
         botaoCaminho = new javax.swing.JButton();
         ordenarAno = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,20 +155,45 @@ public class ViewPodcast extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jLabel1.setText("Idioma:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 230, 70, 14);
 
         jLabel2.setText("Autor:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 270, 70, 14);
 
         jLabel3.setText("ID:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 110, 70, 14);
 
         jLabel4.setText("Título:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 150, 70, 14);
 
         jLabel5.setText("Descrição:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(10, 190, 70, 14);
 
         jLabel6.setText("Ano:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(10, 310, 60, 14);
+        getContentPane().add(campoAutor);
+        campoAutor.setBounds(100, 260, 282, 30);
+        getContentPane().add(campoTitulo);
+        campoTitulo.setBounds(100, 140, 282, 30);
+        getContentPane().add(campoDescricao);
+        campoDescricao.setBounds(100, 180, 282, 30);
+        getContentPane().add(campoIdioma);
+        campoIdioma.setBounds(100, 220, 282, 30);
 
         campoId.setEditable(false);
+        getContentPane().add(campoId);
+        campoId.setBounds(100, 100, 282, 30);
+        getContentPane().add(campoAno);
+        campoAno.setBounds(100, 300, 282, 30);
 
         botaoCadastrarPodCast.setText("Cadastrar");
         botaoCadastrarPodCast.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +201,8 @@ public class ViewPodcast extends javax.swing.JFrame {
                 botaoCadastrarPodCastActionPerformed(evt);
             }
         });
+        getContentPane().add(botaoCadastrarPodCast);
+        botaoCadastrarPodCast.setBounds(420, 110, 130, 40);
 
         botaoSairPodCast.setText("Sair");
         botaoSairPodCast.addActionListener(new java.awt.event.ActionListener() {
@@ -180,8 +210,14 @@ public class ViewPodcast extends javax.swing.JFrame {
                 botaoSairPodCastActionPerformed(evt);
             }
         });
+        getContentPane().add(botaoSairPodCast);
+        botaoSairPodCast.setBounds(420, 260, 130, 40);
+        getContentPane().add(campoCaminho);
+        campoCaminho.setBounds(100, 340, 282, 30);
 
         jLabel7.setText("Caminho:");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(10, 350, 70, 14);
 
         botaoBuscar.setText("Buscar");
         botaoBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -189,12 +225,16 @@ public class ViewPodcast extends javax.swing.JFrame {
                 botaoBuscarActionPerformed(evt);
             }
         });
+        getContentPane().add(botaoBuscar);
+        botaoBuscar.setBounds(460, 50, 80, 30);
 
         campoBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoBuscaActionPerformed(evt);
             }
         });
+        getContentPane().add(campoBusca);
+        campoBusca.setBounds(410, 10, 170, 30);
 
         botaoSalvarAlteracoes.setText("Salvar Alterações");
         botaoSalvarAlteracoes.addActionListener(new java.awt.event.ActionListener() {
@@ -202,6 +242,8 @@ public class ViewPodcast extends javax.swing.JFrame {
                 botaoSalvarAlteracoesActionPerformed(evt);
             }
         });
+        getContentPane().add(botaoSalvarAlteracoes);
+        botaoSalvarAlteracoes.setBounds(420, 160, 130, 40);
 
         botaoExcluir.setText("Excluir");
         botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -209,6 +251,8 @@ public class ViewPodcast extends javax.swing.JFrame {
                 botaoExcluirActionPerformed(evt);
             }
         });
+        getContentPane().add(botaoExcluir);
+        botaoExcluir.setBounds(420, 210, 132, 40);
 
         tabelaPodCast.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -223,12 +267,17 @@ public class ViewPodcast extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tabelaPodCast);
 
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(10, 410, 590, 120);
+
         botaoCaminho.setText("Escolher");
         botaoCaminho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCaminhoActionPerformed(evt);
             }
         });
+        getContentPane().add(botaoCaminho);
+        botaoCaminho.setBounds(390, 340, 73, 30);
 
         ordenarAno.setText("Ordenar por ano");
         ordenarAno.addActionListener(new java.awt.event.ActionListener() {
@@ -236,111 +285,16 @@ public class ViewPodcast extends javax.swing.JFrame {
                 ordenarAnoActionPerformed(evt);
             }
         });
+        getContentPane().add(ordenarAno);
+        ordenarAno.setBounds(10, 380, 150, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(campoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(campoTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(campoId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(40, 40, 40)
-                                        .addComponent(campoBusca))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(botaoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(23, 23, 23))
-                                            .addComponent(botaoCadastrarPodCast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(botaoSalvarAlteracoes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(botaoExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(botaoSairPodCast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botaoCaminho)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ordenarAno)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoBuscar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(botaoCadastrarPodCast)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoSalvarAlteracoes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoSairPodCast)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botaoCaminho)
-                            .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))))
-                .addGap(18, 18, 18)
-                .addComponent(ordenarAno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/texte.jpg"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(10, 11, 227, 82);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/fundopodcast.jpg"))); // NOI18N
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(0, 0, 710, 540);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -389,6 +343,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
         }
+        limpar();
         bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
@@ -430,6 +385,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
         }
+        limpar();
         bancoPodcast.atualizaTabela(bancoPodcast.getMidias(), tabelaPodCast);
     }//GEN-LAST:event_botaoSalvarAlteracoesActionPerformed
 
@@ -473,6 +429,8 @@ public class ViewPodcast extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
