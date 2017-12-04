@@ -1,57 +1,81 @@
-7
+10
 1
-C:\Users\vagne\Desktop
-hui
-2010
-iojio
-iijoa
-ia
+C:\Users\vagne\Podcasts
+Podcast NBW
+2017
+Polêmicas do Brexit, impeachment, eleições americanas, tudo o que rolou nesse ano conturbado é comentado de maneira leve e informal
+Português
+Ulisses Neto
 
 2
-C:\Users\vagne\Desktop
-hui
-2010
-iojio
-iijoa
-ia
+C:\Users\vagne\Podcasts
+Escriba Café
+2005
+Temas sobre história, do mundo e do Brasil, sobre mistérios da humanidade e curiosidades 
+Português
+Christian Gurtner
 
 3
-C:\Users\vagne\Desktop
-hui
-2010
-iojio
-iijoa
-ia
+C:\Users\vagne\Podcasts
+Braincast
+2008
+Temas variados, muitos deles tocando diretamente a realidade no mundo do marketing
+Português
+Carlos Merigo
 
 4
-C:\Users\vagne\Desktop
-hui
-2010
-iojio
-iijoa
-ia
+C:\Users\vagne\Podcasts
+Rapaduracast
+2017
+Avaliações sobre o mundo do cinema
+Português
+Jurandir Filho
 
 5
-C:\Users\vagne\Desktop
-hui
-2010
-iojio
-iijoa
-ia
+C:\Users\vagne\Podcasts
+Beercast
+2016
+Podcast sobre cervejas do Brasil
+Português
+Randal Bergamasco
 
 6
-null
-hui
-2010
-iojio
-iijoa
-ia
+C:\Users\vagne\Podcasts
+Café Brasil
+2011
+Reflexão sobre temas diversos, mas quase sempre tocando cultura, cidadania, educação e comportamento.
+Português
+Luciano Pires
 
 7
-null
-huiha
-2010
-uahuih
-uhaiuh
-hiuahui
+C:\Users\vagne\Podcasts
+Papo lendário
+2015
+Pra quem curte mitologias e lendas
+Português
+blog Mitografias
+
+8
+C:\Users\vagne\Podcasts
+Covil de Livros
+2017
+Os participantes analisam diferentes obras que abordam
+Português
+Edu Sama
+
+9
+C:\Users\vagne\Podcasts
+Literário Cast
+2013
+De temática bastante variada, fala sobre livros, autores, mercado editorial, entrevistas
+Português
+Rafael Franças
+
+10
+C:\Users\vagne\Podcasts
+Fúria Lupina: Brasil
+2012
+Trata de Lobisomens, as temíveis, porém encantadoras, criaturas divididas entre o ser humano e o lobo!
+Português
+Alfer Medeiros
 
