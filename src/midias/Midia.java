@@ -125,9 +125,17 @@ public abstract class Midia {
         return idGeral;
     }
 
-    public boolean compareTo(Object obj) {
+    public boolean compararAno(Object obj) {
         Midia midia = (Midia) obj;
         if (this.ano >= midia.getAno()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean compararTitulo(Object obj) {
+         Midia filme = (Midia) obj;
+        if (this.getTitulo().compareToIgnoreCase(filme.getTitulo()) <= 0) {
             return true;
         }
         return false;

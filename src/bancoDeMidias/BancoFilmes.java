@@ -61,7 +61,7 @@ public class BancoFilmes extends BancoDeMidias {
         Filme filmeArquivo;
         String linha, caminho, titulo, descricao, idioma, genero, diretor, duracao;
         int ano, id, numeroDeFilmes, numeroAtores;
-        List<String> atoresPrincipais = new ArrayList<String>();
+        
 
         /**
          * Abre o arquivo para leitura
@@ -94,12 +94,13 @@ public class BancoFilmes extends BancoDeMidias {
 
             linha = buff.readLine();
             numeroAtores = Integer.parseInt(linha);
+            List<String> atoresPrincipais = new ArrayList<String>();
             for (int j = 0; j < numeroAtores; j++) {
                 atoresPrincipais.add(buff.readLine());
             }
 
             duracao = buff.readLine();
-           
+
             filmeArquivo = new Filme(genero, idioma, diretor, numeroAtores, atoresPrincipais, duracao, caminho, titulo, descricao, ano, id);
 
             this.cadastrar(filmeArquivo);
@@ -111,22 +112,34 @@ public class BancoFilmes extends BancoDeMidias {
 
     }
 
-    public static void gnomeSort(List<Midia> filmes) {
+    public static void gnomeSort(List<Midia> filmes, String comparador) {
         if (!filmes.isEmpty() && filmes.size() > 0) {
-            
+
             int i = 1;
-            Filme troca = (Filme)filmes.get(0);
+            Filme troca = (Filme) filmes.get(0);
             while (i < filmes.size()) {
-                if (i == 0 || filmes.get(i - 1).compareTo(filmes.get(i))) {
-                    i++;
-                } else {
-                    troca = (Filme)filmes.get(i - 1);
-                    filmes.set(i - 1, filmes.get(i));
-                    filmes.set(i, troca);
-                    i--;
+                if (comparador.equalsIgnoreCase("Ano")) {
+                    if (i == 0 || filmes.get(i - 1).compararAno(filmes.get(i))) {
+                        i++;
+                    } else {
+                        troca = (Filme) filmes.get(i - 1);
+                        filmes.set(i - 1, filmes.get(i));
+                        filmes.set(i, troca);
+                        i--;
+                    }
+                } else if (comparador.equalsIgnoreCase("Titulo")) {
+                    if (i == 0 || filmes.get(i - 1).compararTitulo(filmes.get(i))) {
+                        i++;
+                    } else {
+                        troca = (Filme) filmes.get(i - 1);
+                        filmes.set(i - 1, filmes.get(i));
+                        filmes.set(i, troca);
+                        i--;
+                    }
                 }
             }
         }
     }
 
 }
+

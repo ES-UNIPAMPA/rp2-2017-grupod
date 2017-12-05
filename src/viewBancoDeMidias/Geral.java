@@ -5,13 +5,10 @@
  */
 package viewBancoDeMidias;
 
-import bancoDeMidias.BancoAudioLivro;
-import bancoDeMidias.BancoDeMidias;
-import bancoDeMidias.BancoFilmes;
-import bancoDeMidias.BancoPodcast;
-import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import midias.Midia;
 
 /**
  *
@@ -42,6 +39,7 @@ public class Geral extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         sair = new javax.swing.JButton();
@@ -50,9 +48,13 @@ public class Geral extends javax.swing.JFrame {
         btnPodcast1 = new javax.swing.JButton();
         campoBuscar = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,48 +66,64 @@ public class Geral extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 500, 350));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 500, 330));
 
+        sair.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         sair.setText("Sair");
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairActionPerformed(evt);
             }
         });
-        getContentPane().add(sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
+        jPanel1.add(sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 100, -1));
 
+        btnAudioLivro.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnAudioLivro.setText("AudioLivro");
         btnAudioLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAudioLivroActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jPanel1.add(btnAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, -1, 30));
 
+        btnFilme.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnFilme.setText("Filme");
         btnFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilmeActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        jPanel1.add(btnFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 100, 30));
 
+        btnPodcast1.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnPodcast1.setText("Podcast");
         btnPodcast1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPodcast1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPodcast1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
-        getContentPane().add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 120, -1));
+        jPanel1.add(btnPodcast1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 100, 30));
+        jPanel1.add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 160, -1));
 
+        buscar.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         buscar.setText("Buscar");
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 100, -1));
+
+        jLabel2.setFont(new java.awt.Font("The Blacklist", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Mídias");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/Rainbow.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-150, -270, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 420));
 
         pack();
         setLocationRelativeTo(null);
@@ -130,10 +148,18 @@ public class Geral extends javax.swing.JFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         try {
-            //jTable1.setSelectionBackground(Color.BLUE);
-            filme.getBancoFilmes().consultar(campoBuscar.getText()).toString();
-            podcast.getBancoDeMidias().consultar(campoBuscar.getText()).toString();
-            audiolivro.getBancoAudioLivro().consultar(campoBuscar.getText()).toString();
+            String procurado = "";
+            if(filme.getBancoFilmes().consultar(campoBuscar.getText()) != null){
+            procurado += filme.getBancoFilmes().consultar(campoBuscar.getText()).toString(); 
+            }
+            if(podcast.getBancoDeMidias().consultar(campoBuscar.getText()) != null){
+            procurado += "\n" + podcast.getBancoDeMidias().consultar(campoBuscar.getText()).toString();
+            }
+            if(audiolivro.getBancoAudioLivro().consultar(campoBuscar.getText()) != null){
+            procurado += "\n" + audiolivro.getBancoAudioLivro().consultar(campoBuscar.getText()).toString();
+            }
+            JOptionPane.showMessageDialog(null, procurado);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Esta Mídia não Existe!");
         }
@@ -149,6 +175,9 @@ public class Geral extends javax.swing.JFrame {
     private javax.swing.JButton btnPodcast1;
     private javax.swing.JButton buscar;
     private javax.swing.JTextField campoBuscar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton sair;

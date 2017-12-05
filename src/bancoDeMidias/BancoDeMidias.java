@@ -66,16 +66,19 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
     public List<Midia> consultarTudo(String midia) {
         List<Midia> midias = new ArrayList<Midia>();
         Midia midiaEncontrada = null;
-        if (!midias.isEmpty()) {
+        midiaEncontrada = consultar(midia);
+        midias.add(midiaEncontrada);
+        for (int i = 1; i < getMidias().size(); i++) {
             midiaEncontrada = consultar(midia);
-            
-            midias.add(midiaEncontrada);
-            System.out.println(midias.get(0));
-            for (int i = 0; i < getMidias().size(); i++) {
-                midiaEncontrada = consultar(midia);
+            if (!midiaEncontrada.equals(midias.get(i -1))) {
+                midias.add(midiaEncontrada);
+            }
+            if (getMidias().get(i).getTitulo().equalsIgnoreCase(midia)) {
+                midiaEncontrada = getMidias().get(i);
                 midias.add(midiaEncontrada);
             }
         }
+
         return midias;
     }
 
@@ -112,6 +115,7 @@ public class BancoDeMidias implements GerenciadorBancoDeMidias {
         }
         return false;
     }
+
     @Override
     public boolean editar(int id, Midia novo) {
         for (int i = 0; i < getMidias().size(); i++) {

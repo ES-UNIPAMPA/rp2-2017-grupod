@@ -65,7 +65,7 @@ public class Podcast extends Midia {
     }
 
     @Override
-    public boolean compareTo(Object obj) {
+    public boolean compararAno(Object obj) {
         Midia midia = (Midia) obj;
         if (this.getAno() < midia.getAno()) { // True = trocar
             return true;

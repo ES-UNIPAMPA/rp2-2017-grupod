@@ -12,9 +12,13 @@ import bancoDeMidias.BancoFilmes;
 import excecao.ExceptionEmptySpace;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,8 +35,8 @@ public class ViewFilme extends javax.swing.JFrame {
 
     private BancoFilmes bancoFilmes;
     private Principal viewInicial;
-    Midia filmeEdit; 
-            
+    Midia filmeEdit;
+
     public BancoFilmes getBancoFilmes() {
         return bancoFilmes;
     }
@@ -51,6 +55,12 @@ public class ViewFilme extends javax.swing.JFrame {
         this.caminho = null;
         this.filmeEdit = null;
         gerarBackground();
+        try {
+            int idGeral = Midia.obterIDGeral("IDGeral.txt", false); // false apenas recupera, sem atualizar
+            campoId.setText(String.valueOf(idGeral));
+        } catch (Exception ex) {
+
+        }
 
     }
 
@@ -85,6 +95,7 @@ public class ViewFilme extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnSalvarAlteracoes = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        mostrar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
@@ -98,6 +109,10 @@ public class ViewFilme extends javax.swing.JFrame {
         editar = new javax.swing.JButton();
         campoDuracao = new javax.swing.JFormattedTextField();
         campoAno = new javax.swing.JFormattedTextField();
+        labelid = new javax.swing.JLabel();
+        campoId = new javax.swing.JTextField();
+        titulo = new javax.swing.JCheckBox();
+        ano = new javax.swing.JCheckBox();
         fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,60 +125,60 @@ public class ViewFilme extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("The Blacklist", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Filme");
-        jPanelFundo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 70, 40));
+        jPanelFundo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 70, 40));
 
         jLabel4.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Título:");
-        jPanelFundo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 60, 20));
+        jPanelFundo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 60, 20));
 
         jLabel2.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Diretor:");
-        jPanelFundo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 23));
+        jPanelFundo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 23));
 
         jLabel6.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Gênero:");
-        jPanelFundo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        jPanelFundo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Idioma:");
-        jPanelFundo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        jPanelFundo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Ano:");
-        jPanelFundo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 66, -1, 30));
+        jPanelFundo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 30));
 
         jLabel9.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Caminho:");
-        jPanelFundo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 20));
+        jPanelFundo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, 20));
 
         jLabel5.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Descrição:");
-        jPanelFundo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
-        jPanelFundo.add(campoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 270, -1));
-        jPanelFundo.add(campoDiretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 270, -1));
+        jPanelFundo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
+        jPanelFundo.add(campoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 270, -1));
+        jPanelFundo.add(campoDiretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 270, -1));
 
         campoCaminho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCaminhoActionPerformed(evt);
             }
         });
-        jPanelFundo.add(campoCaminho, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 270, -1));
+        jPanelFundo.add(campoCaminho, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 270, -1));
 
         campoDescricao.setColumns(20);
         campoDescricao.setRows(5);
         jScrollPane2.setViewportView(campoDescricao);
 
-        jPanelFundo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 270, 60));
-        jPanelFundo.add(campoGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 270, -1));
-        jPanelFundo.add(campoIdioma, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 270, -1));
-        jPanelFundo.add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 40, 190, -1));
+        jPanelFundo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 270, 50));
+        jPanelFundo.add(campoGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 270, -1));
+        jPanelFundo.add(campoIdioma, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 270, -1));
+        jPanelFundo.add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 180, -1));
 
         btnBuscar.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnBuscar.setText("Buscar");
@@ -172,7 +187,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanelFundo.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 80, 30));
+        jPanelFundo.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 80, 30));
 
         btnCadastrar.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnCadastrar.setText("Cadastrar");
@@ -191,7 +206,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        jPanelFundo.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 150, 180, 30));
+        jPanelFundo.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 180, 30));
 
         btnSalvarAlteracoes.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnSalvarAlteracoes.setText("Salvar Alterações");
@@ -205,7 +220,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnSalvarAlteracoesActionPerformed(evt);
             }
         });
-        jPanelFundo.add(btnSalvarAlteracoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 190, 180, 30));
+        jPanelFundo.add(btnSalvarAlteracoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 180, 30));
 
         btnExcluir.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnExcluir.setText("Excluir");
@@ -214,7 +229,21 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
-        jPanelFundo.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 80, 30));
+        jPanelFundo.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 80, 30));
+
+        mostrar.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
+        mostrar.setText("mostrar FIlmes");
+        mostrar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                mostrarMouseDragged(evt);
+            }
+        });
+        mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 180, 30));
 
         sair.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         sair.setText("Sair");
@@ -228,7 +257,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 sairActionPerformed(evt);
             }
         });
-        jPanelFundo.add(sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 180, 30));
+        jPanelFundo.add(sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 180, 30));
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -240,18 +269,18 @@ public class ViewFilme extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabela);
 
-        jPanelFundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 598, 120));
+        jPanelFundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 590, 110));
 
         jLabel10.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Atores:");
-        jPanelFundo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
-        jPanelFundo.add(campoAtores, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 270, -1));
+        jPanelFundo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        jPanelFundo.add(campoAtores, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 270, -1));
 
         jLabel1.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Duração:");
-        jPanelFundo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 74, -1, -1));
+        jPanelFundo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
         btnEscolherCaminho.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnEscolherCaminho.setText("Escolher");
@@ -260,7 +289,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 btnEscolherCaminhoActionPerformed(evt);
             }
         });
-        jPanelFundo.add(btnEscolherCaminho, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, -1));
+        jPanelFundo.add(btnEscolherCaminho, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 400, -1, -1));
 
         adicionar.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         adicionar.setText("Adicionar");
@@ -269,7 +298,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 adicionarActionPerformed(evt);
             }
         });
-        jPanelFundo.add(adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 100, 30));
+        jPanelFundo.add(adicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 100, 30));
 
         remover.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         remover.setText("Remover");
@@ -278,7 +307,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 removerActionPerformed(evt);
             }
         });
-        jPanelFundo.add(remover, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 90, 30));
+        jPanelFundo.add(remover, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 90, 30));
 
         exibir.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         exibir.setText("Exibir");
@@ -287,7 +316,7 @@ public class ViewFilme extends javax.swing.JFrame {
                 exibirActionPerformed(evt);
             }
         });
-        jPanelFundo.add(exibir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 80, 30));
+        jPanelFundo.add(exibir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 80, 30));
 
         editar.setBackground(new java.awt.Color(255, 255, 255));
         editar.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
@@ -302,26 +331,54 @@ public class ViewFilme extends javax.swing.JFrame {
                 editarActionPerformed(evt);
             }
         });
-        jPanelFundo.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 110, 180, 30));
+        jPanelFundo.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 180, 30));
 
         try {
             campoDuracao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanelFundo.add(campoDuracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 90, -1));
+        jPanelFundo.add(campoDuracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 90, -1));
 
         try {
             campoAno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanelFundo.add(campoAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 90, -1));
+        jPanelFundo.add(campoAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 90, -1));
+
+        labelid.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
+        labelid.setForeground(new java.awt.Color(255, 255, 255));
+        labelid.setText("ID:");
+        jPanelFundo.add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 30, 20));
+
+        campoId.setEditable(false);
+        jPanelFundo.add(campoId, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 270, -1));
+
+        titulo.setFont(new java.awt.Font("Stencil", 0, 11)); // NOI18N
+        titulo.setForeground(new java.awt.Color(255, 255, 255));
+        titulo.setText("Por Título");
+        titulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tituloActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, -1, -1));
+
+        ano.setFont(new java.awt.Font("Stencil", 0, 11)); // NOI18N
+        ano.setForeground(new java.awt.Color(255, 255, 255));
+        ano.setText("Por Ano");
+        ano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anoActionPerformed(evt);
+            }
+        });
+        jPanelFundo.add(ano, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
 
         fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/atores.jpg"))); // NOI18N
-        jPanelFundo.add(fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-410, -10, 1100, 680));
+        jPanelFundo.add(fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-350, 0, 1100, 700));
 
-        getContentPane().add(jPanelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 530));
+        getContentPane().add(jPanelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 590));
 
         pack();
         setLocationRelativeTo(null);
@@ -345,7 +402,7 @@ public class ViewFilme extends javax.swing.JFrame {
             ExceptionEmptySpace.informaDado(campoIdioma.getText());
             ExceptionEmptySpace.informaDado(campoGenero.getText());
             ExceptionEmptySpace.informaDado(getAtores().get(0));
-            
+
             int year = Integer.parseInt(campoAno.getText());
             int id = Midia.atualizaId();
             List<String> atoresPrincipais = new ArrayList();
@@ -355,13 +412,11 @@ public class ViewFilme extends javax.swing.JFrame {
             Midia midia = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores.size(), atoresPrincipais, campoDuracao.getText(), campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year, id);//id não deve ser passado pelo construtor
 
             bancoFilmes.cadastrar(midia);
-            BancoFilmes.gnomeSort(bancoFilmes.getMidias());
+            BancoFilmes.gnomeSort(bancoFilmes.getMidias(), "Ano");
             JOptionPane.showMessageDialog(null, "\n" + midia.getTitulo() + "\n Filme Cadastrado!");
             esvaziarCampos();
 
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
-        } catch (IndexOutOfBoundsException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
         }
         try {
@@ -371,7 +426,7 @@ public class ViewFilme extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
-        BancoFilmes.gnomeSort(bancoFilmes.getMidias());
+        BancoFilmes.gnomeSort(bancoFilmes.getMidias(), "Ano");
         atualizaTabela(bancoFilmes.getMidias(), tabela);
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -425,24 +480,11 @@ public class ViewFilme extends javax.swing.JFrame {
      */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            //String midia = bancoFilmes.exibir();
-
+       
             String procurado = "Não existe este Filme!";
             procurado = bancoFilmes.consultar(campoBuscar.getText()).toString();
+           
             JOptionPane.showMessageDialog(null, procurado);
-//            JFrame janela = new JFrame();
-//            JLabel encontrado = new JLabel();
-//            
-//            janela.setSize(300, 200);
-//            janela.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-//            janela.setBackground(new java.awt.Color(255, 255, 255));
-//            janela.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-//            encontrado.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
-//            encontrado.setForeground(new java.awt.Color(255, 255, 255));
-//            encontrado.setText(procurado);
-//            janela.add(encontrado);
-//            janela.setVisible(true);
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Este filme não Existe!");
         }
@@ -476,11 +518,11 @@ public class ViewFilme extends javax.swing.JFrame {
             ExceptionEmptySpace.informaDado(campoIdioma.getText());
             ExceptionEmptySpace.informaDado(campoGenero.getText());
             ExceptionEmptySpace.informaDado(getAtores().get(0));
-            
+
             int year = Integer.parseInt(campoAno.getText());
             List<String> atoresPrincipais = new ArrayList();
             for (int i = 0; i < this.atores.size(); i++) {
-                atoresPrincipais.add( atores.get(i));
+                atoresPrincipais.add(atores.get(i));
             }
             Midia midiaEditada = new Filme(campoGenero.getText(), campoIdioma.getText(), campoDiretor.getText(), this.atores.size(), atoresPrincipais, campoDuracao.getText(), campoCaminho.getText(), campoTitulo.getText(), campoDescricao.getText(), year, Midia.atualizaId());//id não deve ser passado pelo construtor
             bancoFilmes.editar(this.filmeEdit, midiaEditada);
@@ -492,7 +534,7 @@ public class ViewFilme extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Por favor insira todas as informações!");
         }
-        BancoFilmes.gnomeSort(bancoFilmes.getMidias());
+        BancoFilmes.gnomeSort(bancoFilmes.getMidias(), "Ano");
         try {
             bancoFilmes.gravar("BancoFilmes.txt");
         } catch (FileNotFoundException exc) {
@@ -515,7 +557,7 @@ public class ViewFilme extends javax.swing.JFrame {
             atualizaTabela(bancoFilmes.getMidias(), tabela);
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
-        }// TODO add your handling code here:
+        }
         try {
             bancoFilmes.gravar("BancoFilmes.txt");
         } catch (FileNotFoundException exc) {
@@ -557,6 +599,28 @@ public class ViewFilme extends javax.swing.JFrame {
     private void sairMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseDragged
         sair.setBackground(Color.blue);        // TODO add your handling code here:
     }//GEN-LAST:event_sairMouseDragged
+
+    private void mostrarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mostrarMouseDragged
+
+    private void mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarActionPerformed
+        atualizaTabela(bancoFilmes.getMidias(), tabela);
+
+    }//GEN-LAST:event_mostrarActionPerformed
+
+    private void anoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoActionPerformed
+        BancoFilmes.gnomeSort(bancoFilmes.getMidias(), "Ano");
+        atualizaTabela(bancoFilmes.getMidias(), tabela);
+
+    }//GEN-LAST:event_anoActionPerformed
+
+    private void tituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tituloActionPerformed
+       BancoFilmes.gnomeSort(bancoFilmes.getMidias(), "Titulo");
+       atualizaTabela(bancoFilmes.getMidias(), tabela);
+
+       
+    }//GEN-LAST:event_tituloActionPerformed
     public void esvaziarCampos() {
         campoTitulo.setText("");
         campoAno.setText("");
@@ -587,23 +651,24 @@ public class ViewFilme extends javax.swing.JFrame {
 
     public JTable atualizaTabela(List<Midia> bancoFilme, JTable tabela) {
 
-        String matriz[][] = new String[bancoFilme.size()][9];
+        String matriz[][] = new String[bancoFilme.size()][10];
         for (int i = 0; i < bancoFilme.size(); i++) {
             Filme filme = (Filme) bancoFilme.get(i);
-            matriz[i][0] = String.valueOf(filme.getTitulo());
-            matriz[i][1] = String.valueOf(filme.getDescricao());
-            matriz[i][2] = String.valueOf(filme.getIdioma());
-            matriz[i][3] = String.valueOf(filme.getGenero());
-            matriz[i][4] = String.valueOf(filme.getAno());
-            matriz[i][5] = String.valueOf(filme.getCaminho());
-            matriz[i][6] = String.valueOf(filme.getDiretor());
-            matriz[i][7] = String.valueOf(filme.getDuracao());
-            matriz[i][8] = String.valueOf(filme.getAtoresPrincipais());
+            matriz[i][0] = String.valueOf(filme.getId());
+            matriz[i][1] = String.valueOf(filme.getTitulo());
+            matriz[i][2] = String.valueOf(filme.getDescricao());
+            matriz[i][3] = String.valueOf(filme.getIdioma());
+            matriz[i][4] = String.valueOf(filme.getGenero());
+            matriz[i][5] = String.valueOf(filme.getAno());
+            matriz[i][6] = String.valueOf(filme.getCaminho());
+            matriz[i][7] = String.valueOf(filme.getDiretor());
+            matriz[i][8] = String.valueOf(filme.getDuracao());
+            matriz[i][9] = String.valueOf(filme.getAtoresPrincipais());
         }
         tabela.setModel(new javax.swing.table.DefaultTableModel(
                 matriz,
                 new String[]{
-                    "Título", "Descrição", "Idioma", "Gênero", "Ano", "Caminho", "Diretor", "Duração", "Atores Principais"
+                    "Id","Título", "Descrição", "Idioma", "Gênero", "Ano", "Caminho", "Diretor", "Duração", "Atores Principais"
                 }
         ));
         return tabela;
@@ -653,6 +718,7 @@ public class ViewFilme extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionar;
+    private javax.swing.JCheckBox ano;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEscolherCaminho;
@@ -666,6 +732,7 @@ public class ViewFilme extends javax.swing.JFrame {
     private javax.swing.JTextField campoDiretor;
     private javax.swing.JFormattedTextField campoDuracao;
     private javax.swing.JTextField campoGenero;
+    private javax.swing.JTextField campoId;
     private javax.swing.JTextField campoIdioma;
     private javax.swing.JTextField campoTitulo;
     private javax.swing.JButton editar;
@@ -685,8 +752,11 @@ public class ViewFilme extends javax.swing.JFrame {
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelid;
+    private javax.swing.JButton mostrar;
     private javax.swing.JButton remover;
     private javax.swing.JButton sair;
     private javax.swing.JTable tabela;
+    private javax.swing.JCheckBox titulo;
     // End of variables declaration//GEN-END:variables
 }

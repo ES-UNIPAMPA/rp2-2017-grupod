@@ -38,7 +38,7 @@ public class BancoPodcast extends BancoDeMidias {
 
                 Podcast podcast1 = (Podcast) midias.get(i);
                 Podcast podcast2 = (Podcast) midias.get(i + 1);
-                if (podcast1.compareTo(podcast2)) { // True = Trocar
+                if (podcast1.compararAno(podcast2)) { // True = Trocar
                     midias.set(i, podcast2);
                     midias.set(i + 1, podcast1);
                     bancoPodcast.setMidias(midias);

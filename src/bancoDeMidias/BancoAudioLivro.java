@@ -106,6 +106,46 @@ public class BancoAudioLivro extends BancoDeMidias{
 
     }
 
+    
+     public List<Midia> ordenarOddEven(BancoAudioLivro bancoAudioLivro) {
+    {
+        boolean houveTroca = false; 
+        List<Midia> midias = bancoAudioLivro.getMidias();
+ 
+        while (!houveTroca)
+        {
+            houveTroca = true;
+            int temp =0;
+               for(int i = 1; i < bancoAudioLivro.getTamanhoLista()-2; i=i+2)
+            {
+                AudioLivro al1 = (AudioLivro) midias.get(i);
+                AudioLivro al2 = (AudioLivro) midias.get(i + 1);
+                if (al1.compararAno(al2)) {
+                    midias.set(i, al2);
+                    midias.set(i + 1, al1);
+                    bancoAudioLivro.setMidias(midias);
+                    houveTroca = true;
+            }
+            }
+ 
+            // Perform Bubble sort on even indexed element
+            for(int i = 0; i < bancoAudioLivro.getTamanhoLista()-1; i=i+1)
+            {
+                AudioLivro al1 = (AudioLivro) midias.get(i);
+                AudioLivro al2 = (AudioLivro) midias.get(i + 1);
+                if (al1.compararAno(al2)) {
+                    midias.set(i, al2);
+                    midias.set(i + 1, al1);
+                    bancoAudioLivro.setMidias(midias);
+                    houveTroca = true;
+            }
+            }
+        }
+ 
+        return midias;
+     }
+    }
+
 }
     
 

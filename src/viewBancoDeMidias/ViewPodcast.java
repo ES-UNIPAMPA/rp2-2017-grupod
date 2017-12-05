@@ -137,8 +137,8 @@ public class ViewPodcast extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaPodCast = new javax.swing.JTable();
         botaoCaminho = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         ordenarAno = new javax.swing.JCheckBox();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -157,44 +157,56 @@ public class ViewPodcast extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel1.setText("Idioma:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 230, 70, 14);
+        jLabel1.setBounds(20, 180, 70, 16);
 
+        jLabel2.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel2.setText("Autor:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 270, 70, 14);
+        jLabel2.setBounds(20, 220, 70, 16);
 
+        jLabel3.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel3.setText("ID:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 110, 70, 14);
+        jLabel3.setBounds(20, 100, 30, 16);
 
+        jLabel4.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel4.setText("Título:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(10, 150, 70, 14);
+        jLabel4.setBounds(20, 140, 70, 16);
 
+        jLabel5.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel5.setText("Descrição:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 190, 70, 14);
+        jLabel5.setBounds(180, 290, 90, 16);
 
+        jLabel6.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel6.setText("Ano:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 310, 60, 14);
+        jLabel6.setBounds(20, 260, 60, 16);
         getContentPane().add(campoAutor);
-        campoAutor.setBounds(100, 260, 282, 30);
+        campoAutor.setBounds(90, 210, 282, 30);
         getContentPane().add(campoTitulo);
-        campoTitulo.setBounds(100, 140, 282, 30);
+        campoTitulo.setBounds(90, 130, 282, 30);
         getContentPane().add(campoDescricao);
-        campoDescricao.setBounds(100, 180, 282, 30);
+        campoDescricao.setBounds(90, 310, 282, 30);
         getContentPane().add(campoIdioma);
-        campoIdioma.setBounds(100, 220, 282, 30);
+        campoIdioma.setBounds(90, 170, 282, 30);
 
         campoId.setEditable(false);
+        campoId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoIdActionPerformed(evt);
+            }
+        });
         getContentPane().add(campoId);
-        campoId.setBounds(100, 100, 282, 30);
+        campoId.setBounds(90, 90, 282, 30);
         getContentPane().add(campoAno);
-        campoAno.setBounds(100, 300, 282, 30);
+        campoAno.setBounds(90, 250, 280, 30);
 
+        botaoCadastrarPodCast.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         botaoCadastrarPodCast.setText("Cadastrar");
         botaoCadastrarPodCast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,8 +214,9 @@ public class ViewPodcast extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botaoCadastrarPodCast);
-        botaoCadastrarPodCast.setBounds(420, 110, 130, 40);
+        botaoCadastrarPodCast.setBounds(420, 160, 150, 40);
 
+        botaoSairPodCast.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         botaoSairPodCast.setText("Sair");
         botaoSairPodCast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,14 +224,22 @@ public class ViewPodcast extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botaoSairPodCast);
-        botaoSairPodCast.setBounds(420, 260, 130, 40);
-        getContentPane().add(campoCaminho);
-        campoCaminho.setBounds(100, 340, 282, 30);
+        botaoSairPodCast.setBounds(420, 300, 150, 30);
 
+        campoCaminho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCaminhoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(campoCaminho);
+        campoCaminho.setBounds(90, 350, 282, 20);
+
+        jLabel7.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel7.setText("Caminho:");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(10, 350, 70, 14);
+        jLabel7.setBounds(10, 350, 90, 16);
 
+        botaoBuscar.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         botaoBuscar.setText("Buscar");
         botaoBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +247,7 @@ public class ViewPodcast extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botaoBuscar);
-        botaoBuscar.setBounds(460, 50, 80, 30);
+        botaoBuscar.setBounds(460, 120, 80, 30);
 
         campoBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,8 +255,9 @@ public class ViewPodcast extends javax.swing.JFrame {
             }
         });
         getContentPane().add(campoBusca);
-        campoBusca.setBounds(410, 10, 170, 30);
+        campoBusca.setBounds(410, 90, 170, 20);
 
+        botaoSalvarAlteracoes.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         botaoSalvarAlteracoes.setText("Salvar Alterações");
         botaoSalvarAlteracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,8 +265,9 @@ public class ViewPodcast extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botaoSalvarAlteracoes);
-        botaoSalvarAlteracoes.setBounds(420, 160, 130, 40);
+        botaoSalvarAlteracoes.setBounds(420, 210, 150, 40);
 
+        botaoExcluir.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         botaoExcluir.setText("Excluir");
         botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,7 +275,7 @@ public class ViewPodcast extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botaoExcluir);
-        botaoExcluir.setBounds(420, 210, 132, 40);
+        botaoExcluir.setBounds(420, 260, 150, 30);
 
         tabelaPodCast.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -270,6 +293,7 @@ public class ViewPodcast extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(10, 410, 590, 120);
 
+        botaoCaminho.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         botaoCaminho.setText("Escolher");
         botaoCaminho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,8 +301,14 @@ public class ViewPodcast extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botaoCaminho);
-        botaoCaminho.setBounds(390, 340, 73, 30);
+        botaoCaminho.setBounds(380, 350, 91, 30);
 
+        jLabel10.setFont(new java.awt.Font("The Blacklist", 0, 36)); // NOI18N
+        jLabel10.setText("Podcast");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(430, 30, 150, 40);
+
+        ordenarAno.setFont(new java.awt.Font("Stencil", 0, 11)); // NOI18N
         ordenarAno.setText("Ordenar por ano");
         ordenarAno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,15 +316,11 @@ public class ViewPodcast extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ordenarAno);
-        ordenarAno.setBounds(10, 380, 150, 23);
+        ordenarAno.setBounds(10, 380, 170, 21);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/texte.jpg"))); // NOI18N
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(10, 11, 227, 82);
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/fundopodcast.jpg"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/e.jpg"))); // NOI18N
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(0, 0, 710, 540);
+        jLabel9.setBounds(-60, -10, 710, 540);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -406,6 +432,14 @@ public class ViewPodcast extends javax.swing.JFrame {
         bancoPodcast.atualizaTabela(bancoPodcast.ordenar(bancoPodcast), tabelaPodCast);
     }//GEN-LAST:event_ordenarAnoActionPerformed
 
+    private void campoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoIdActionPerformed
+
+    private void campoCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCaminhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCaminhoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoBuscar;
@@ -423,13 +457,13 @@ public class ViewPodcast extends javax.swing.JFrame {
     private javax.swing.JTextField campoIdioma;
     private javax.swing.JTextField campoTitulo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

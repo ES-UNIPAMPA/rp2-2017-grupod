@@ -74,18 +74,18 @@ public class Filme extends Midia {
 
     @Override
     public String toString() {
-        String dados = " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() + "\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor +"\n Atores Principais:" + "\n";
-         for (int i = 0; i < atoresPrincipais.size(); i++) {
+        String dados = " Título: " + super.getTitulo() + "\n" + " Ano: " + super.getAno() + "\n Descrição: " + super.getDescricao() + "\n Gênero: " + genero + "\n Idioma: " + idioma + "\n Diretor: " + diretor + "\n Atores Principais:" + "\n";
+        for (int i = 0; i < atoresPrincipais.size(); i++) {
             dados += atoresPrincipais.get(i) + "\n";
         }
-        dados+= "Duracao: " + duracao + " minutos"+ '\n';
+        dados += "Duracao: " + duracao + " minutos" + '\n';
         return dados;
 
     }
 
     public String toFile() {
-        String dados = super.toFile() + genero + "\r\n" + idioma + "\r\n" + diretor + "\r\n" + atoresPrincipais.size() + "\r\n";
-        for (int i = 0; i < atoresPrincipais.size(); i++) {
+        String dados = super.toFile() + genero + "\r\n" + idioma + "\r\n" + diretor + "\r\n" + numeroAtores + "\r\n";
+        for (int i = 0; i < numeroAtores; i++) {
             dados += atoresPrincipais.get(i) + "\r\n";
         }
         dados += duracao + "\r\n";
@@ -121,13 +121,4 @@ public class Filme extends Midia {
             return false;
         }
     }
-
-    public boolean compareTo(Object obj) {//arrumar
-        Filme filme = (Filme) obj;
-        if (this.getAno() >= filme.getAno()) {
-            return true;
-        }
-        return false;
-    }
-
 }
