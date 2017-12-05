@@ -7,6 +7,7 @@ import midias.Midia;
  * @author vagne
  */
 public class AudioLivro extends Midia {
+
     private String genero;
     private String idioma;
     private String autores;
@@ -14,14 +15,8 @@ public class AudioLivro extends Midia {
     private String editora;
     private int duracao;
 
-    
-    public AudioLivro(String caminho, String titulo, String descricao, int ano, int id, String genero, String idioma,
-            String autores, String local, String editora, int duracao) {
-<<<<<<< HEAD
-        super(caminho, titulo, descricao, ano, 0);
-=======
+    public AudioLivro(String caminho, String titulo, String descricao, int ano, int id, String genero, String idioma, String autores, String local, String editora, int duracao) {
         super(caminho, titulo, descricao, ano, id);
->>>>>>> parent of 04e5f3b... Organização por OddEvenSort. Alguns métodos estão sendo refatorados.
         this.genero = genero;
         this.idioma = idioma;
         this.autores = autores;
@@ -37,7 +32,7 @@ public class AudioLivro extends Midia {
     public void setAutores(String autores) {
         this.autores = autores;
     }
-    
+
     public String getGenero() {
         return genero;
     }
@@ -77,18 +72,14 @@ public class AudioLivro extends Midia {
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-    
-    
-    public String toString(){
-        return "AudioLivro{" + "genero=" +genero +", idioma=" +idioma +", autores=" +autores +", local=" +local +", editora=" +editora +", duracao=" +duracao;
-                }
-    
-    
-    @Override
-    public String toFile() {
-        String dados = super.toFile() + genero +  "\r\n" + idioma +  "\r\n" + autores +  "\r\n" + local +  "\r\n" + editora +  "\r\n" + duracao +  "\r\n";
-        return dados;
-    }
+
+    public String toString() {
+        return "AudioLivro{" + "genero=" + genero + ", idioma=" + idioma + ", autores=" + autores + ", local=" + local + ", editora=" + editora + ", duracao=" + duracao;
     }
 
- 
+    @Override
+    public String toFile() {
+        String dados = super.toFile() + genero + "\r\n" + idioma + "\r\n" + autores + "\r\n" + local + "\r\n" + editora + "\r\n" + duracao + "\r\n";
+        return dados;
+    }
+}
