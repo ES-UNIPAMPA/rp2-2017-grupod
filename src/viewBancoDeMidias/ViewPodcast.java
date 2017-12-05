@@ -17,6 +17,7 @@ import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import midias.Midia;
 import static midias.Midia.idGeral;
@@ -552,5 +553,10 @@ public class ViewPodcast extends javax.swing.JFrame {
                 }
         ));
         return tabela;
+    }
+    public void gerarBackground() {
+        String pasta = System.getProperty("user.dir");
+        jLabel9.setIcon(new ImageIcon(pasta + "/imagens/e.jpg"));
+
     }
 }

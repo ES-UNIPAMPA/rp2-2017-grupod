@@ -1,21 +1,48 @@
-6
-19
-C:\Users\SABRINA\Pictures
-Kingsman 2
+10
+36
+C:\Users\SABRINA\Contacts
+It - a coisa
 2017
-sjioahsauhihaioas
-terror
+Um grupo de sete adolescentes de Derry, uma cidade no Maine, formam o auto-intitulado "Losers Club" - o clube dos perdedores. 
+Terror
 Inglês
-Alguém
+Andy Muschietti
 2
-p
-u
-65:23
+Bill Skarsgard
+Jaeden Lieberher
+90:15
 
-17
+37
+C:\Users\SABRINA\Pictures
+Liga da Justiça
+2017
+Impulsionado pela restauração de sua fé na humanidade e inspirado pelo ato altruísta do Superman (Henry Cavill), Bruce Wayne (Ben Affleck) convoca sua nova aliada Diana Prince (Gal Gadot) para o combate contra um inimigo ainda maior.
+Aventura
+Inglês
+Zack Snyder
+3
+Gal Gadot
+Ben Affleck
+Henry Cavill
+60:60
+
+32
+C:\Users\SABRINA\Pictures
+Kingsman
+2017
+Um súbito e grandioso ataque de mísseis praticamente elimina o Kingsman, que conta apenas com Eggsy (Taron Egerton) e Merlin (Mark Strong) como remanescentes.
+ação
+inglês
+MAttthew Vaughn
+2
+Taron Egerton
+Colin Firth
+60:15
+
+32
 C:\Users\SABRINA\Favorites
-Paranorman
-2015
+Esquadrão Suicída
+2016
 descrição
 aventura
 inglês
@@ -25,18 +52,31 @@ C
 D
 50:00
 
-12
-C:\Users\SABRINA\Favorites
-Paranorman 2
-2015
-descrição
-aventura
+34
+C:\Users\SABRINA\Pictures
+Os estagiários
+2013
+Billy (Vince Vaughn) e Nick (Owen Wilson) são grandes amigos e trabalham juntos como vendedores de relógios. 
+Comédia
 inglês
-tim burton
+Shawn Levi
 2
-C
-D
-50:00
+Vince Vaughn
+Owen Wilson
+65:30
+
+33
+C:\Users\SABRINA\Favorites
+O Lobo de Wall Street
+2013
+Durante seis meses, Jordan Belfort (Leonardo DiCaprio) trabalhou duro em uma corretora de Wall Street, seguindo os ensinamentos de seu mentor Mark Hanna (Matthew McConaughey). Quando finalmente consegue ser contratado como corretor da firma...
+Drama, Biografia
+Português
+Martin Scorsese
+2
+Leionardo DiCaprio
+Johan Hill
+90:59
 
 13
 C:\Users\SABRINA\Creative Cloud Files
@@ -65,6 +105,20 @@ P
 A
 B
 20:00
+
+35
+C:\Users\SABRINA\Favorites
+As Branquelas
+2004
+Os irmãos Marcus (Marlon Wayans) e Kevin Copeland (Shawn Wayans) são detetives do FBI que estão com problemas no trabalho. A última investigação da dupla foi um grande fracasso e eles estão sob a ameaça de serem demitidos. 
+Comédia
+Português
+Keene Ivory
+3
+Shawn Wayans
+Marlon Wayans
+Maitland Ward
+60:49
 
 18
 C:\Users\SABRINA\Pictures

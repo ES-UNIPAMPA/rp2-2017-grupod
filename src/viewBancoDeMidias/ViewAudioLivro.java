@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -514,7 +515,11 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         return tabela;
     }
  
-    
+        public void gerarBackground() {
+        String pasta = System.getProperty("user.dir");
+        jLabel13.setIcon(new ImageIcon(pasta + "/imagens/backgroundA.jpg"));
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarAudioLivro;

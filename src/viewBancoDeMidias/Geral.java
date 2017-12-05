@@ -7,6 +7,7 @@ package viewBancoDeMidias;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import midias.Midia;
 
@@ -164,7 +165,11 @@ public class Geral extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Esta Mídia não Existe!");
         }
     }//GEN-LAST:event_buscarActionPerformed
+    public void gerarBackground() {
+        String pasta = System.getProperty("user.dir");
+        jLabel1.setIcon(new ImageIcon(pasta + "/imagens/Rainbow.jpg"));
 
+    }
     /**
      * @param args the command line arguments
      */
