@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package bancoDeMidias;
 
 import java.io.BufferedReader;
@@ -50,7 +55,7 @@ public class BancoAudioLivro extends BancoDeMidias{
         BufferedReader buff;
         AudioLivro audioLivroArquivo;
         String linha, caminho, titulo, descricao, idioma, autores, local, editora, genero;
-        int ano, duracao;
+        int ano, id, duracao;
        
 
          /*
@@ -65,7 +70,8 @@ public class BancoAudioLivro extends BancoDeMidias{
 
         for (int i = 0; i < totalDeAudiolivros; i++) {
 
-            
+            linha = buff.readLine();
+            id = Integer.parseInt(linha);
 
             caminho = buff.readLine();
 
@@ -89,7 +95,7 @@ public class BancoAudioLivro extends BancoDeMidias{
             linha = buff.readLine();
             duracao = Integer.parseInt(linha);
 
-            audioLivroArquivo = new AudioLivro(caminho, titulo, descricao, ano, genero, idioma, autores, local, editora, duracao);
+            audioLivroArquivo = new AudioLivro(caminho, titulo, descricao, ano, id, genero, idioma, autores, local, editora, duracao);
 
             this.cadastrar(audioLivroArquivo);
 
@@ -99,45 +105,7 @@ public class BancoAudioLivro extends BancoDeMidias{
         inFile.close();
 
     }
-    
-     public List<Midia> ordenarOddEven(BancoAudioLivro bancoAudioLivro) {
-    {
-        boolean houveTroca = false; 
-        List<Midia> midias = bancoAudioLivro.getMidias();
- 
-        while (!houveTroca)
-        {
-            houveTroca = true;
-            int temp =0;
-               for(int i = 1; i < bancoAudioLivro.getTamanhoLista()-2; i=i+2)
-            {
-                AudioLivro al1 = (AudioLivro) midias.get(i);
-                AudioLivro al2 = (AudioLivro) midias.get(i + 1);
-                if (al1.compareTo(al2)) {
-                    midias.set(i, al2);
-                    midias.set(i + 1, al1);
-                    bancoAudioLivro.setMidias(midias);
-                    houveTroca = true;
-            }
-            }
- 
-            // Perform Bubble sort on even indexed element
-            for(int i = 0; i < bancoAudioLivro.getTamanhoLista()-1; i=i+1)
-            {
-                AudioLivro al1 = (AudioLivro) midias.get(i);
-                AudioLivro al2 = (AudioLivro) midias.get(i + 1);
-                if (al1.compareTo(al2)) {
-                    midias.set(i, al2);
-                    midias.set(i + 1, al1);
-                    bancoAudioLivro.setMidias(midias);
-                    houveTroca = true;
-            }
-            }
-        }
- 
-        return midias;
-     }
-    }
+
 }
     
 

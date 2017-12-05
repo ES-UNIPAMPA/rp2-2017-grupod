@@ -1,5 +1,6 @@
 package midias;
 
+import midias.Midia;
 
 /**
  *
@@ -14,9 +15,13 @@ public class AudioLivro extends Midia {
     private int duracao;
 
     
-    public AudioLivro(String caminho, String titulo, String descricao, int ano, String genero, String idioma,
+    public AudioLivro(String caminho, String titulo, String descricao, int ano, int id, String genero, String idioma,
             String autores, String local, String editora, int duracao) {
+<<<<<<< HEAD
         super(caminho, titulo, descricao, ano, 0);
+=======
+        super(caminho, titulo, descricao, ano, id);
+>>>>>>> parent of 04e5f3b... Organização por OddEvenSort. Alguns métodos estão sendo refatorados.
         this.genero = genero;
         this.idioma = idioma;
         this.autores = autores;
