@@ -129,24 +129,38 @@ public class Geral extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * Botão que atualiza tabela do audioLivro
+     */
     private void btnAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAudioLivroActionPerformed
         audiolivro.atualizaTabelaA(audiolivro.getBancoAudioLivro().getMidias(), jTable1);
     }//GEN-LAST:event_btnAudioLivroActionPerformed
 
+/**
+     * Botão que atualiza tabela do filme
+     */
     private void btnFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmeActionPerformed
         filme.atualizaTabela(filme.getBancoFilmes().getMidias(), jTable1);
     }//GEN-LAST:event_btnFilmeActionPerformed
 
+/**
+     * Botão que atualiza tabela do Podcast
+     */
     private void btnPodcast1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPodcast1ActionPerformed
        podcast.atualizaTabela(podcast.getBancoDeMidias().getMidias(), jTable1);
     }//GEN-LAST:event_btnPodcast1ActionPerformed
 
+/**
+     * Botão que retorna a tela incial
+     */
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
         setVisible(false);
         inicial.setVisible(true);
     }//GEN-LAST:event_sairActionPerformed
 
+/**
+     * Botão que faz a busca por título em todas as mídias
+     */
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         try {
             String procurado = "";

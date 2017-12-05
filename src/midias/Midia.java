@@ -84,11 +84,17 @@ public abstract class Midia {
         return idGeral;
     }
 
+    /**
+     * Método para exibir atributos
+     */
     @Override
     public String toString() {
         return "Midia{" + "caminho=" + caminho + ", titulo=" + titulo + ", descricao=" + descricao + ", ano=" + ano + ", id=" + getId() + '}';
     }
 
+    /**
+     * Método para gravar o arquivo
+     */
     public String toFile() {
         return getId() + "\r\n" + caminho + "\r\n" + titulo + "\r\n" + ano + "\r\n" + descricao + "\r\n";
     }
@@ -125,6 +131,9 @@ public abstract class Midia {
         return idGeral;
     }
 
+    /**
+     * Método utilizado para a ordenação por ano descrescente
+     */
     public boolean compararAno(Object obj) {
         Midia midia = (Midia) obj;
         if (this.ano >= midia.getAno()) {
@@ -133,8 +142,11 @@ public abstract class Midia {
         return false;
     }
 
+    /**
+     * Método utilizado para a ordenação por Título em ordem alfabética
+     */
     public boolean compararTitulo(Object obj) {
-         Midia filme = (Midia) obj;
+        Midia filme = (Midia) obj;
         if (this.getTitulo().compareToIgnoreCase(filme.getTitulo()) <= 0) {
             return true;
         }

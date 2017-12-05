@@ -106,7 +106,9 @@ public class Principal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Botão que vai para a tela do filme e carrega o arquivo
+     */
     private void botaoFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFilmeActionPerformed
         try {
             bancoFilme.ler("BancoFilmes.txt");
@@ -117,7 +119,9 @@ public class Principal extends javax.swing.JFrame {
         telaDeFilme.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_botaoFilmeActionPerformed
-
+/**
+     * Botão que vai para a tela do podcast e carrega o arquivo
+     */
     private void botaoPodCastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPodCastActionPerformed
         try {
             bancoPodcast.ler("BancoPodcasts.txt");
@@ -128,7 +132,9 @@ public class Principal extends javax.swing.JFrame {
         telaDePodcast.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_botaoPodCastActionPerformed
-
+/**
+     * Botão que vai para a tela do audiolivro e carrega o arquivo
+     */
     private void botaoAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAudioLivroActionPerformed
           try {
             bancoAudioLivro.ler("BancoAudioLivro.txt");
@@ -139,7 +145,9 @@ public class Principal extends javax.swing.JFrame {
         telaAudioLivro.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_botaoAudioLivroActionPerformed
-
+/**
+     * Botão que vai para a tela de acesso a todas as nídias e carrega o arquivo
+     */
     private void todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosActionPerformed
          try {
             bancoAudioLivro.ler("BancoAudioLivro.txt");
@@ -195,6 +203,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+    /**
+     * gera Background e carrega imagens 
+     */
     public void gerarBackground(){
         String pasta = System.getProperty("user.dir");
         fundoPrincipal.setIcon(new ImageIcon(pasta + "/imagens/background.jpg"));
