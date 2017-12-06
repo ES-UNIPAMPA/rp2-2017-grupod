@@ -43,6 +43,19 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     public ViewAudioLivro(BancoAudioLivro bancoAudioLivro) {
         initComponents();
         this.bancoAudioLivro = bancoAudioLivro;
+        try {
+            bancoAudioLivro.ler("BancoAudioLivro.txt");
+            atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+         try {
+            int idGeral = Midia.obterIDGeral("IDGeral.txt", false); // false apenas recupera, sem atualizar
+            campoId.setText(String.valueOf(idGeral));
+        } catch (Exception ex) {
+
+        }
         tabelaA.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -61,7 +74,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 String duracao = String.valueOf(target.getValueAt(row, 9));
                 String caminho = String.valueOf(target.getValueAt(row, 10));
 
-                campoID.setText(id);
+                campoId.setText(id);
                 campoTitulo.setText(titulo);
                 campoDescricao.setText(descricao);
                 campoAno.setText(ano);
@@ -113,7 +126,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        campoID = new javax.swing.JTextField();
+        campoId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         campoTitulo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -169,12 +182,13 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         jLabel1.setText("ID:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        campoID.addActionListener(new java.awt.event.ActionListener() {
+        campoId.setEditable(false);
+        campoId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoIDActionPerformed(evt);
+                campoIdActionPerformed(evt);
             }
         });
-        jPanel1.add(campoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 230, -1));
+        jPanel1.add(campoId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 230, -1));
 
         jLabel2.setFont(new java.awt.Font("Stencil", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -253,7 +267,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 campoPesquisaActionPerformed(evt);
             }
         });
-        jPanel1.add(campoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 160, -1));
+        jPanel1.add(campoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 160, -1));
 
         btnPesquisar.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnPesquisar.setText("Pesquisar");
@@ -262,7 +276,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 120, 30));
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 120, 30));
 
         btnCadastrarAudioLivro.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnCadastrarAudioLivro.setText("Cadastrar");
@@ -276,7 +290,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 btnCadastrarAudioLivroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCadastrarAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 120, 30));
+        jPanel1.add(btnCadastrarAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 120, 30));
 
         btnEditarAudioLivro.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnEditarAudioLivro.setText("Editar");
@@ -285,7 +299,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 btnEditarAudioLivroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditarAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 120, 30));
+        jPanel1.add(btnEditarAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, 120, 30));
 
         btnExcluirAudioLivro.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnExcluirAudioLivro.setText("Excluir");
@@ -294,7 +308,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 btnExcluirAudioLivroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExcluirAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 120, 30));
+        jPanel1.add(btnExcluirAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 120, 30));
 
         btnVoltarAudioLivro.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         btnVoltarAudioLivro.setText("Voltar");
@@ -303,7 +317,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
                 btnVoltarAudioLivroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVoltarAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 120, 30));
+        jPanel1.add(btnVoltarAudioLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 120, 30));
 
         tabelaA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -330,14 +344,13 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 160, -1));
 
         jLabel12.setFont(new java.awt.Font("The Blacklist", 0, 36)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("AudioLivro");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
 
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/backgroundA.jpg"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/fundoAL.jpg"))); // NOI18N
         jLabel13.setText("jLabel13");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -100, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -170, 700, 930));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 540));
 
@@ -352,9 +365,9 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoLocalActionPerformed
 
-    private void campoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIDActionPerformed
+    private void campoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoIDActionPerformed
+    }//GEN-LAST:event_campoIdActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
             AudioLivro audioLivro;
@@ -366,7 +379,6 @@ public class ViewAudioLivro extends javax.swing.JFrame {
             try {
                 exibirAudioLivro(audioLivro);
             } catch (NullPointerException e) {
-                limparCampos();
                 JOptionPane.showMessageDialog(null, "Não foi possível localizar o item. Tente novamente. ", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -377,36 +389,44 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarAudioLivroMouseClicked
 
     private void btnVoltarAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarAudioLivroActionPerformed
-        JFrame frame = new JFrame();
-        frame.setVisible(true);
+        
         dispose();
         new Principal().setVisible(true);
     }//GEN-LAST:event_btnVoltarAudioLivroActionPerformed
 
     private void btnCadastrarAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarAudioLivroActionPerformed
       
-       AudioLivro audioLivroNovo;
-       
-       audioLivroNovo = new AudioLivro(campoCaminho.getText(),
-               campoTitulo.getText(), 
-               campoDescricao.getText(),
-               Integer.parseInt(campoAno.getText()),
-               Integer.parseInt(campoID.getText()),
-               campoGenero.getText(),
-               campoIdioma.getText(),
-               campoAutores.getText(),
-               campoLocal.getText(),
-               campoEditora.getText(),
-               Integer.parseInt(campoDuracao.getText())
-       );
-       
-       bancoAudioLivro.cadastrar(audioLivroNovo);
-       
-       try {
+       if (campoCaminho.getText() != null && campoTitulo.getText() != null && campoDescricao.getText() != null && this.campoAno != null && campoIdioma.getText() == null || campoId.getText() != null
+            && campoGenero.getText() != null && campoIdioma.getText() != null && campoAutores.getText() != null && campoLocal.getText() != null && campoEditora.getText() != null && campoDuracao.getText() != null) {
+            AudioLivro audioLivroNovo;
+            try {
+                audioLivroNovo = new AudioLivro(campoCaminho.getText(),
+                    campoTitulo.getText(),
+                    campoDescricao.getText(),
+                    Integer.parseInt(campoAno.getText()),
+                    Midia.obterIDGeral("IDGeral.txt", true),
+                    campoGenero.getText(),
+                    campoIdioma.getText(),
+                    campoAutores.getText(),
+                    campoLocal.getText(),
+                    campoEditora.getText(),
+                    Integer.parseInt(campoDuracao.getText())
+                );
+                limparCampos();
+                bancoAudioLivro.cadastrar(audioLivroNovo);
+            } catch (Exception ex) {
+                Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Você não preencheu todos os campos de texto. \n Tente novamente preenchendo todos os campos!");
+        }
+
+        try {
             bancoAudioLivro.gravar("BancoAudioLivro.txt");
         } catch (Exception ex) {
             Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
        
     }//GEN-LAST:event_btnCadastrarAudioLivroActionPerformed
@@ -424,28 +444,41 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnExcluirAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirAudioLivroActionPerformed
-         bancoAudioLivro.excluir(Integer.valueOf(campoID.getText()));
-         atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
+         bancoAudioLivro.excluir(Integer.valueOf(campoId.getText()));
+        try {
+            bancoAudioLivro.gravar("BancoAudioLivro.txt");
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        limparCampos();
+        atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
     }//GEN-LAST:event_btnExcluirAudioLivroActionPerformed
 
     private void btnEditarAudioLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAudioLivroActionPerformed
-        AudioLivro audioLivroEditado;
-       
-       audioLivroEditado = new AudioLivro(campoCaminho.getText(),
-               campoTitulo.getText(), 
-               campoDescricao.getText(),
-               Integer.parseInt(campoAno.getText()),
-               Integer.parseInt(campoID.getText()),
-               campoGenero.getText(),
-               campoIdioma.getText(),
-               campoAutores.getText(),
-               campoLocal.getText(),
-               campoEditora.getText(),
-               Integer.parseInt(campoDuracao.getText())
-       );
-       
-       bancoAudioLivro.editar(Integer.valueOf(campoID.getText()),audioLivroEditado);
-       atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
+       AudioLivro audioLivroEditado;
+
+        audioLivroEditado = new AudioLivro(campoCaminho.getText(),
+            campoTitulo.getText(),
+            campoDescricao.getText(),
+            Integer.parseInt(campoAno.getText()),
+            Integer.parseInt(campoId.getText()),
+            campoGenero.getText(),
+            campoIdioma.getText(),
+            campoAutores.getText(),
+            campoLocal.getText(),
+            campoEditora.getText(),
+            Integer.parseInt(campoDuracao.getText())
+        );
+
+        bancoAudioLivro.editar(Integer.valueOf(campoId.getText()),audioLivroEditado);
+        try {
+            bancoAudioLivro.gravar("BancoAudioLivro.txt");
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        limparCampos();
+        atualizaTabelaA(bancoAudioLivro.getMidias(), tabelaA);
+
     }//GEN-LAST:event_btnEditarAudioLivroActionPerformed
 
     private void campoCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCaminhoActionPerformed
@@ -466,7 +499,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         campoTitulo.setText(audioLivro.getTitulo());
         campoDescricao.setText(audioLivro.getDescricao());
         campoAno.setText(String.valueOf(audioLivro.getAno()));
-        campoID.setText(String.valueOf(audioLivro.getId()));
+        campoId.setText(String.valueOf(audioLivro.getId()));
         campoGenero.setText(audioLivro.getGenero());
         campoIdioma.setText(audioLivro.getIdioma());
         campoAutores.setText(audioLivro.getAutores());
@@ -480,7 +513,11 @@ public class ViewAudioLivro extends javax.swing.JFrame {
         campoTitulo.setText("");
         campoDescricao.setText("");
         campoAno.setText("");
-        campoID.setText("");
+        try {
+            campoId.setText(String.valueOf(Midia.obterIDGeral("IDGeral.txt", false)));
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPodcast.class.getName()).log(Level.SEVERE, null, ex);
+        }
         campoGenero.setText("");
         campoIdioma.setText("");
         campoAutores.setText("");
@@ -517,7 +554,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
  
         public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
-        jLabel13.setIcon(new ImageIcon(pasta + "/imagens/backgroundA.jpg"));
+        jLabel13.setIcon(new ImageIcon(pasta + "/imagens/fundoAL.jpg"));
 
     }
 
@@ -534,7 +571,7 @@ public class ViewAudioLivro extends javax.swing.JFrame {
     private javax.swing.JTextField campoDuracao;
     private javax.swing.JTextField campoEditora;
     private javax.swing.JTextField campoGenero;
-    private javax.swing.JTextField campoID;
+    private javax.swing.JTextField campoId;
     private javax.swing.JTextField campoIdioma;
     private javax.swing.JTextField campoLocal;
     private javax.swing.JTextField campoPesquisa;
