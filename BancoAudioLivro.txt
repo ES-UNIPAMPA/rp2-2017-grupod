@@ -1,13 +1,565 @@
-1
-65
-C:\Users\Rafae\Searches
-jhsa
-45654
-asf
-asfa
-sdfsd
-cvbvcx
-sdgsdgsdfs
-asdasf
-3453
+47
+39
+C:\Users\SABRINA\Favorites
+Fundação
+2001
+livro fundação do escritos isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+250
+
+40
+C:\Users\SABRINA\Favorites
+Fundação e império
+2002
+Livro fundação e império do escritor isac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+286
+
+41
+C:\Users\SABRINA\Pictures
+Segunda fundação
+2003
+audio livro da segunda fundação
+Ficção
+Porutuguês
+Isac Asimov
+Brasil
+Arqueiro
+345
+
+42
+C:\Users\SABRINA\Saved Games
+Império Galático
+1998
+série robótica do escritor isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Globo
+189
+
+43
+C:\Users\SABRINA\Music
+H.P Lovecraft The Complete Fiction
+2009
+coletânica de contos e ensaios de HP Lovecraft
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Barne and Knles
+670
+
+44
+C:\Users\SABRINA\Favorites
+A Sombra de Insmouth
+2006
+A história de uma viajem pelo norte da nglaterra
+Horror, Fantasia
+Português
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+90
+
+45
+C:\Users\SABRINA\Favorites
+Pickmans Model
+1997
+Um pintor enlouquecido e a história de seus quadros macabros
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+126
+
+46
+C:\Users\SABRINA\Downloads
+Carrie
+1998
+primeiro romance publicado pelo escritor stephen king
+Rmance
+Inglês
+Stephen King
+Estados Unidos
+Doubleday
+178
+
+47
+C:\Users\SABRINA\Downloads
+Cujo
+1997
+a história da família trenton
+Terror Psicológico
+Inglês
+Stephen King
+Estados Unidos
+Viking Press
+206
+
+39
+C:\Users\SABRINA\Favorites
+Fundação
+2001
+livro fundação do escritos isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+250
+
+40
+C:\Users\SABRINA\Favorites
+Fundação e império
+2002
+Livro fundação e império do escritor isac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+286
+
+41
+C:\Users\SABRINA\Pictures
+Segunda fundação
+2003
+audio livro da segunda fundação
+Ficção
+Porutuguês
+Isac Asimov
+Brasil
+Arqueiro
+345
+
+42
+C:\Users\SABRINA\Saved Games
+Império Galático
+1998
+série robótica do escritor isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Globo
+189
+
+43
+C:\Users\SABRINA\Music
+H.P Lovecraft The Complete Fiction
+2009
+coletânica de contos e ensaios de HP Lovecraft
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Barne and Knles
+670
+
+44
+C:\Users\SABRINA\Favorites
+A Sombra de Insmouth
+2006
+A história de uma viajem pelo norte da nglaterra
+Horror, Fantasia
+Português
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+90
+
+45
+C:\Users\SABRINA\Favorites
+Pickmans Model
+1997
+Um pintor enlouquecido e a história de seus quadros macabros
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+126
+
+46
+C:\Users\SABRINA\Downloads
+Carrie
+1998
+primeiro romance publicado pelo escritor stephen king
+Rmance
+Inglês
+Stephen King
+Estados Unidos
+Doubleday
+178
+
+47
+C:\Users\SABRINA\Downloads
+Cujo
+1997
+a história da família trenton
+Terror Psicológico
+Inglês
+Stephen King
+Estados Unidos
+Viking Press
+206
+
+39
+C:\Users\SABRINA\Favorites
+Fundação
+2001
+livro fundação do escritos isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+250
+
+40
+C:\Users\SABRINA\Favorites
+Fundação e império
+2002
+Livro fundação e império do escritor isac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+286
+
+41
+C:\Users\SABRINA\Pictures
+Segunda fundação
+2003
+audio livro da segunda fundação
+Ficção
+Porutuguês
+Isac Asimov
+Brasil
+Arqueiro
+345
+
+42
+C:\Users\SABRINA\Saved Games
+Império Galático
+1998
+série robótica do escritor isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Globo
+189
+
+43
+C:\Users\SABRINA\Music
+H.P Lovecraft The Complete Fiction
+2009
+coletânica de contos e ensaios de HP Lovecraft
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Barne and Knles
+670
+
+44
+C:\Users\SABRINA\Favorites
+A Sombra de Insmouth
+2006
+A história de uma viajem pelo norte da nglaterra
+Horror, Fantasia
+Português
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+90
+
+45
+C:\Users\SABRINA\Favorites
+Pickmans Model
+1997
+Um pintor enlouquecido e a história de seus quadros macabros
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+126
+
+46
+C:\Users\SABRINA\Downloads
+Carrie
+1998
+primeiro romance publicado pelo escritor stephen king
+Rmance
+Inglês
+Stephen King
+Estados Unidos
+Doubleday
+178
+
+47
+C:\Users\SABRINA\Downloads
+Cujo
+1997
+a história da família trenton
+Terror Psicológico
+Inglês
+Stephen King
+Estados Unidos
+Viking Press
+206
+
+48
+C:\Users\SABRINA\Links
+The Dead Zone
+2002
+audio livro sobre o livro de stephen king
+Inglês
+Suspense 
+Stephen King
+Estados Unidos
+Viking Press
+124
+
+39
+C:\Users\SABRINA\Favorites
+Fundação
+2001
+livro fundação do escritos isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+250
+
+40
+C:\Users\SABRINA\Favorites
+Fundação e império
+2002
+Livro fundação e império do escritor isac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+286
+
+41
+C:\Users\SABRINA\Pictures
+Segunda fundação
+2003
+audio livro da segunda fundação
+Ficção
+Porutuguês
+Isac Asimov
+Brasil
+Arqueiro
+345
+
+42
+C:\Users\SABRINA\Saved Games
+Império Galático
+1998
+série robótica do escritor isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Globo
+189
+
+43
+C:\Users\SABRINA\Music
+H.P Lovecraft The Complete Fiction
+2009
+coletânica de contos e ensaios de HP Lovecraft
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Barne and Knles
+670
+
+44
+C:\Users\SABRINA\Favorites
+A Sombra de Insmouth
+2006
+A história de uma viajem pelo norte da nglaterra
+Horror, Fantasia
+Português
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+90
+
+45
+C:\Users\SABRINA\Favorites
+Pickmans Model
+1997
+Um pintor enlouquecido e a história de seus quadros macabros
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+126
+
+46
+C:\Users\SABRINA\Downloads
+Carrie
+1998
+primeiro romance publicado pelo escritor stephen king
+Rmance
+Inglês
+Stephen King
+Estados Unidos
+Doubleday
+178
+
+47
+C:\Users\SABRINA\Downloads
+Cujo
+1997
+a história da família trenton
+Terror Psicológico
+Inglês
+Stephen King
+Estados Unidos
+Viking Press
+206
+
+39
+C:\Users\SABRINA\Favorites
+Fundação
+2001
+livro fundação do escritos isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+250
+
+40
+C:\Users\SABRINA\Favorites
+Fundação e império
+2002
+Livro fundação e império do escritor isac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Arqueiro
+286
+
+41
+C:\Users\SABRINA\Pictures
+Segunda fundação
+2003
+audio livro da segunda fundação
+Ficção
+Porutuguês
+Isac Asimov
+Brasil
+Arqueiro
+345
+
+42
+C:\Users\SABRINA\Saved Games
+Império Galático
+1998
+série robótica do escritor isaac asimov
+Ficção
+Português
+Isac Asimov
+Brasil
+Globo
+189
+
+43
+C:\Users\SABRINA\Music
+H.P Lovecraft The Complete Fiction
+2009
+coletânica de contos e ensaios de HP Lovecraft
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Barne and Knles
+670
+
+44
+C:\Users\SABRINA\Favorites
+A Sombra de Insmouth
+2006
+A história de uma viajem pelo norte da nglaterra
+Horror, Fantasia
+Português
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+90
+
+45
+C:\Users\SABRINA\Favorites
+Pickmans Model
+1997
+Um pintor enlouquecido e a história de seus quadros macabros
+Horror
+Inglês
+H.P Lovecraft
+Estados Unidos
+Fantasy Publishing
+126
+
+46
+C:\Users\SABRINA\Downloads
+Carrie
+1998
+primeiro romance publicado pelo escritor stephen king
+Rmance
+Inglês
+Stephen King
+Estados Unidos
+Doubleday
+178
+
+47
+C:\Users\SABRINA\Downloads
+Cujo
+1997
+a história da família trenton
+Terror Psicológico
+Inglês
+Stephen King
+Estados Unidos
+Viking Press
+206
+
+48
+C:\Users\SABRINA\Links
+The Dead Zone
+2002
+audio livro sobre o livro de stephen king
+Inglês
+Suspense 
+Stephen King
+Estados Unidos
+Viking Press
+124
 
